@@ -118,6 +118,19 @@
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
   .note { font-size: 12.5px; color: var(--muted); margin-top: 10px; font-style: italic; }
+
+  .picker { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 12px; align-items: end; }
+  @media (max-width: 720px) { .picker { grid-template-columns: 1fr; } }
+  .picker label { font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
+  .picker select {
+    background: var(--panel-2); color: var(--text); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px; font-size: 14px; font-family: var(--sans);
+  }
+  .picker button {
+    background: var(--accent); color: #0d1117; border: none; border-radius: 8px;
+    padding: 11px 18px; font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+  .picker button:disabled { opacity: .5; cursor: wait; }
 </style>
 </head>
 <body>
@@ -207,6 +220,55 @@ Presses and pulls stayed in rebuild mode under the no-PR hold. The real move was
 </section>
 
 <section>
+  <h2>Try it yourself</h2>
+  <p class="sub">The same rules engine, pointed at a generic profile instead of my history. Pick three constraints and watch the agent reason through them — the reasoning arrives with the plan, same as my daily briefing.</p>
+  <div class="card">
+    <div class="card-body">
+      <div class="picker">
+        <label>Goal
+          <select id="goal">
+            <option value="build-muscle">Build muscle</option>
+            <option value="get-stronger">Get stronger</option>
+            <option value="conditioning">Fat loss / conditioning</option>
+            <option value="return-from-break">Returning after a long break</option>
+          </select>
+        </label>
+        <label>Equipment
+          <select id="equipment">
+            <option value="full-gym">Full gym</option>
+            <option value="dumbbells-only">Dumbbells only</option>
+            <option value="hotel-gym">Hotel gym</option>
+            <option value="bodyweight">Bodyweight only</option>
+          </select>
+        </label>
+        <label>Limitation
+          <select id="limitation">
+            <option value="none">None</option>
+            <option value="knee">Knee (tendon irritation)</option>
+            <option value="shoulder">Shoulder (no overhead)</option>
+            <option value="lower-back">Lower back</option>
+            <option value="wrist">Wrist / grip</option>
+          </select>
+        </label>
+        <button id="generate">Generate session</button>
+      </div>
+      <p class="note" style="margin-top:12px">Rate-limited and spend-capped on purpose — if it declines, that's the guardrails working. Nothing you pick is stored.</p>
+    </div>
+  </div>
+  <div id="result" class="duo" style="margin-top:14px; display:none">
+    <div class="card">
+      <div class="card-head"><span class="tag out">GENERATED</span> <span id="plan-title">your session</span></div>
+      <div class="card-body msg" id="plan-out"></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="tag why">AGENT REASONING</span> why this plan</div>
+      <div class="card-body"><ol class="steps" id="reasoning-out"></ol></div>
+    </div>
+  </div>
+  <div id="gen-error" class="gate" style="display:none; margin-top:14px"></div>
+</section>
+
+<section>
   <h2>How it works</h2>
   <div class="card">
     <div class="card-body arch">
@@ -218,6 +280,7 @@ Presses and pulls stayed in rebuild mode under the no-PR hold. The real move was
   </div>
   <ul class="lessons">
     <li>Every guard exists because of a real failure: a Telegram retry storm → idempotent webhook; a 2 AM platform re-run that sent a duplicate and archived a live workout → the delivery-window rejection; the model getting PR-happy → the date gate in worker code.</li>
+    <li>The "Try it" generator above is a Vercel function: server-side API key, closed dropdown inputs (no free text reaches the model), per-IP rate limit, and a hard monthly spend cap set at the account level — the page fails politely instead of failing expensively.</li>
   </ul>
 
   <div class="evalbox">
@@ -236,5 +299,57 @@ Presses and pulls stayed in rebuild mode under the no-PR hold. The real move was
 </footer>
 
 </div>
+<script>
+(function () {
+  var btn = document.getElementById("generate");
+  var result = document.getElementById("result");
+  var errBox = document.getElementById("gen-error");
+
+  btn.addEventListener("click", async function () {
+    btn.disabled = true;
+    btn.textContent = "Reasoning…";
+    errBox.style.display = "none";
+    try {
+      var res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          goal: document.getElementById("goal").value,
+          equipment: document.getElementById("equipment").value,
+          limitation: document.getElementById("limitation").value,
+        }),
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Something went wrong.");
+
+      document.getElementById("plan-title").textContent = data.plan.title;
+      var lines = data.plan.blocks.map(function (b) {
+        return b.slot + " · " + b.exercise + " — " + b.scheme + (b.note ? "  (" + b.note + ")" : "");
+      });
+      if (data.plan.limitation_note) lines.push("", "Worked around: " + data.plan.limitation_note);
+      document.getElementById("plan-out").textContent = lines.join("\n");
+
+      var ol = document.getElementById("reasoning-out");
+      ol.textContent = "";
+      data.reasoning.forEach(function (r) {
+        var li = document.createElement("li");
+        var b = document.createElement("b");
+        b.textContent = r.step + " — ";
+        li.appendChild(b);
+        li.appendChild(document.createTextNode(r.detail));
+        ol.appendChild(li);
+      });
+      result.style.display = "grid";
+      result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    } catch (e) {
+      errBox.textContent = e.message;
+      errBox.style.display = "block";
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Generate session";
+    }
+  });
+})();
+</script>
 </body>
 </html>
