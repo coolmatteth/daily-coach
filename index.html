@@ -76,9 +76,24 @@
   .roster-row .name { font-weight: 600; font-size: 13.5px; color: var(--cream); padding-top: 1px; }
   .roster-row .name small { display: block; font-weight: 400; color: var(--apricot); font-family: var(--mono); font-size: 11.5px; margin-top: 2px; }
 
-  .shot { margin: 24px 0 4px; }
-  .shot img { max-width: 100%; border: 1px solid var(--line); border-radius: 8px; display: block; }
-  .shot figcaption { font-size: 12.5px; color: var(--dim); margin-top: 8px; }
+  .diagram { margin: 26px 0 6px; border: 1px solid var(--line); border-radius: 8px; padding: 18px; background: rgba(0,0,0,.16); }
+  .d-band { display: grid; grid-template-columns: 130px 1fr; gap: 14px; align-items: start; }
+  @media (max-width: 560px) { .d-band { grid-template-columns: 1fr; gap: 6px; } }
+  .d-label {
+    font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--dim); font-weight: 700; padding-top: 10px;
+  }
+  .d-label small { display: block; text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--dim); font-size: 11px; }
+  .d-boxes { display: flex; flex-wrap: wrap; gap: 8px; }
+  .d-box {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+    padding: 8px 12px; font-size: 12.5px; color: var(--soft); flex: 1 1 140px; line-height: 1.45;
+  }
+  .d-box b { display: block; color: var(--cream); font-size: 12.5px; }
+  .d-box.gate { border-color: rgba(217, 164, 65, .45); }
+  .d-box.gate b { color: var(--apricot); }
+  .d-arrow { text-align: center; padding: 8px 0; }
+  .d-arrow span { font-size: 11.5px; color: var(--dim); font-family: var(--mono); }
 
   .scar {
     margin-top: 24px; font-family: var(--serif); font-size: 15.5px; color: var(--soft);
@@ -174,11 +189,41 @@
     <div class="roster-row"><div class="name">Block debrief<small>every 5 weeks</small></div><div>Closes out each training block: what moved, what's earned next. Banned from reciting stats without a consequence attached.</div></div>
     <div class="roster-row"><div class="name">Edge worker<small>always on</small></div><div>The only component allowed to send. Enforces deterministic guards in code: a dated PR-window gate, duplicate and out-of-window delivery rejection, spend limits.</div></div>
   </div>
-  <figure class="shot">
-    <!-- ROUTINES SCREENSHOT: save the sanitized claude.ai routines panel as assets/routines.png and this figure goes live -->
-    <img src="assets/routines.png" alt="The live scheduled-agent panel: routines with next-run timestamps" onerror="this.parentElement.style.display='none'">
-    <figcaption>The live schedule — these fire whether or not I'm at a computer.</figcaption>
-  </figure>
+  <div class="diagram">
+    <div class="d-band">
+      <div class="d-label">Data layer</div>
+      <div class="d-boxes">
+        <div class="d-box"><b>Notion</b>Athlete File · Training Log · Dashboard</div>
+        <div class="d-box"><b>Google Calendar</b>every session &amp; rest day, backfilled</div>
+      </div>
+    </div>
+    <div class="d-arrow"><span>agents read ↓ &nbsp;·&nbsp; ↑ two agents write back</span></div>
+    <div class="d-band">
+      <div class="d-label">Scheduled agents <small>Claude, cloud cron</small></div>
+      <div class="d-boxes">
+        <div class="d-box"><b>Daily planner</b>programs tomorrow</div>
+        <div class="d-box"><b>Retry</b>+5h if it failed</div>
+        <div class="d-box"><b>Calendar sync</b>nightly ↑</div>
+        <div class="d-box"><b>Athlete file update</b>weekly ↑</div>
+        <div class="d-box"><b>Block debrief</b>every 5 wks</div>
+      </div>
+    </div>
+    <div class="d-arrow"><span>plans POST to the worker — agents can't message me directly ↓</span></div>
+    <div class="d-band">
+      <div class="d-label">Edge worker <small>Cloudflare, deterministic code</small></div>
+      <div class="d-boxes">
+        <div class="d-box gate"><b>Gates</b>PR-window date check · duplicate &amp; out-of-window rejection · spend limits</div>
+      </div>
+    </div>
+    <div class="d-arrow"><span>only survivors get delivered ↓</span></div>
+    <div class="d-band">
+      <div class="d-label">Me</div>
+      <div class="d-boxes">
+        <div class="d-box"><b>Telegram</b>the briefing, 4:31 PM</div>
+        <div class="d-box"><b>Notion worksheet</b>I edit it at the gym — and it becomes tomorrow's history, closing the loop ↺</div>
+      </div>
+    </div>
+  </div>
   <p class="scar">The guardrails are scar tissue. Early on, a failed API call got retried in an endless loop — <span class="num">$3.64 and 820K tokens</span> burned on the same errored request — so now agents fail cheap and loud: spend limits, retry caps, errors surfaced where I'll see them. A 2 AM platform re-run once sent a duplicate briefing and archived a live workout sheet — so delivery windows are enforced <b>in worker code, not in prompts</b>.</p>
 </section>
 
