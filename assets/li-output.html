@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    width: 1200px; height: 675px; background: #17191e; color: #ece7db;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    padding: 44px 56px; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .top { font-family: Charter, Georgia, serif; font-size: 32px; margin-bottom: 30px; }
+  li { padding-top: 12px; padding-bottom: 12px; font-size: 14.5px; }
+  .msg { font-size: 14px; }
+  .top em { font-style: italic; color: #d9a441; }
+  .cols { display: grid; grid-template-columns: 1fr 1.1fr; gap: 24px; }
+  .cap { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #d9a441; font-weight: 700; margin-bottom: 8px; }
+  .msg {
+    background: #101216; border: 1px solid rgba(236,231,219,.16); border-radius: 8px;
+    padding: 16px 18px; font-family: Consolas, monospace; font-size: 13px; line-height: 1.6;
+    white-space: pre-wrap; color: #e8e2d6;
+  }
+  .msg .hd { color: #8fbf9a; font-weight: 700; }
+  .msg .dim { color: #837d70; }
+  ol { list-style: none; }
+  li { padding: 8px 0 8px 34px; position: relative; font-size: 13.5px; color: #b9b2a4; border-bottom: 1px dotted rgba(236,231,219,.13); line-height: 1.45; }
+  li::before {
+    content: attr(data-n); position: absolute; left: 0; top: 10px; width: 20px; height: 20px;
+    background: #d9a441; color: #17191e; border-radius: 50%; font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  li b { color: #ece7db; }
+</style></head>
+<body>
+  <div class="top">The plan on my phone — and <em>why</em>, from the agent's run log</div>
+  <div class="cols">
+    <div>
+      <div class="cap">Delivered · 4:31 PM</div>
+      <div class="msg"><span class="hd">Tue 8/25</span>
+<span class="dim">Block day 4/35 — PR window</span>
+
+Pull is 15 days overdue — good slot
+for it while you're traveling.
+PR held: too soon after yesterday's
+strength dip for a max attempt.
+
+<span class="hd">Back — travel gym</span>
+B1 · Seated Cable Row — 3×8-10
+B2 · Lat Pulldown — 3×10-12
+B3 · Single-Arm DB Row — 3×10/side
+B4 · Straight-Arm Pulldown — 2×12-15
+B5 · DB Curl — 3×10-12
+B6 · Back Extension — 2×12</div>
+    </div>
+    <div>
+      <div class="cap">Why this plan</div>
+      <ol>
+        <li data-n="1"><b>Computed the block clock first.</b> Day 4 of 35, PR window open.</li>
+        <li data-n="2"><b>Caught a plan override.</b> I trained push instead of its plan; it counted the real session, not a "skip."</li>
+        <li data-n="3"><b>Found a travel note.</b> Away gym for 3 days, so cables and dumbbells only.</li>
+        <li data-n="4"><b>Picked pull.</b> Longest gap, and it doesn't load the flagged knee.</li>
+        <li data-n="5"><b>Held the PR.</b> Yesterday's press was below proven weight. Two vetoes, stated in the briefing.</li>
+      </ol>
+    </div>
+  </div>
+</body></html>
