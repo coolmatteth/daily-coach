@@ -1,0 +1,4567 @@
+{
+ "build-muscle|full-gym|none": {
+  "plan": {
+   "title": "Hypertrophy — full gym — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Barbell Back Squat",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Back Extension",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Chest-Supported Row",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Barbell Back Squat takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|full-gym|knee": {
+  "plan": {
+   "title": "Hypertrophy — full gym — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Romanian Deadlift",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Curl",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Back Extension",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Chest-Supported Row",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Barbell Back Squat, Leg Press, Leg Extension (partial range) — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|full-gym|shoulder": {
+  "plan": {
+   "title": "Hypertrophy — full gym — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Barbell Back Squat",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Back Extension",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Chest-Supported Row",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Barbell Back Squat takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Overhead Press — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|full-gym|lower-back": {
+  "plan": {
+   "title": "Hypertrophy — full gym — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Leg Press",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Curl",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Chest-Supported Row",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Leg Press takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Barbell Back Squat, Romanian Deadlift, Back Extension — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|full-gym|wrist": {
+  "plan": {
+   "title": "Hypertrophy — full gym — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Barbell Back Squat",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Machine Chest Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Leg Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Back Extension",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Machine Lateral Raise",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Leg Curl",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Barbell Back Squat takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Romanian Deadlift, Barbell Bench Press, Seated Cable Row — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|dumbbells-only|none": {
+  "plan": {
+   "title": "Hypertrophy — dumbbells only — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "DB Lateral Raise",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|dumbbells-only|knee": {
+  "plan": {
+   "title": "Hypertrophy — dumbbells only — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "DB Lateral Raise",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "DB Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat, Rear-Foot-Elevated Split Squat (bodyweight), Bench Step-Up (bodyweight) — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|dumbbells-only|shoulder": {
+  "plan": {
+   "title": "Hypertrophy — dumbbells only — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "DB Lateral Raise",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: DB Overhead Press — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|dumbbells-only|lower-back": {
+  "plan": {
+   "title": "Hypertrophy — dumbbells only — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Rear-Foot-Elevated Split Squat (bodyweight)",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "DB Lateral Raise",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: DB Romanian Deadlift — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|dumbbells-only|wrist": {
+  "plan": {
+   "title": "Hypertrophy — dumbbells only — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Rear-Foot-Elevated Split Squat (bodyweight)",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up (on handles or fists)",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Glute Bridge",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Plank",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Bench Step-Up (bodyweight)",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Rear-Foot-Elevated Split Squat (bodyweight) takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat, DB Romanian Deadlift, DB Floor Press — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|hotel-gym|none": {
+  "plan": {
+   "title": "Hypertrophy — hotel gym — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat (light DBs)",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Cable Pulldown",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat (light DBs) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|hotel-gym|knee": {
+  "plan": {
+   "title": "Hypertrophy — hotel gym — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Cable Pull-Through",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Cable Pulldown",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "DB Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat (light DBs), Split Squat (bodyweight) — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|hotel-gym|shoulder": {
+  "plan": {
+   "title": "Hypertrophy — hotel gym — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat (light DBs)",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Cable Pulldown",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat (light DBs) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed:  — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|hotel-gym|lower-back": {
+  "plan": {
+   "title": "Hypertrophy — hotel gym — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat (light DBs)",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Split Squat (bodyweight)",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Cable Pulldown",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat (light DBs) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: DB Romanian Deadlift, Cable Pull-Through — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|hotel-gym|wrist": {
+  "plan": {
+   "title": "Hypertrophy — hotel gym — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Split Squat (bodyweight)",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Cable Pull-Through",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Plank",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge",
+     "scheme": "3 × 10-12"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Split Squat (bodyweight) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat (light DBs), DB Romanian Deadlift, DB Bench Press — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|bodyweight|none": {
+  "plan": {
+   "title": "Hypertrophy — bodyweight — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Pike Shoulder Tap",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Glute Bridge March",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|bodyweight|knee": {
+  "plan": {
+   "title": "Hypertrophy — bodyweight — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge March",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Pike Shoulder Tap",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Push-Up (on fists or handles)",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Single-Leg Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Bulgarian Split Squat, Reverse Lunge, Squat-to-Stand Flow — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|bodyweight|shoulder": {
+  "plan": {
+   "title": "Hypertrophy — bodyweight — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Glute Bridge March",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Pike Shoulder Tap — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|bodyweight|lower-back": {
+  "plan": {
+   "title": "Hypertrophy — bodyweight — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge March",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Pike Shoulder Tap",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Push-Up (on fists or handles)",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Single-Leg Romanian Deadlift — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "build-muscle|bodyweight|wrist": {
+  "plan": {
+   "title": "Hypertrophy — bodyweight — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "3 × 8-10, reverse pyramid"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up (on fists or handles)",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "3 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Forearm Plank",
+     "scheme": "2 × 12-15"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Glute Bridge March",
+     "scheme": "2 × 12-15"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Push-Up, Pike Shoulder Tap, Plank — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block."
+   }
+  ]
+ },
+ "get-stronger|full-gym|none": {
+  "plan": {
+   "title": "Strength — full gym — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Barbell Back Squat",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Press",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Back Extension",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Barbell Back Squat takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|full-gym|knee": {
+  "plan": {
+   "title": "Strength — full gym — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Romanian Deadlift",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Curl",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Back Extension",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Barbell Back Squat, Leg Press, Leg Extension (partial range) — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|full-gym|shoulder": {
+  "plan": {
+   "title": "Strength — full gym — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Barbell Back Squat",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Press",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Back Extension",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Barbell Back Squat takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Overhead Press — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|full-gym|lower-back": {
+  "plan": {
+   "title": "Strength — full gym — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Leg Press",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Curl",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Leg Press takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Barbell Back Squat, Romanian Deadlift, Back Extension — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|full-gym|wrist": {
+  "plan": {
+   "title": "Strength — full gym — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Barbell Back Squat",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Machine Chest Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Leg Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Back Extension",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Machine Lateral Raise",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Barbell Back Squat takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Romanian Deadlift, Barbell Bench Press, Seated Cable Row — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|dumbbells-only|none": {
+  "plan": {
+   "title": "Strength — dumbbells only — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|dumbbells-only|knee": {
+  "plan": {
+   "title": "Strength — dumbbells only — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "DB Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat, Rear-Foot-Elevated Split Squat (bodyweight), Bench Step-Up (bodyweight) — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|dumbbells-only|shoulder": {
+  "plan": {
+   "title": "Strength — dumbbells only — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: DB Overhead Press — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|dumbbells-only|lower-back": {
+  "plan": {
+   "title": "Strength — dumbbells only — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Rear-Foot-Elevated Split Squat (bodyweight)",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: DB Romanian Deadlift — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|dumbbells-only|wrist": {
+  "plan": {
+   "title": "Strength — dumbbells only — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Rear-Foot-Elevated Split Squat (bodyweight)",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up (on handles or fists)",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Glute Bridge",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Bench Step-Up (bodyweight)",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Rear-Foot-Elevated Split Squat (bodyweight) takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat, DB Romanian Deadlift, DB Floor Press — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|hotel-gym|none": {
+  "plan": {
+   "title": "Strength — hotel gym — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat (light DBs)",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat (light DBs) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|hotel-gym|knee": {
+  "plan": {
+   "title": "Strength — hotel gym — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Cable Pull-Through",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "DB Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat (light DBs), Split Squat (bodyweight) — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|hotel-gym|shoulder": {
+  "plan": {
+   "title": "Strength — hotel gym — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat (light DBs)",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat (light DBs) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed:  — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|hotel-gym|lower-back": {
+  "plan": {
+   "title": "Strength — hotel gym — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat (light DBs)",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Split Squat (bodyweight)",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat (light DBs) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: DB Romanian Deadlift, Cable Pull-Through — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|hotel-gym|wrist": {
+  "plan": {
+   "title": "Strength — hotel gym — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Split Squat (bodyweight)",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Cable Pull-Through",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Plank",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Split Squat (bodyweight) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat (light DBs), DB Romanian Deadlift, DB Bench Press — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|bodyweight|none": {
+  "plan": {
+   "title": "Strength — bodyweight — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Pike Shoulder Tap",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|bodyweight|knee": {
+  "plan": {
+   "title": "Strength — bodyweight — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge March",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Pike Shoulder Tap",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Single-Leg Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Bulgarian Split Squat, Reverse Lunge, Squat-to-Stand Flow — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|bodyweight|shoulder": {
+  "plan": {
+   "title": "Strength — bodyweight — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Pike Shoulder Tap — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|bodyweight|lower-back": {
+  "plan": {
+   "title": "Strength — bodyweight — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge March",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Pike Shoulder Tap",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Single-Leg Romanian Deadlift — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "get-stronger|bodyweight|wrist": {
+  "plan": {
+   "title": "Strength — bodyweight — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "4 × 4-6, long rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up (on fists or handles)",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 6-8"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "2 × 10-12"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Forearm Plank",
+     "scheme": "2 × 10-12"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Push-Up, Pike Shoulder Tap, Plank — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy."
+   }
+  ]
+ },
+ "conditioning|full-gym|none": {
+  "plan": {
+   "title": "Conditioning — full gym — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Barbell Back Squat",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Rower Intervals",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Back Extension",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Barbell Back Squat takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|full-gym|knee": {
+  "plan": {
+   "title": "Conditioning — full gym — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Romanian Deadlift",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Curl",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Rower Intervals",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Back Extension",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Barbell Back Squat, Leg Press, Leg Extension (partial range) — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|full-gym|shoulder": {
+  "plan": {
+   "title": "Conditioning — full gym — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Barbell Back Squat",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Rower Intervals",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Back Extension",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Barbell Back Squat takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Overhead Press — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|full-gym|lower-back": {
+  "plan": {
+   "title": "Conditioning — full gym — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Leg Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Curl",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Incline Treadmill Walk",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Plank",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Leg Press takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Barbell Back Squat, Romanian Deadlift, Back Extension — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|full-gym|wrist": {
+  "plan": {
+   "title": "Conditioning — full gym — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Barbell Back Squat",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Machine Chest Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Leg Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Incline Treadmill Walk",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Back Extension",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Machine Lateral Raise",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Barbell Back Squat takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Romanian Deadlift, Barbell Bench Press, Seated Cable Row — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|dumbbells-only|none": {
+  "plan": {
+   "title": "Conditioning — dumbbells only — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "DB Farmer Carry",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Plank",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|dumbbells-only|knee": {
+  "plan": {
+   "title": "Conditioning — dumbbells only — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "DB Farmer Carry",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Plank",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "DB Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat, Rear-Foot-Elevated Split Squat (bodyweight), Bench Step-Up (bodyweight) — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|dumbbells-only|shoulder": {
+  "plan": {
+   "title": "Conditioning — dumbbells only — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "DB Farmer Carry",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Plank",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: DB Overhead Press — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|dumbbells-only|lower-back": {
+  "plan": {
+   "title": "Conditioning — dumbbells only — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Rear-Foot-Elevated Split Squat (bodyweight)",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "DB Farmer Carry",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Plank",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: DB Romanian Deadlift — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|dumbbells-only|wrist": {
+  "plan": {
+   "title": "Conditioning — dumbbells only — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Rear-Foot-Elevated Split Squat (bodyweight)",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up (on handles or fists)",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Glute Bridge",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Bench Step-Up (bodyweight)",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Rear-Foot-Elevated Split Squat (bodyweight) takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat, DB Romanian Deadlift, DB Floor Press — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|hotel-gym|none": {
+  "plan": {
+   "title": "Conditioning — hotel gym — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat (light DBs)",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Incline Treadmill Walk",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Plank",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat (light DBs) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|hotel-gym|knee": {
+  "plan": {
+   "title": "Conditioning — hotel gym — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Cable Pull-Through",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Incline Treadmill Walk",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Plank",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "DB Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat (light DBs), Split Squat (bodyweight) — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|hotel-gym|shoulder": {
+  "plan": {
+   "title": "Conditioning — hotel gym — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat (light DBs)",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Incline Treadmill Walk",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Plank",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat (light DBs) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed:  — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|hotel-gym|lower-back": {
+  "plan": {
+   "title": "Conditioning — hotel gym — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat (light DBs)",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Split Squat (bodyweight)",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Incline Treadmill Walk",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Plank",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat (light DBs) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: DB Romanian Deadlift, Cable Pull-Through — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|hotel-gym|wrist": {
+  "plan": {
+   "title": "Conditioning — hotel gym — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Split Squat (bodyweight)",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Cable Pull-Through",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Incline Treadmill Walk",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Plank",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Glute Bridge",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Split Squat (bodyweight) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat (light DBs), DB Romanian Deadlift, DB Bench Press — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|bodyweight|none": {
+  "plan": {
+   "title": "Conditioning — bodyweight — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Stair or Hill Walk Intervals",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Pike Shoulder Tap",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|bodyweight|knee": {
+  "plan": {
+   "title": "Conditioning — bodyweight — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge March",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Stair or Hill Walk Intervals",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Pike Shoulder Tap",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Single-Leg Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Bulgarian Split Squat, Reverse Lunge, Squat-to-Stand Flow — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|bodyweight|shoulder": {
+  "plan": {
+   "title": "Conditioning — bodyweight — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Stair or Hill Walk Intervals",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Plank",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Pike Shoulder Tap — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|bodyweight|lower-back": {
+  "plan": {
+   "title": "Conditioning — bodyweight — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge March",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Stair or Hill Walk Intervals",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Pike Shoulder Tap",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Single-Leg Romanian Deadlift — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "conditioning|bodyweight|wrist": {
+  "plan": {
+   "title": "Conditioning — bodyweight — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up (on fists or handles)",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "3 × 12-15, short rests"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Stair or Hill Walk Intervals",
+     "scheme": "2 rounds, 40s on / 20s off"
+    },
+    {
+     "slot": "B6",
+     "exercise": "Forearm Plank",
+     "scheme": "2 rounds, 40s on / 20s off"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Push-Up, Pike Shoulder Tap, Plank — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding."
+   }
+  ]
+ },
+ "return-from-break|full-gym|none": {
+  "plan": {
+   "title": "Return to training — full gym — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Barbell Back Squat",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Back Extension",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Barbell Back Squat takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|full-gym|knee": {
+  "plan": {
+   "title": "Return to training — full gym — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Romanian Deadlift",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Curl",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Back Extension",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Barbell Back Squat, Leg Press, Leg Extension (partial range) — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|full-gym|shoulder": {
+  "plan": {
+   "title": "Return to training — full gym — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Barbell Back Squat",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Back Extension",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Barbell Back Squat takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Overhead Press — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|full-gym|lower-back": {
+  "plan": {
+   "title": "Return to training — full gym — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Leg Press",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Barbell Bench Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Seated Cable Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Leg Curl",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Leg Press takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Barbell Back Squat, Romanian Deadlift, Back Extension — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|full-gym|wrist": {
+  "plan": {
+   "title": "Return to training — full gym — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Barbell Back Squat",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Machine Chest Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Leg Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Back Extension",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Machine Lateral Raise",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Barbell Back Squat takes B1 — the biggest pattern available here, placed first while energy is highest. A full gym means machines can cover what a limitation takes away."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Romanian Deadlift, Barbell Bench Press, Seated Cable Row — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|dumbbells-only|none": {
+  "plan": {
+   "title": "Return to training — dumbbells only — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|dumbbells-only|knee": {
+  "plan": {
+   "title": "Return to training — dumbbells only — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "DB Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat, Rear-Foot-Elevated Split Squat (bodyweight), Bench Step-Up (bodyweight) — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|dumbbells-only|shoulder": {
+  "plan": {
+   "title": "Return to training — dumbbells only — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: DB Overhead Press — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|dumbbells-only|lower-back": {
+  "plan": {
+   "title": "Return to training — dumbbells only — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Floor Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "One-Arm DB Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Rear-Foot-Elevated Split Squat (bodyweight)",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: DB Romanian Deadlift — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|dumbbells-only|wrist": {
+  "plan": {
+   "title": "Return to training — dumbbells only — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Rear-Foot-Elevated Split Squat (bodyweight)",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up (on handles or fists)",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Glute Bridge",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Bench Step-Up (bodyweight)",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Rear-Foot-Elevated Split Squat (bodyweight) takes B1 — the biggest pattern available here, placed first while energy is highest. With dumbbells capped at 50 lb, single-leg and slow-tempo work stands in for heavy loading."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat, DB Romanian Deadlift, DB Floor Press — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|hotel-gym|none": {
+  "plan": {
+   "title": "Return to training — hotel gym — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat (light DBs)",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat (light DBs) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|hotel-gym|knee": {
+  "plan": {
+   "title": "Return to training — hotel gym — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Cable Pull-Through",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "DB Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat (light DBs), Split Squat (bodyweight) — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|hotel-gym|shoulder": {
+  "plan": {
+   "title": "Return to training — hotel gym — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat (light DBs)",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "DB Romanian Deadlift",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat (light DBs) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed:  — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|hotel-gym|lower-back": {
+  "plan": {
+   "title": "Return to training — hotel gym — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Goblet Squat (light DBs)",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "DB Bench Press",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Cable Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Split Squat (bodyweight)",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Goblet Squat (light DBs) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: DB Romanian Deadlift, Cable Pull-Through — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|hotel-gym|wrist": {
+  "plan": {
+   "title": "Return to training — hotel gym — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Split Squat (bodyweight)",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Cable Pull-Through",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Split Squat (bodyweight) takes B1 — the biggest pattern available here, placed first while energy is highest. Hotel equipment is unreliable, so every slot has to survive light dumbbells and one cable stack."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Goblet Squat (light DBs), DB Romanian Deadlift, DB Bench Press — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|bodyweight|none": {
+  "plan": {
+   "title": "Return to training — bodyweight — no limitation",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Pike Shoulder Tap",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": ""
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "No limitation declared, so the pass checks load instead: nothing in the session asks for a max, and the lead block is the only one meant to feel heavy."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|bodyweight|knee": {
+  "plan": {
+   "title": "Return to training — bodyweight — knee (patellar tendon)",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge March",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Pike Shoulder Tap",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Single-Leg Romanian Deadlift takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Bulgarian Split Squat, Reverse Lunge, Squat-to-Stand Flow — deep knee flexion under load is the aggravator, so squat and lunge patterns are out; hinges and isometrics keep the legs training."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|bodyweight|shoulder": {
+  "plan": {
+   "title": "Return to training — bodyweight — shoulder",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Plank",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "overhead work is the aggravator; pressing stays below shoulder height where it's tolerated"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Pike Shoulder Tap — overhead work is the aggravator; pressing stays below shoulder height where it's tolerated."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|bodyweight|lower-back": {
+  "plan": {
+   "title": "Return to training — bodyweight — lower back",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Glute Bridge March",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Pike Shoulder Tap",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Single-Leg Romanian Deadlift — loaded spinal flexion and heavy hinging are the aggravators; supported and brace-friendly patterns carry the session."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ },
+ "return-from-break|bodyweight|wrist": {
+  "plan": {
+   "title": "Return to training — bodyweight — wrist / grip",
+   "blocks": [
+    {
+     "slot": "B1",
+     "exercise": "Bulgarian Split Squat",
+     "scheme": "3 × 8-10, well shy of failure"
+    },
+    {
+     "slot": "B2",
+     "exercise": "Push-Up (on fists or handles)",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B3",
+     "exercise": "Doorframe Row / Table Row",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B4",
+     "exercise": "Single-Leg Romanian Deadlift",
+     "scheme": "2 × 10-12, easy"
+    },
+    {
+     "slot": "B5",
+     "exercise": "Forearm Plank",
+     "scheme": "2 × 10-12, easy"
+    }
+   ],
+   "limitation_note": "heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work"
+  },
+  "reasoning": [
+   {
+    "step": "Session shape",
+    "detail": "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today."
+   },
+   {
+    "step": "Lead block",
+    "detail": "Bulgarian Split Squat takes B1 — the biggest pattern available here, placed first while energy is highest. With no equipment, range, tempo, and single-limb work replace load entirely."
+   },
+   {
+    "step": "Balance check",
+    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+   },
+   {
+    "step": "Limitation pass",
+    "detail": "Deliberately NOT programmed: Push-Up, Pike Shoulder Tap, Plank — heavy gripping and wrist extension are the aggravators, which rules out loaded carries, weighted rows, and palm-loaded floor work."
+   },
+   {
+    "step": "Loading",
+    "detail": "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call."
+   }
+  ]
+ }
+}

@@ -268,7 +268,7 @@ B6 · Back Extension — 2×12
 
 <section>
   <h2><span class="no">04</span>Try the rules engine</h2>
-  <p class="sub">The same programming rules, pointed at a generic profile instead of my history. Pick three constraints and the agent reasons through them live — reasoning attached, same as my briefings.</p>
+  <p class="sub">The same programming rules, pointed at a generic profile instead of my history. Pick three constraints and see how the engine reasons through them — every one of the 80 combinations was generated ahead of time, because a demo page with zero moving parts can't fail while you're looking at it. That trade-off is deliberate; the live API version exists in the repo.</p>
   <div class="picker">
     <label>Goal
       <select id="goal">
@@ -296,8 +296,8 @@ B6 · Back Extension — 2×12
       </select>
     </label>
   </div>
-  <button class="gen-btn" id="generate">Generate a session</button>
-  <p class="gen-note">Rate-limited and spend-capped on purpose — if it declines, that's the guardrails working. Nothing you pick is stored.</p>
+  <button class="gen-btn" id="generate">Show the session</button>
+  <p class="gen-note">Nothing you pick is stored.</p>
   <div id="gen-error"></div>
   <div id="result">
     <div class="cap">Generated · <span id="plan-title"></span></div>
@@ -321,22 +321,24 @@ B6 · Back Extension — 2×12
   var result = document.getElementById("result");
   var errBox = document.getElementById("gen-error");
 
+  var plansPromise = null;
+  function loadPlans() {
+    if (!plansPromise) plansPromise = fetch("plans.json").then(function (r) { return r.json(); });
+    return plansPromise;
+  }
+
   btn.addEventListener("click", async function () {
     btn.disabled = true;
-    btn.textContent = "Reasoning…";
     errBox.style.display = "none";
     try {
-      var res = await fetch("/api/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          goal: document.getElementById("goal").value,
-          equipment: document.getElementById("equipment").value,
-          limitation: document.getElementById("limitation").value,
-        }),
-      });
-      var data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Something went wrong.");
+      var plans = await loadPlans();
+      var key = [
+        document.getElementById("goal").value,
+        document.getElementById("equipment").value,
+        document.getElementById("limitation").value,
+      ].join("|");
+      var data = plans[key];
+      if (!data) throw new Error("That combination is missing — which would be a bug worth telling me about.");
 
       document.getElementById("plan-title").textContent = data.plan.title;
       var lines = data.plan.blocks.map(function (b) {
@@ -362,7 +364,6 @@ B6 · Back Extension — 2×12
       errBox.style.display = "block";
     } finally {
       btn.disabled = false;
-      btn.textContent = "Generate a session";
     }
   });
 })();
