@@ -4,157 +4,189 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fitness Claude — an autonomous training agent</title>
-<meta name="description" content="A window into a working AI agent: Claude programs my training every day from my real history in Notion, behind deterministic safety rails.">
+<meta name="description" content="A six-agent system that has programmed my real training daily since May 2026 — the outputs, the reasoning, and how I know it's good.">
 <style>
   :root {
-    --bg: #0d1117;
-    --panel: #161b22;
-    --panel-2: #1c2129;
-    --border: #2d333b;
-    --text: #e6edf3;
-    --muted: #9198a1;
-    --accent: #58a6ff;
-    --green: #3fb950;
-    --amber: #d29922;
+    --bg: #17191e;
+    --bg-2: #1d2026;
+    --panel: #101216;
+    --cream: #ece7db;
+    --soft: #b9b2a4;
+    --dim: #837d70;
+    --apricot: #d9a441;
+    --mint: #8fbf9a;
+    --line: rgba(236, 231, 219, .13);
     --mono: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+    --serif: Charter, "Bitstream Charter", Georgia, "Times New Roman", serif;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; }
   body {
-    background: var(--bg); color: var(--text);
-    font-family: var(--sans); line-height: 1.55;
+    background: var(--bg);
+    color: var(--cream); font-family: var(--sans); line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px 80px; }
+  .wrap { max-width: 700px; margin: 0 auto; padding: 0 22px 90px; }
 
-  header { padding: 56px 0 28px; }
-  .kicker {
-    font-family: var(--mono); font-size: 13px; color: var(--green);
-    letter-spacing: .04em;
+  .brand {
+    padding: 30px 0 0; font-size: 13px; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--dim); font-weight: 600;
   }
-  .kicker .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%;
-    background: var(--green); margin-right: 6px; animation: pulse 2.4s infinite; }
-  @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .35 } }
-  h1 { font-size: clamp(28px, 5vw, 40px); margin: 10px 0 12px; letter-spacing: -.02em; }
-  .lede { font-size: clamp(16px, 2.5vw, 19px); color: var(--muted); max-width: 640px; }
-  .lede strong { color: var(--text); font-weight: 600; }
+  .brand b { color: var(--cream); font-weight: 600; }
 
-  .stats { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 0; }
-  .stat {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 8px;
-    padding: 10px 14px; font-family: var(--mono); font-size: 13px; color: var(--muted);
+  header { padding: 54px 0 10px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 6px 14px; font-size: 13px; color: var(--soft); background: rgba(0,0,0,.18);
   }
-  .stat b { color: var(--text); font-weight: 600; display: block; font-size: 16px; }
-
-  section { margin-top: 56px; }
-  h2 { font-size: 22px; margin-bottom: 6px; letter-spacing: -.01em; }
-  .sub { color: var(--muted); font-size: 15px; margin-bottom: 18px; max-width: 640px; }
-
-  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  @media (max-width: 720px) { .duo { grid-template-columns: 1fr; } }
-
-  .card {
-    background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
-    overflow: hidden;
+  .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); }
+  h1 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(34px, 6.4vw, 50px); line-height: 1.14;
+    letter-spacing: -.01em; margin: 22px 0 18px; color: var(--cream);
   }
-  .card-head {
-    padding: 10px 16px; border-bottom: 1px solid var(--border);
-    font-family: var(--mono); font-size: 12px; color: var(--muted);
-    display: flex; align-items: center; gap: 8px;
+  h1 em { font-style: italic; color: var(--apricot); }
+  .lede { font-size: clamp(16px, 2.5vw, 18.5px); color: var(--soft); line-height: 1.65; }
+  .outcome {
+    margin-top: 22px; padding: 16px 18px; border-left: 2px solid var(--apricot);
+    background: rgba(236, 152, 98, .07); font-size: 16px; color: var(--cream);
+    font-family: var(--serif); line-height: 1.6;
   }
-  .tag { font-size: 11px; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--border); }
-  .tag.out { color: var(--accent); border-color: #1f4a7a; }
-  .tag.why { color: var(--amber); border-color: #5c451a; }
-  .card-body { padding: 16px; font-size: 14px; }
+  .outcome b { color: var(--apricot); font-family: var(--sans); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
 
-  .msg { font-family: var(--mono); font-size: 13.5px; white-space: pre-wrap; line-height: 1.6; }
-  .msg .hd { color: var(--accent); font-weight: 600; }
-  .msg .dim { color: var(--muted); }
-  .msg .warn { color: var(--amber); }
-
-  .steps { list-style: none; counter-reset: s; }
-  .steps li {
-    counter-increment: s; position: relative; padding: 0 0 14px 34px; font-size: 14px;
+  section { margin-top: 72px; }
+  h2 {
+    font-family: var(--serif); font-size: 27px; font-weight: 500; color: var(--cream);
+    margin-bottom: 6px;
   }
-  .steps li::before {
-    content: counter(s); position: absolute; left: 0; top: 1px;
-    width: 22px; height: 22px; border-radius: 50%;
-    background: var(--panel-2); border: 1px solid var(--border);
-    font-family: var(--mono); font-size: 11px; color: var(--accent);
+  h2 .no {
+    font-family: var(--mono); font-size: 13px; color: var(--dim);
+    margin-right: 12px; vertical-align: 4px; letter-spacing: .06em;
+  }
+  .sub { color: var(--dim); font-size: 15px; margin-bottom: 22px; max-width: 600px; }
+  p { margin-bottom: 14px; }
+
+  .roster { border-top: 1px dotted var(--line); }
+  .roster-row {
+    display: grid; grid-template-columns: 190px 1fr; gap: 16px;
+    padding: 13px 0; border-bottom: 1px dotted var(--line); font-size: 14.5px; color: var(--soft);
+  }
+  @media (max-width: 560px) { .roster-row { grid-template-columns: 1fr; gap: 3px; } }
+  .roster-row .name { font-weight: 600; font-size: 13.5px; color: var(--cream); padding-top: 1px; }
+  .roster-row .name small { display: block; font-weight: 400; color: var(--apricot); font-family: var(--mono); font-size: 11.5px; margin-top: 2px; }
+
+  .shot { margin: 24px 0 4px; }
+  .shot img { max-width: 100%; border: 1px solid var(--line); border-radius: 8px; display: block; }
+  .shot figcaption { font-size: 12.5px; color: var(--dim); margin-top: 8px; }
+
+  .scar {
+    margin-top: 24px; font-family: var(--serif); font-size: 15.5px; color: var(--soft);
+    border-top: 1px dotted var(--line); padding-top: 18px; line-height: 1.7;
+  }
+  .scar b { color: var(--cream); font-weight: 600; }
+  .scar .num { color: var(--apricot); font-family: var(--mono); font-size: 14px; }
+
+  .cap {
+    font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--apricot); margin-bottom: 10px; font-weight: 600;
+  }
+  .transcript {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+    padding: 18px 20px; font-family: var(--mono); font-size: 13px;
+    line-height: 1.7; white-space: pre-wrap; overflow-x: auto; color: #e8e2d6;
+  }
+  .transcript .hd { color: var(--mint); font-weight: 600; }
+  .transcript .dim { color: var(--dim); }
+
+  .why { margin-top: 28px; }
+  .why ol { list-style: none; counter-reset: n; }
+  .why li {
+    counter-increment: n; padding: 11px 0 11px 38px; position: relative;
+    border-bottom: 1px dotted var(--line); font-size: 14.5px; color: var(--soft);
+  }
+  .why li::before {
+    content: counter(n); position: absolute; left: 2px; top: 13px;
+    font-size: 11px; font-weight: 700; color: var(--bg);
+    background: var(--apricot); width: 20px; height: 20px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
   }
-  .steps li:not(:last-child)::after {
-    content: ""; position: absolute; left: 11px; top: 25px; bottom: 3px;
-    width: 1px; background: var(--border);
+  .why b { color: var(--cream); }
+
+  .eval p { font-family: var(--serif); font-size: 16.5px; color: var(--soft); line-height: 1.7; margin-bottom: 18px; }
+  .eval .lead-in {
+    font-family: var(--sans); font-weight: 700; font-size: 12.5px; color: var(--mint);
+    letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 3px;
   }
-  .steps b { color: var(--text); }
-  .steps .q { color: var(--muted); }
 
-  .gate {
-    border-left: 3px solid var(--amber); background: var(--panel-2);
-    padding: 12px 14px; border-radius: 0 8px 8px 0; margin-top: 14px;
-    font-size: 14px;
+  .picker { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media (max-width: 560px) { .picker { grid-template-columns: 1fr; } }
+  .picker label { font-size: 12px; color: var(--dim); display: flex; flex-direction: column; gap: 6px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+  .picker select {
+    background: var(--panel); color: var(--cream); border: 1px solid var(--line);
+    border-radius: 6px; padding: 10px 10px; font-size: 14px; font-family: var(--sans);
   }
-  .gate code { font-family: var(--mono); font-size: 12.5px; color: var(--amber); }
-
-  .arch { font-family: var(--mono); font-size: 13.5px; line-height: 1.9; }
-  .arch b { color: var(--accent); font-weight: 600; }
-
-  .lessons { margin-top: 16px; font-size: 14px; color: var(--muted); }
-  .lessons li { margin: 6px 0 6px 18px; }
-  .lessons b { color: var(--text); font-weight: 600; }
-
-  .evalbox {
-    border: 1px dashed var(--border); border-radius: 10px; padding: 16px;
-    margin-top: 16px; font-size: 14.5px;
+  .gen-btn {
+    margin-top: 16px; background: var(--apricot); color: #241a24; border: none;
+    border-radius: 6px; padding: 12px 24px; font-size: 14px; font-weight: 700;
+    font-family: var(--sans); cursor: pointer;
   }
-  .evalbox p + p { margin-top: 10px; }
+  .gen-btn:hover { filter: brightness(1.08); }
+  .gen-btn:disabled { opacity: .5; cursor: wait; }
+  .gen-note { font-size: 12.5px; color: var(--dim); margin-top: 10px; }
+  #gen-error {
+    display: none; margin-top: 14px; padding: 12px 14px;
+    border-left: 2px solid var(--apricot); background: rgba(236,152,98,.07);
+    font-size: 14px; color: var(--soft);
+  }
+  #result { display: none; margin-top: 26px; }
 
   footer {
-    margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--border);
+    margin-top: 84px; padding-top: 20px; border-top: 1px dotted var(--line);
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
-    font-size: 14px; color: var(--muted);
+    font-size: 14px; color: var(--dim);
   }
-  a { color: var(--accent); text-decoration: none; }
+  footer b { color: var(--cream); }
+  a { color: var(--apricot); text-decoration: none; }
   a:hover { text-decoration: underline; }
-  .note { font-size: 12.5px; color: var(--muted); margin-top: 10px; font-style: italic; }
-
-  .picker { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 12px; align-items: end; }
-  @media (max-width: 720px) { .picker { grid-template-columns: 1fr; } }
-  .picker label { font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
-  .picker select {
-    background: var(--panel-2); color: var(--text); border: 1px solid var(--border);
-    border-radius: 8px; padding: 10px 12px; font-size: 14px; font-family: var(--sans);
-  }
-  .picker button {
-    background: var(--accent); color: #0d1117; border: none; border-radius: 8px;
-    padding: 11px 18px; font-size: 14px; font-weight: 600; cursor: pointer;
-  }
-  .picker button:disabled { opacity: .5; cursor: wait; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
+<div class="brand"><b>Fitness Claude</b> · a working agent, documented</div>
+
 <header>
-  <div class="kicker"><span class="dot"></span>RUNNING AUTONOMOUSLY SINCE JULY 4, 2026</div>
-  <h1>Fitness Claude</h1>
-  <p class="lede">An AI agent I designed and shipped that <strong>programs my real training every day</strong> — Claude reads five months of my workout history in Notion each evening, writes tomorrow's plan with its reasoning, and delivers it through deterministic safety rails I wrote after watching it fail.</p>
-  <div class="stats">
-    <div class="stat"><b>5 scheduled agents</b>daily + weekly cadence</div>
-    <div class="stat"><b>1 edge worker</b>guards every message</div>
-    <div class="stat"><b>50+ days</b>of daily briefings</div>
-    <div class="stat"><b>0 API keys client-side</b>plan-billed agents</div>
-  </div>
+  <h1>An AI coach that programs every workout I do — and shows its <em>reasoning</em></h1>
+  <p class="lede">Fitness Claude is an autonomous system I designed, built, and operate: six coordinated Claude agents that read my training history in Notion, program my sessions, and deliver them to my phone every evening.</p>
+  <div class="pill" style="margin-top:20px"><span class="dot"></span>Live — running daily since May 2026</div>
+  <div class="outcome"><b>The outcome</b>It has run every day for months, and I've followed its programming with my own body the whole time — improved a knee injury and hit PRs in every training block since it started. That's my bar for trusting an agent.</div>
 </header>
 
 <section>
-  <h2>Last night's plan — and the agent's actual reasoning</h2>
-  <p class="sub">The left side is what lands on my phone at 4:31 PM. The right side is what the agent worked through to get there, taken from its run log. The reasoning is the product.</p>
-  <div class="duo">
-    <div class="card">
-      <div class="card-head"><span class="tag out">DELIVERED → TELEGRAM</span> evening briefing</div>
-      <div class="card-body msg"><span class="hd">Tue 8/25</span>
+  <h2><span class="no">01</span>The system</h2>
+  <p class="sub">Not a chatbot — a schedule of narrow agents, each owning one job, coordinating through Notion as the shared data layer.</p>
+  <div class="roster">
+    <div class="roster-row"><div class="name">Daily training planner<small>4:31 PM · daily</small></div><div>Reads the Athlete File and 14 days of logs, programs tomorrow's session, delivers it to Telegram with its reasoning.</div></div>
+    <div class="roster-row"><div class="name">Daily calendar sync<small>10:13 PM · daily</small></div><div>Reconciles logged sessions onto a calendar — grounding the planner in what day it is and what I actually trained. Killed a whole class of hallucinations.</div></div>
+    <div class="roster-row"><div class="name">Briefing retry<small>9:31 PM · daily</small></div><div>If the primary run failed, re-runs the full flow five hours later. Idempotent — the delivery record makes a duplicate send impossible.</div></div>
+    <div class="roster-row"><div class="name">Weekly athlete file update<small>Sunday evening</small></div><div>A second agent maintains the first agent's ground truth: rescans the week's logs, updates PRs, current build, and the training-block clock.</div></div>
+    <div class="roster-row"><div class="name">Block debrief<small>every 5 weeks</small></div><div>Closes out each training block: what moved, what's earned next. Banned from reciting stats without a consequence attached.</div></div>
+    <div class="roster-row"><div class="name">Edge worker<small>always on</small></div><div>The only component allowed to send. Enforces deterministic guards in code: a dated PR-window gate, duplicate and out-of-window delivery rejection, spend limits.</div></div>
+  </div>
+  <figure class="shot">
+    <!-- ROUTINES SCREENSHOT: save the sanitized claude.ai routines panel as assets/routines.png and this figure goes live -->
+    <img src="assets/routines.png" alt="The live scheduled-agent panel: routines with next-run timestamps" onerror="this.parentElement.style.display='none'">
+    <figcaption>The live schedule — these fire whether or not I'm at a computer.</figcaption>
+  </figure>
+  <p class="scar">The guardrails are scar tissue. Early on, a failed API call got retried in an endless loop — <span class="num">$3.64 and 820K tokens</span> burned on the same errored request — so now agents fail cheap and loud: spend limits, retry caps, errors surfaced where I'll see them. A 2 AM platform re-run once sent a duplicate briefing and archived a live workout sheet — so delivery windows are enforced <b>in worker code, not in prompts</b>.</p>
+</section>
+
+<section>
+  <h2><span class="no">02</span>One night's output</h2>
+  <p class="sub">A real briefing (lightly sanitized), and the agent's actual decision trail from its run log. The reasoning is the product — a plan without it is just a listicle.</p>
+  <div class="cap">Delivered to Telegram · Aug 24 · 4:31 PM</div>
+  <div class="transcript"><span class="hd">Tue 8/25</span>
 <span class="dim">Block day 4/35 — PR window · Logged: 8/24 push</span>
 
 Pull is 15 days overdue — good slot for it while you're traveling. PR held: too soon after yesterday's strength dip for a max attempt.
@@ -168,128 +200,67 @@ B5 · DB Curl — 3×10-12
 B6 · Back Extension — 2×12
 
 <span class="dim">Worksheet created in Notion — edit it at the gym, the system reads it back tonight.</span></div>
-    </div>
-    <div class="card">
-      <div class="card-head"><span class="tag why">AGENT RUN LOG</span> why this plan</div>
-      <div class="card-body">
-        <ol class="steps">
-          <li><b>Read the Athlete File</b> — computed the block clock first: Block 2, day 4 of 35, inside the open PR window.</li>
-          <li><b>Noticed today's plan was overridden</b> — I logged a push session in chat instead of the prepared workout. It counted the real session as the record <span class="q">instead of marking the day "skipped."</span></li>
-          <li><b>Found a travel note</b> — away gym for 3 days → built the plan equipment-flexible around cables and dumbbells.</li>
-          <li><b>Picked the split</b> — pull last trained 15 days ago, longest gap, and it doesn't load the flagged knee. Rotated the lead exercise and dropped rear-delt work <span class="q">because yesterday's session already hit it.</span></li>
-          <li><b>Held the PR</b> — the window is open, but yesterday's press was below proven weight and a shoulder flag is inside its 3-day cooldown. Two vetoes → no max attempt, and it says so in the briefing.</li>
-        </ol>
-      </div>
-    </div>
-  </div>
-  <p class="note">Real output from the August 24 run, lightly sanitized — weights and personal details generalized.</p>
-</section>
-
-<section>
-  <h2>Constraints the agent has to respect</h2>
-  <p class="sub">I train around a knee limitation (patellar tendinopathy). The rules live in the Notion Athlete File as data, not in the prompt — and the ones that matter most aren't trusted to the model at all.</p>
-  <div class="card">
-    <div class="card-body">
-      <ul class="lessons" style="margin-top:0">
-        <li><b>Knee-loading lifts cap at ~10% weekly jumps</b> — the agent proposes loads inside the ramp, whatever I ask for.</li>
-        <li><b>48-hour rule</b> — after any knee-loading session, the next one is gated on how the knee reads two days later, so the agent spaces leg days and rides apart.</li>
-        <li><b>One PR attempt max per session, zero while a joint is flagged</b> — and PR attempts are only legal in a dated 14-day window each training block.</li>
-      </ul>
-      <div class="gate">
-        That last rule is enforced twice. The model is instructed to respect the window — and then a Cloudflare Worker <em>re-checks the dates in plain TypeScript</em> and strips any PR flag the model shouldn't have set, failing closed:
-        <div class="msg" style="margin-top:8px"><span class="warn">⚠️ PR flag stripped — target date 7/10 is outside the PR window 7/13–7/26.</span></div>
-      </div>
-    </div>
+  <div class="why">
+    <div class="cap">From the agent's run log — why this plan</div>
+    <ol>
+      <li><b>Computed the block clock first</b> — day 4 of 35, inside the open PR window. Every downstream decision keys off this.</li>
+      <li><b>Caught a plan override</b> — I trained push instead of the workout it had prepared, logging it in chat. It counted the real session as the record instead of marking the day "skipped."</li>
+      <li><b>Found a travel note</b> — away gym for three days, so it built the plan around cables and dumbbells it could count on.</li>
+      <li><b>Picked pull</b> — longest gap (15 days), and it doesn't load the flagged knee. Dropped rear-delt work because yesterday's session already hit it.</li>
+      <li><b>Held the PR</b> — window open, but yesterday's pressing was below proven weight and a shoulder flag was inside its cooldown. Two vetoes — and it says so in the briefing instead of silently deciding.</li>
+    </ol>
   </div>
 </section>
 
-<section>
-  <h2>The end-of-block recap</h2>
-  <p class="sub">Every five weeks a separate agent closes out the training block. It's banned from reciting numbers — a stat without a consequence gets cut. It has to tell me something I can't see from inside a single week.</p>
-  <div class="card">
-    <div class="card-head"><span class="tag out">DELIVERED → TELEGRAM</span> block debrief · Aug 16</div>
-    <div class="card-body msg">Block 1 done — cut 2 days short on soreness, not injury — so Block 2 stays 5 weeks. Starts 8/22, PRs to 9/4, reset ~9/26.
-
-Presses and pulls stayed in rebuild mode under the no-PR hold. The real move was the knee — the strength deficit between legs closed from 30% to 10%, and by 8/13 a session passed with no joint complaints, first time since mid-July. Cycling returned outdoors after 3 months off: knee pain at 35 minutes, gone after a saddle adjustment.
-
-<span class="hd">Next block:</span>
-1. Flat press — hit the current top weight twice and the next jump is earned.
-2. Single-leg extension flagged pain twice straight — investigate before loading it again.
-3. Rides toward 60 min outdoors — the gate is cleared, it just needs scheduling.</div>
-  </div>
+<section class="eval">
+  <h2><span class="no">03</span>How I know it's good</h2>
+  <!-- MATT: assembled from your own interview-drill sentences. Edit anything that doesn't sound like you. -->
+  <p><span class="lead-in">Grounding</span>The agent works from an Athlete File — who I am, current build, PRs, injury state — updated weekly by a separate agent that rescans the logs. Before that file existed, it hallucinated PR weights and workouts I'd never done. [MATT — approve/edit]</p>
+  <p><span class="lead-in">Hard constraints</span>Domain rules are encoded as checks the output must pass, not suggestions: heaviest compound first while fresh, a block ceiling so it can't overprogram, PR attempts only in the first half of a fresh block — and that last rule is re-verified by deterministic code, not the model. [MATT — approve/edit]</p>
+  <p><span class="lead-in">Judgment as the eval</span>Bad outputs are obvious to someone who's trained for years: weights that contradict history, machines that don't exist, exercises in an order no lifter would run. I've been the eval harness every day since May. [MATT — approve/edit]</p>
+  <p><span class="lead-in">Scaling it honestly</span>My checks live in my judgment, and that doesn't scale. To productize this I'd formalize them into an automated eval — a golden set of user profiles with known-good programming, every model or prompt change scored against it, failures tracked by type: grounding errors, constraint violations, hallucinated equipment. New personas (yoga, barre, no history) would need new guardrails before I'd trust it with them. [MATT — approve/edit]</p>
 </section>
 
 <section>
-  <h2>Try it yourself</h2>
-  <p class="sub">The same rules engine, pointed at a generic profile instead of my history. Pick three constraints and watch the agent reason through them — the reasoning arrives with the plan, same as my daily briefing.</p>
-  <div class="card">
-    <div class="card-body">
-      <div class="picker">
-        <label>Goal
-          <select id="goal">
-            <option value="build-muscle">Build muscle</option>
-            <option value="get-stronger">Get stronger</option>
-            <option value="conditioning">Fat loss / conditioning</option>
-            <option value="return-from-break">Returning after a long break</option>
-          </select>
-        </label>
-        <label>Equipment
-          <select id="equipment">
-            <option value="full-gym">Full gym</option>
-            <option value="dumbbells-only">Dumbbells only</option>
-            <option value="hotel-gym">Hotel gym</option>
-            <option value="bodyweight">Bodyweight only</option>
-          </select>
-        </label>
-        <label>Limitation
-          <select id="limitation">
-            <option value="none">None</option>
-            <option value="knee">Knee (tendon irritation)</option>
-            <option value="shoulder">Shoulder (no overhead)</option>
-            <option value="lower-back">Lower back</option>
-            <option value="wrist">Wrist / grip</option>
-          </select>
-        </label>
-        <button id="generate">Generate session</button>
-      </div>
-      <p class="note" style="margin-top:12px">Rate-limited and spend-capped on purpose — if it declines, that's the guardrails working. Nothing you pick is stored.</p>
-    </div>
+  <h2><span class="no">04</span>Try the rules engine</h2>
+  <p class="sub">The same programming rules, pointed at a generic profile instead of my history. Pick three constraints and the agent reasons through them live — reasoning attached, same as my briefings.</p>
+  <div class="picker">
+    <label>Goal
+      <select id="goal">
+        <option value="build-muscle">Build muscle</option>
+        <option value="get-stronger">Get stronger</option>
+        <option value="conditioning">Fat loss / conditioning</option>
+        <option value="return-from-break">Returning after a long break</option>
+      </select>
+    </label>
+    <label>Equipment
+      <select id="equipment">
+        <option value="full-gym">Full gym</option>
+        <option value="dumbbells-only">Dumbbells only</option>
+        <option value="hotel-gym">Hotel gym</option>
+        <option value="bodyweight">Bodyweight only</option>
+      </select>
+    </label>
+    <label>Limitation
+      <select id="limitation">
+        <option value="none">None</option>
+        <option value="knee">Knee (tendon irritation)</option>
+        <option value="shoulder">Shoulder (no overhead)</option>
+        <option value="lower-back">Lower back</option>
+        <option value="wrist">Wrist / grip</option>
+      </select>
+    </label>
   </div>
-  <div id="result" class="duo" style="margin-top:14px; display:none">
-    <div class="card">
-      <div class="card-head"><span class="tag out">GENERATED</span> <span id="plan-title">your session</span></div>
-      <div class="card-body msg" id="plan-out"></div>
+  <button class="gen-btn" id="generate">Generate a session</button>
+  <p class="gen-note">Rate-limited and spend-capped on purpose — if it declines, that's the guardrails working. Nothing you pick is stored.</p>
+  <div id="gen-error"></div>
+  <div id="result">
+    <div class="cap">Generated · <span id="plan-title"></span></div>
+    <div class="transcript" id="plan-out"></div>
+    <div class="why">
+      <div class="cap">Agent reasoning</div>
+      <ol id="reasoning-out"></ol>
     </div>
-    <div class="card">
-      <div class="card-head"><span class="tag why">AGENT REASONING</span> why this plan</div>
-      <div class="card-body"><ol class="steps" id="reasoning-out"></ol></div>
-    </div>
-  </div>
-  <div id="gen-error" class="gate" style="display:none; margin-top:14px"></div>
-</section>
-
-<section>
-  <h2>How it works</h2>
-  <div class="card">
-    <div class="card-body arch">
-      <b>Notion</b> is the data layer — an "Athlete File" page holds the rules, injury protocol, and working weights; a database holds every logged session.<br>
-      <b>Scheduled Claude agents</b> (cloud cron, no server of mine) read it each evening, draft the plan, and hand it off — they can't message me directly.<br>
-      <b>A Cloudflare Worker</b> is the only thing that can send: it enforces the PR-date gate, rejects duplicate or out-of-window deliveries, then pushes to <b>Telegram</b> and creates the day's editable worksheet in Notion.<br>
-      <b>A retry agent</b> re-runs 5 hours later if the primary failed — the worker's delivery record makes the retry idempotent.
-    </div>
-  </div>
-  <ul class="lessons">
-    <li>Every guard exists because of a real failure: a Telegram retry storm → idempotent webhook; a 2 AM platform re-run that sent a duplicate and archived a live workout → the delivery-window rejection; the model getting PR-happy → the date gate in worker code.</li>
-    <li>The "Try it" generator above is a Vercel function: server-side API key, closed dropdown inputs (no free text reaches the model), per-IP rate limit, and a hard monthly spend cap set at the account level — the page fails politely instead of failing expensively.</li>
-  </ul>
-
-  <div class="evalbox">
-    <!-- EVAL SECTION — Matt writes this by hand. 2–3 lines:
-         what he checks before trusting an output, what a bad output
-         looks like, how he'd catch regression. -->
-    <p><b>What I check before trusting it:</b> [MATT — your prose here]</p>
-    <p><b>What a bad output looks like:</b> [MATT — your prose here]</p>
-    <p><b>How I'd catch regression:</b> [MATT — your prose here]</p>
   </div>
 </section>
 
@@ -339,14 +310,14 @@ Presses and pulls stayed in rebuild mode under the no-PR hold. The real move was
         li.appendChild(document.createTextNode(r.detail));
         ol.appendChild(li);
       });
-      result.style.display = "grid";
+      result.style.display = "block";
       result.scrollIntoView({ behavior: "smooth", block: "nearest" });
     } catch (e) {
       errBox.textContent = e.message;
       errBox.style.display = "block";
     } finally {
       btn.disabled = false;
-      btn.textContent = "Generate session";
+      btn.textContent = "Generate a session";
     }
   });
 })();
