@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build notes · Fitness Claude</title>
+<meta name="description" content="What I learned building and operating an autonomous AI training coach for four months.">
+<style>
+  :root {
+    --bg: #17191e;
+    --panel: #101216;
+    --cream: #ece7db;
+    --soft: #b9b2a4;
+    --dim: #837d70;
+    --apricot: #d9a441;
+    --mint: #8fbf9a;
+    --line: rgba(236, 231, 219, .13);
+    --mono: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+    --serif: Charter, "Bitstream Charter", Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--cream); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 22px 90px; }
+  .brand { padding: 30px 0 0; font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: var(--dim); font-weight: 600; }
+  .brand a { color: var(--dim); }
+  header { padding: 42px 0 8px; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 5.4vw, 38px); line-height: 1.2; margin-bottom: 12px; }
+  .byline { font-size: 14px; color: var(--dim); margin-bottom: 6px; }
+  .byline a { font-weight: 600; }
+  article { margin-top: 26px; }
+  article p { font-family: var(--serif); font-size: 17px; color: var(--soft); line-height: 1.75; margin-bottom: 18px; }
+  article p b { color: var(--cream); font-weight: 600; }
+  article .num { color: var(--apricot); font-family: var(--mono); font-size: 15px; }
+  h2 { font-family: var(--sans); font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--mint); margin: 34px 0 12px; }
+  .stack { font-family: var(--mono); font-size: 13px; color: var(--dim); border-top: 1px dotted var(--line); padding-top: 16px; margin-top: 36px; line-height: 1.8; }
+  a { color: var(--apricot); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  footer { margin-top: 60px; padding-top: 18px; border-top: 1px dotted var(--line); font-size: 14px; color: var(--dim); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="brand"><a href="/">← Fitness Claude</a></div>
+
+<header>
+  <h1>Building an AI coach that ran itself for four months</h1>
+  <div class="byline"><a href="https://www.linkedin.com/in/mattyfsmith/" rel="me">Matt Smith</a> · August 2026</div>
+</header>
+
+<article>
+  <!-- MATT: every paragraph below is seeded from sentences you wrote in your
+       interview-prep chat. Rewrite each one until it sounds like you said it
+       out loud. Delete these comments and the [MATT] tags when done. -->
+
+  <p>In May I had some free time and started tinkering: could Claude be my fitness instructor? Not a chatbot I ask for workouts, but a system that programs my training on its own, every day, from my real history. Four months later it still runs daily. I've followed its programming with my own body the whole time, improved a knee injury, and hit PRs in every training block since it started. The demo is <a href="/">here</a>. These are the notes. [MATT — make this yours]</p>
+
+  <h2>It broke a lot first</h2>
+  <p>The early responses were robotic and poorly designed. One night a Notion API call errored and the agent retried the same request in a loop until it had burned <span class="num">$3.64 and 820K tokens</span> on nothing. That one taught me the most important lesson in this project: <b>agents fail expensively and silently unless you make them fail cheap and loud.</b> Now there are spend guards, retry caps, and every error gets written where I'll actually see it, so I can diagnose instead of discover. [MATT — approve/edit]</p>
+
+  <p>It also hallucinated. PR weights I'd never lifted, machines that don't exist, workouts assigned to the wrong day of the week. Each of those became a grounding fix: an Athlete File in Notion that says who I am, what I lift, and what's injured, kept current by a second agent that rescans my logs weekly; and a daily calendar sync so the planner always knows what day it is and what I actually trained. Boring infrastructure, and it killed whole categories of error. [MATT — approve/edit]</p>
+
+  <h2>Rules beat vibes</h2>
+  <p>The rules I'd use as my own trainer are encoded as checks the output must pass, not suggestions in a prompt: heaviest compound first while you're fresh, a ceiling on blocks per session so it can't overprogram, PR attempts only in the first two weeks of a fresh training block. The PR rule matters enough that plain code checks it a second time and strips the flag if the model gets it wrong. The model proposes; deterministic code disposes. [MATT — approve/edit]</p>
+
+  <h2>How I know it's good</h2>
+  <p>Honestly? Because I've trained for years and bad outputs are obvious to me: weights that contradict history, an exercise order no lifter would run. I've been the eval harness every single day since May. That works for a system with one user who's an expert in the domain. It does not scale, and knowing that is the point: to productize this I'd formalize my checks into an automated eval, a golden set of user profiles with known-good programming, every model or prompt change scored against it, failures tracked by type. And whole new personas, yoga, barre, someone with no training history at all, would need their own guardrails before I'd trust the system with them. [MATT — approve/edit]</p>
+
+  <div class="stack">stack: Claude scheduled agents · Notion as the data layer · Cloudflare Worker for the deterministic gates · Telegram for delivery · <a href="/">live demo</a></div>
+</article>
+
+<footer>Built and operated by Matt Smith · <a href="https://www.linkedin.com/in/mattyfsmith/" rel="me">LinkedIn</a></footer>
+
+</div>
+</body>
+</html>

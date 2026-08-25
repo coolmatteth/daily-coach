@@ -236,10 +236,9 @@ B6 · Back Extension — 2×12
 
 <section class="eval">
   <h2><span class="no">03</span>How I know it's good</h2>
-  <!-- MATT: hand-write or bless these three. They should sound like you talking. -->
-  <p><span class="lead-in">Grounding and hard rules</span>The agent works from an Athlete File: who I am, current build, PRs, injury state. A second agent rescans the logs weekly and keeps that file current. Before it existed, the coach hallucinated PR weights and workouts I'd never done. On top of the file sit rules the output must pass: heaviest compound first, a ceiling on blocks per session, PR attempts only in the first two weeks of a block. That last rule gets checked again by plain code. [MATT — approve/edit]</p>
-  <p><span class="lead-in">Judgment as the eval</span>Bad outputs are obvious to someone who's trained for years: weights that contradict history, machines that don't exist, an exercise order no lifter would run. I've been the eval harness every day since May. [MATT — approve/edit]</p>
-  <p><span class="lead-in">Scaling it honestly</span>My checks live in my judgment, and that doesn't scale. To productize this I'd turn them into an automated eval: a golden set of user profiles with known-good programming, every model or prompt change scored against it, failures tracked by type. New personas, like yoga or someone with no training history, would need new guardrails before I'd trust it with them. [MATT — approve/edit]</p>
+  <!-- MATT: bless or rewrite. Full version lives in notes.html. -->
+  <p>The outputs are grounded in an Athlete File a second agent keeps current, and hard rules are checked in code, not just prompted. Beyond that: I've trained for years, bad programming is obvious to me, and I've been the eval harness every day since May. What it would take to trust this beyond one expert user is its own story. [MATT — approve/edit]</p>
+  <p class="sub" style="margin-bottom:0">The failures, fixes, and how I'd eval it at scale: <a href="notes.html">build notes</a>.</p>
 </section>
 
 <section>
