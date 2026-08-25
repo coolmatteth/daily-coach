@@ -4,11 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fitness Claude — an autonomous training agent</title>
-<meta name="description" content="A six-agent system that has programmed my real training daily since May 2026 — the outputs, the reasoning, and how I know it's good.">
+<meta name="description" content="A six-agent system that has programmed my real training daily since May 2026. The outputs, the reasoning, and how I know it's good.">
 <style>
   :root {
     --bg: #17191e;
-    --bg-2: #1d2026;
     --panel: #101216;
     --cream: #ece7db;
     --soft: #b9b2a4;
@@ -32,64 +31,50 @@
     padding: 30px 0 0; font-size: 13px; letter-spacing: .22em;
     text-transform: uppercase; color: var(--dim); font-weight: 600;
   }
-  .brand b { color: var(--cream); font-weight: 600; }
 
-  header { padding: 54px 0 10px; }
-  .pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    border: 1px solid var(--line); border-radius: 999px;
-    padding: 6px 14px; font-size: 13px; color: var(--soft); background: rgba(0,0,0,.18);
-  }
-  .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); }
+  header { padding: 46px 0 10px; }
   h1 {
     font-family: var(--serif); font-weight: 500;
-    font-size: clamp(34px, 6.4vw, 50px); line-height: 1.14;
-    letter-spacing: -.01em; margin: 22px 0 18px; color: var(--cream);
+    font-size: clamp(32px, 6vw, 46px); line-height: 1.16;
+    letter-spacing: -.01em; margin: 0 0 14px; color: var(--cream);
   }
   h1 em { font-style: italic; color: var(--apricot); }
-  .lede { font-size: clamp(16px, 2.5vw, 18.5px); color: var(--soft); line-height: 1.65; }
+  .byline { font-size: 14px; color: var(--dim); margin-bottom: 18px; }
+  .byline a { font-weight: 600; }
+  .lede { font-size: clamp(16px, 2.5vw, 18px); color: var(--soft); line-height: 1.65; }
   .outcome {
     margin-top: 22px; padding: 16px 18px; border-left: 2px solid var(--apricot);
-    background: rgba(236, 152, 98, .07); font-size: 16px; color: var(--cream);
+    background: rgba(217, 164, 65, .06); font-size: 16px; color: var(--cream);
     font-family: var(--serif); line-height: 1.6;
   }
-  .outcome b { color: var(--apricot); font-family: var(--sans); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .outcome b { color: var(--apricot); font-family: var(--sans); font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
 
-  section { margin-top: 72px; }
+  section { margin-top: 66px; }
   h2 {
-    font-family: var(--serif); font-size: 27px; font-weight: 500; color: var(--cream);
+    font-family: var(--serif); font-size: 26px; font-weight: 500; color: var(--cream);
     margin-bottom: 6px;
   }
   h2 .no {
     font-family: var(--mono); font-size: 13px; color: var(--dim);
     margin-right: 12px; vertical-align: 4px; letter-spacing: .06em;
   }
-  .sub { color: var(--dim); font-size: 15px; margin-bottom: 22px; max-width: 600px; }
+  .sub { color: var(--dim); font-size: 15px; margin-bottom: 20px; max-width: 620px; }
   p { margin-bottom: 14px; }
 
-  .roster { border-top: 1px dotted var(--line); }
-  .roster-row {
-    display: grid; grid-template-columns: 190px 1fr; gap: 16px;
-    padding: 13px 0; border-bottom: 1px dotted var(--line); font-size: 14.5px; color: var(--soft);
-  }
-  @media (max-width: 560px) { .roster-row { grid-template-columns: 1fr; gap: 3px; } }
-  .roster-row .name { font-weight: 600; font-size: 13.5px; color: var(--cream); padding-top: 1px; }
-  .roster-row .name small { display: block; font-weight: 400; color: var(--apricot); font-family: var(--mono); font-size: 11.5px; margin-top: 2px; }
-
-  .diagram { margin: 26px 0 6px; border: 1px solid var(--line); border-radius: 8px; padding: 18px; background: rgba(0,0,0,.16); }
-  .d-band { display: grid; grid-template-columns: 130px 1fr; gap: 14px; align-items: start; }
+  .diagram { margin: 8px 0 6px; border: 1px solid var(--line); border-radius: 8px; padding: 18px; background: rgba(0,0,0,.16); }
+  .d-band { display: grid; grid-template-columns: 118px 1fr; gap: 14px; align-items: start; }
   @media (max-width: 560px) { .d-band { grid-template-columns: 1fr; gap: 6px; } }
   .d-label {
     font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
     color: var(--dim); font-weight: 700; padding-top: 10px;
   }
-  .d-label small { display: block; text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--dim); font-size: 11px; }
   .d-boxes { display: flex; flex-wrap: wrap; gap: 8px; }
   .d-box {
     background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
-    padding: 8px 12px; font-size: 12.5px; color: var(--soft); flex: 1 1 140px; line-height: 1.45;
+    padding: 8px 12px; font-size: 12.5px; color: var(--soft); flex: 1 1 150px; line-height: 1.45;
   }
   .d-box b { display: block; color: var(--cream); font-size: 12.5px; }
+  .d-box b small { color: var(--apricot); font-family: var(--mono); font-size: 10.5px; font-weight: 400; margin-left: 6px; }
   .d-box.gate { border-color: rgba(217, 164, 65, .45); }
   .d-box.gate b { color: var(--apricot); }
   .d-arrow { text-align: center; padding: 8px 0; }
@@ -142,7 +127,7 @@
     border-radius: 6px; padding: 10px 10px; font-size: 14px; font-family: var(--sans);
   }
   .gen-btn {
-    margin-top: 16px; background: var(--apricot); color: #241a24; border: none;
+    margin-top: 16px; background: var(--apricot); color: #17191e; border: none;
     border-radius: 6px; padding: 12px 24px; font-size: 14px; font-weight: 700;
     font-family: var(--sans); cursor: pointer;
   }
@@ -151,7 +136,7 @@
   .gen-note { font-size: 12.5px; color: var(--dim); margin-top: 10px; }
   #gen-error {
     display: none; margin-top: 14px; padding: 12px 14px;
-    border-left: 2px solid var(--apricot); background: rgba(236,152,98,.07);
+    border-left: 2px solid var(--apricot); background: rgba(217,164,65,.07);
     font-size: 14px; color: var(--soft);
   }
   #result { display: none; margin-top: 26px; }
@@ -169,67 +154,59 @@
 <body>
 <div class="wrap">
 
-<div class="brand"><b>Fitness Claude</b> · a working agent, documented</div>
+<div class="brand">Fitness Claude</div>
 
 <header>
-  <h1>An AI coach that programs every workout I do — and shows its <em>reasoning</em></h1>
-  <p class="lede">Fitness Claude is an autonomous system I designed, built, and operate: six coordinated Claude agents that read my training history in Notion, program my sessions, and deliver them to my phone every evening.</p>
-  <div class="pill" style="margin-top:20px"><span class="dot"></span>Live — running daily since May 2026</div>
-  <div class="outcome"><b>The outcome</b>It has run every day for months, and I've followed its programming with my own body the whole time — improved a knee injury and hit PRs in every training block since it started. That's my bar for trusting an agent.</div>
+  <h1>An AI coach that programs every workout I do, and shows its <em>reasoning</em></h1>
+  <div class="byline">A spare-time build by <a href="https://www.linkedin.com/in/mattyfsmith/" rel="me">Matt Smith</a> · running daily since May 2026</div>
+  <p class="lede">Six scheduled Claude agents read my training history in Notion, decide tomorrow's session, and send it to my phone every evening.</p>
+  <div class="outcome"><b>The outcome</b>It has run every day for months, and I've followed its programming with my own body the whole time. Improved a knee injury. Hit PRs in every training block since it started. That's my bar for trusting an agent.</div>
 </header>
 
 <section>
   <h2><span class="no">01</span>The system</h2>
-  <p class="sub">Not a chatbot — a schedule of narrow agents, each owning one job, coordinating through Notion as the shared data layer.</p>
-  <div class="roster">
-    <div class="roster-row"><div class="name">Daily training planner<small>4:31 PM · daily</small></div><div>Reads the Athlete File and 14 days of logs, programs tomorrow's session, delivers it to Telegram with its reasoning.</div></div>
-    <div class="roster-row"><div class="name">Daily calendar sync<small>10:13 PM · daily</small></div><div>Reconciles logged sessions onto a calendar — grounding the planner in what day it is and what I actually trained. Killed a whole class of hallucinations.</div></div>
-    <div class="roster-row"><div class="name">Briefing retry<small>9:31 PM · daily</small></div><div>If the primary run failed, re-runs the full flow five hours later. Idempotent — the delivery record makes a duplicate send impossible.</div></div>
-    <div class="roster-row"><div class="name">Weekly athlete file update<small>Sunday evening</small></div><div>A second agent maintains the first agent's ground truth: rescans the week's logs, updates PRs, current build, and the training-block clock.</div></div>
-    <div class="roster-row"><div class="name">Block debrief<small>every 5 weeks</small></div><div>Closes out each training block: what moved, what's earned next. Banned from reciting stats without a consequence attached.</div></div>
-    <div class="roster-row"><div class="name">Edge worker<small>always on</small></div><div>The only component allowed to send. Enforces deterministic guards in code: a dated PR-window gate, duplicate and out-of-window delivery rejection, spend limits.</div></div>
-  </div>
+  <p class="sub">Each agent owns one job. Notion is the shared data layer. The worker is the only thing allowed to send.</p>
   <div class="diagram">
     <div class="d-band">
-      <div class="d-label">Data layer</div>
+      <div class="d-label">Data</div>
       <div class="d-boxes">
-        <div class="d-box"><b>Notion</b>Athlete File · Training Log · Dashboard</div>
-        <div class="d-box"><b>Google Calendar</b>every session &amp; rest day, backfilled</div>
+        <div class="d-box"><b>Notion</b>Athlete File · training log · dashboard</div>
+        <div class="d-box"><b>Google Calendar</b>every session and rest day</div>
       </div>
     </div>
-    <div class="d-arrow"><span>agents read ↓ &nbsp;·&nbsp; ↑ two agents write back</span></div>
+    <div class="d-arrow"><span>agents read ↓ · two write back ↑</span></div>
     <div class="d-band">
-      <div class="d-label">Scheduled agents <small>Claude, cloud cron</small></div>
+      <div class="d-label">Agents</div>
       <div class="d-boxes">
-        <div class="d-box"><b>Daily planner</b>programs tomorrow</div>
-        <div class="d-box"><b>Retry</b>+5h if it failed</div>
-        <div class="d-box"><b>Calendar sync</b>nightly ↑</div>
-        <div class="d-box"><b>Athlete file update</b>weekly ↑</div>
-        <div class="d-box"><b>Block debrief</b>every 5 wks</div>
+        <div class="d-box"><b>Daily planner<small>4:31 PM</small></b>programs tomorrow from the file + 14 days of logs</div>
+        <div class="d-box"><b>Retry<small>9:31 PM</small></b>re-runs if the primary failed</div>
+        <div class="d-box"><b>Calendar sync<small>nightly ↑</small></b>writes sessions to the calendar</div>
+        <div class="d-box"><b>File update<small>Sun ↑</small></b>rescans the week, updates PRs and the block clock</div>
+        <div class="d-box"><b>Block debrief<small>5 wks</small></b>closes out each training block</div>
       </div>
     </div>
-    <div class="d-arrow"><span>plans POST to the worker — agents can't message me directly ↓</span></div>
+    <div class="d-arrow"><span>every plan POSTs to the worker. agents can't message me directly ↓</span></div>
     <div class="d-band">
-      <div class="d-label">Edge worker <small>Cloudflare, deterministic code</small></div>
+      <div class="d-label">Worker</div>
       <div class="d-boxes">
-        <div class="d-box gate"><b>Gates</b>PR-window date check · duplicate &amp; out-of-window rejection · spend limits</div>
+        <div class="d-box gate"><b>Gates, in code</b>PR-window date check · duplicate and late-delivery rejection · spend limits</div>
       </div>
     </div>
-    <div class="d-arrow"><span>only survivors get delivered ↓</span></div>
+    <div class="d-arrow"><span>only what passes gets sent ↓</span></div>
     <div class="d-band">
       <div class="d-label">Me</div>
       <div class="d-boxes">
-        <div class="d-box"><b>Telegram</b>the briefing, 4:31 PM</div>
-        <div class="d-box"><b>Notion worksheet</b>I edit it at the gym — and it becomes tomorrow's history, closing the loop ↺</div>
+        <div class="d-box"><b>Telegram</b>the evening briefing</div>
+        <div class="d-box"><b>Notion worksheet</b>I edit it at the gym. It becomes tomorrow's history. ↺</div>
       </div>
     </div>
   </div>
-  <p class="scar">The guardrails are scar tissue. Early on, a failed API call got retried in an endless loop — <span class="num">$3.64 and 820K tokens</span> burned on the same errored request — so now agents fail cheap and loud: spend limits, retry caps, errors surfaced where I'll see them. A 2 AM platform re-run once sent a duplicate briefing and archived a live workout sheet — so delivery windows are enforced <b>in worker code, not in prompts</b>.</p>
+  <p class="scar">The guardrails are scar tissue. A failed API call once retried itself in a loop and burned <span class="num">$3.64 and 820K tokens</span> on the same request. Now agents fail cheap and loud: spend limits, retry caps, errors surfaced where I'll see them. A 2 AM platform re-run once sent a duplicate briefing and archived a live workout sheet. Delivery windows are now enforced <b>in worker code, not in prompts</b>.</p>
 </section>
 
 <section>
   <h2><span class="no">02</span>One night's output</h2>
-  <p class="sub">A real briefing (lightly sanitized), and the agent's actual decision trail from its run log. The reasoning is the product — a plan without it is just a listicle.</p>
+  <p class="sub">A real briefing, lightly sanitized, next to the agent's decision trail from its run log.</p>
   <div class="cap">Delivered to Telegram · Aug 24 · 4:31 PM</div>
   <div class="transcript"><span class="hd">Tue 8/25</span>
 <span class="dim">Block day 4/35 — PR window · Logged: 8/24 push</span>
@@ -246,29 +223,28 @@ B6 · Back Extension — 2×12
 
 <span class="dim">Worksheet created in Notion — edit it at the gym, the system reads it back tonight.</span></div>
   <div class="why">
-    <div class="cap">From the agent's run log — why this plan</div>
+    <div class="cap">From the run log: why this plan</div>
     <ol>
-      <li><b>Computed the block clock first</b> — day 4 of 35, inside the open PR window. Every downstream decision keys off this.</li>
-      <li><b>Caught a plan override</b> — I trained push instead of the workout it had prepared, logging it in chat. It counted the real session as the record instead of marking the day "skipped."</li>
-      <li><b>Found a travel note</b> — away gym for three days, so it built the plan around cables and dumbbells it could count on.</li>
-      <li><b>Picked pull</b> — longest gap (15 days), and it doesn't load the flagged knee. Dropped rear-delt work because yesterday's session already hit it.</li>
-      <li><b>Held the PR</b> — window open, but yesterday's pressing was below proven weight and a shoulder flag was inside its cooldown. Two vetoes — and it says so in the briefing instead of silently deciding.</li>
+      <li><b>Computed the block clock first.</b> Day 4 of 35, inside the open PR window. Every later decision keys off this.</li>
+      <li><b>Caught a plan override.</b> I trained push instead of the prepared workout and logged it in chat. It counted the real session as the record instead of marking the day skipped.</li>
+      <li><b>Found a travel note.</b> Away gym for three days, so the plan uses cables and dumbbells it can count on.</li>
+      <li><b>Picked pull.</b> Longest gap at 15 days, and it doesn't load the flagged knee. Dropped rear-delt work because yesterday's session already hit it.</li>
+      <li><b>Held the PR.</b> The window is open, but yesterday's pressing was below proven weight and a shoulder flag was inside its cooldown. It says so in the briefing instead of deciding silently.</li>
     </ol>
   </div>
 </section>
 
 <section class="eval">
   <h2><span class="no">03</span>How I know it's good</h2>
-  <!-- MATT: assembled from your own interview-drill sentences. Edit anything that doesn't sound like you. -->
-  <p><span class="lead-in">Grounding</span>The agent works from an Athlete File — who I am, current build, PRs, injury state — updated weekly by a separate agent that rescans the logs. Before that file existed, it hallucinated PR weights and workouts I'd never done. [MATT — approve/edit]</p>
-  <p><span class="lead-in">Hard constraints</span>Domain rules are encoded as checks the output must pass, not suggestions: heaviest compound first while fresh, a block ceiling so it can't overprogram, PR attempts only in the first half of a fresh block — and that last rule is re-verified by deterministic code, not the model. [MATT — approve/edit]</p>
-  <p><span class="lead-in">Judgment as the eval</span>Bad outputs are obvious to someone who's trained for years: weights that contradict history, machines that don't exist, exercises in an order no lifter would run. I've been the eval harness every day since May. [MATT — approve/edit]</p>
-  <p><span class="lead-in">Scaling it honestly</span>My checks live in my judgment, and that doesn't scale. To productize this I'd formalize them into an automated eval — a golden set of user profiles with known-good programming, every model or prompt change scored against it, failures tracked by type: grounding errors, constraint violations, hallucinated equipment. New personas (yoga, barre, no history) would need new guardrails before I'd trust it with them. [MATT — approve/edit]</p>
+  <!-- MATT: hand-write or bless these three. They should sound like you talking. -->
+  <p><span class="lead-in">Grounding and hard rules</span>The agent works from an Athlete File: who I am, current build, PRs, injury state. A second agent rescans the logs weekly and keeps that file current. Before it existed, the coach hallucinated PR weights and workouts I'd never done. On top of the file sit rules the output must pass: heaviest compound first, a ceiling on blocks per session, PR attempts only in the first two weeks of a block. That last rule gets checked again by plain code. [MATT — approve/edit]</p>
+  <p><span class="lead-in">Judgment as the eval</span>Bad outputs are obvious to someone who's trained for years: weights that contradict history, machines that don't exist, an exercise order no lifter would run. I've been the eval harness every day since May. [MATT — approve/edit]</p>
+  <p><span class="lead-in">Scaling it honestly</span>My checks live in my judgment, and that doesn't scale. To productize this I'd turn them into an automated eval: a golden set of user profiles with known-good programming, every model or prompt change scored against it, failures tracked by type. New personas, like yoga or someone with no training history, would need new guardrails before I'd trust it with them. [MATT — approve/edit]</p>
 </section>
 
 <section>
   <h2><span class="no">04</span>Try the rules engine</h2>
-  <p class="sub">The same programming rules, pointed at a generic profile instead of my history. Pick three constraints and see how the engine reasons through them — every one of the 80 combinations was generated ahead of time, because a demo page with zero moving parts can't fail while you're looking at it. That trade-off is deliberate; the live API version exists in the repo.</p>
+  <p class="sub">The same rules, pointed at a generic profile instead of my history. All 80 combinations were generated ahead of time: a demo page with zero moving parts can't fail while you're looking at it. That trade-off is deliberate. The live API version sits in the repo.</p>
   <div class="picker">
     <label>Goal
       <select id="goal">
@@ -303,14 +279,14 @@ B6 · Back Extension — 2×12
     <div class="cap">Generated · <span id="plan-title"></span></div>
     <div class="transcript" id="plan-out"></div>
     <div class="why">
-      <div class="cap">Agent reasoning</div>
+      <div class="cap">Engine reasoning</div>
       <ol id="reasoning-out"></ol>
     </div>
   </div>
 </section>
 
 <footer>
-  <div>Designed, built, and operated by <b>Matt Smith</b></div>
+  <div>Built and operated by <b>Matt Smith</b></div>
   <div><a href="https://www.linkedin.com/in/mattyfsmith/" rel="me">LinkedIn</a></div>
 </footer>
 
@@ -338,11 +314,11 @@ B6 · Back Extension — 2×12
         document.getElementById("limitation").value,
       ].join("|");
       var data = plans[key];
-      if (!data) throw new Error("That combination is missing — which would be a bug worth telling me about.");
+      if (!data) throw new Error("That combination is missing, which would be a bug worth telling me about.");
 
       document.getElementById("plan-title").textContent = data.plan.title;
       var lines = data.plan.blocks.map(function (b) {
-        return b.slot + " · " + b.exercise + " — " + b.scheme + (b.note ? "  (" + b.note + ")" : "");
+        return b.slot + " · " + b.exercise + " — " + b.scheme;
       });
       if (data.plan.limitation_note) lines.push("", "Worked around: " + data.plan.limitation_note);
       document.getElementById("plan-out").textContent = lines.join("\n");
@@ -352,7 +328,7 @@ B6 · Back Extension — 2×12
       data.reasoning.forEach(function (r) {
         var li = document.createElement("li");
         var b = document.createElement("b");
-        b.textContent = r.step + " — ";
+        b.textContent = r.step + ". ";
         li.appendChild(b);
         li.appendChild(document.createTextNode(r.detail));
         ol.appendChild(li);

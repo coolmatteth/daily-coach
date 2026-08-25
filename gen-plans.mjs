@@ -103,14 +103,14 @@ const GOALS = {
     label: "Hypertrophy",
     blocks: 6,
     scheme: (i) => (i === 0 ? "3 × 8-10, reverse pyramid" : i < 4 ? "3 × 10-12" : "2 × 12-15"),
-    shape: "Hypertrophy calls for moderate loads and honest volume — six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift.",
+    shape: "Hypertrophy calls for moderate loads and honest volume: six blocks, biggest movement first while energy is highest, reverse-pyramid loading on the lead lift.",
     loading: "Loading is reverse pyramid: heaviest working set first after warm-up, then drop weight and add reps. Two reps shy of failure on everything but the last set of each block.",
   },
   "get-stronger": {
     label: "Strength",
     blocks: 5,
     scheme: (i) => (i === 0 ? "4 × 4-6, long rests" : i < 3 ? "3 × 6-8" : "2 × 10-12"),
-    shape: "Strength work concentrates effort into fewer, heavier blocks — five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes.",
+    shape: "Strength work concentrates effort into fewer, heavier blocks: five total, with the lead compound getting the freshest reps at 4-6 per set and rests of 2-3 minutes.",
     loading: "Top sets sit at 4-6 reps with full rests; the back half of the session is lighter support work so the heavy slots stay heavy.",
   },
   "conditioning": {
@@ -118,7 +118,7 @@ const GOALS = {
     blocks: 6,
     scheme: (i) => (i < 4 ? "3 × 12-15, short rests" : "2 rounds, 40s on / 20s off"),
     shape: "For fat loss the lever is density: six blocks with short rests, the last two run as timed rounds so heart rate stays elevated without turning lifts sloppy.",
-    loading: "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day — density is the stimulus, not grinding.",
+    loading: "Rests capped near 60 seconds and the final blocks run on a clock. Loads stay a rep or two more conservative than a pure muscle day. Density is the stimulus, not grinding.",
   },
   "return-from-break": {
     label: "Return to training",
@@ -176,7 +176,7 @@ for (const goal of Object.keys(GOALS)) {
         { step: "Session shape", detail: g.shape },
         {
           step: "Lead block",
-          detail: `${b1.ex} takes B1 — the biggest pattern available here, placed first while energy is highest. ${EQ_NOTE[eq].charAt(0).toUpperCase() + EQ_NOTE[eq].slice(1)}.`,
+          detail: `${b1.ex} takes B1: the biggest pattern available here, placed first while energy is highest. ${EQ_NOTE[eq].charAt(0).toUpperCase() + EQ_NOTE[eq].slice(1)}.`,
         },
         {
           step: "Balance check",
@@ -189,7 +189,7 @@ for (const goal of Object.keys(GOALS)) {
             }
           : {
               step: "Limitation pass",
-              detail: `Deliberately NOT programmed: ${excluded.join(", ")} — ${LIMITS[lim].why}.`,
+              detail: `Deliberately not programmed: ${excluded.join(", ")}. Why: ${LIMITS[lim].why}.`,
             },
         { step: "Loading", detail: g.loading },
       ];
