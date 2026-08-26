@@ -23,7 +23,7 @@ const POOLS = {
     { ex: "Plank", tags: ["core"] },
     { ex: "Wall Sit (isometric)", tags: ["legs-iso"] },
     { ex: "Rower Intervals", tags: ["cardio", "grip", "spineload"] },
-    { ex: "Incline Treadmill Walk", tags: ["cardio"] },
+    { ex: "Sled Push (or heavy carry)", tags: ["cardio", "legs"] },
   ],
   "dumbbells-only": [
     { ex: "Goblet Squat", tags: ["kneeflex", "grip", "legs"], big: true },
@@ -53,8 +53,7 @@ const POOLS = {
     { ex: "Cable Triceps Pressdown", tags: ["arms", "grip"] },
     { ex: "Glute Bridge", tags: ["legs"] },
     { ex: "Plank", tags: ["core"] },
-    { ex: "Incline Treadmill Walk", tags: ["cardio"] },
-    { ex: "Treadmill Intervals", tags: ["cardio"] },
+    { ex: "DB Farmer Carry", tags: ["cardio", "grip", "core"] },
   ],
   "bodyweight": [
     { ex: "Bulgarian Split Squat", tags: ["kneeflex", "legs"], big: true },
@@ -69,8 +68,8 @@ const POOLS = {
     { ex: "Plank", tags: ["core", "wristext"] },
     { ex: "Forearm Plank", tags: ["core"] },
     { ex: "Hollow Hold", tags: ["core"] },
-    { ex: "Stair or Hill Walk Intervals", tags: ["cardio"] },
     { ex: "Squat-to-Stand Flow", tags: ["kneeflex", "cardio"] },
+    { ex: "Mountain Climbers", tags: ["cardio", "core", "wristext"] },
   ],
 };
 
