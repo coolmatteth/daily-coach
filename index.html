@@ -114,6 +114,19 @@
   }
   #result { display: none; margin-top: 26px; }
 
+  .results { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .results th {
+    text-align: left; font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--dim); font-weight: 700; padding: 0 10px 8px 0; border-bottom: 1px solid var(--line);
+  }
+  .results td { padding: 11px 10px 11px 0; border-bottom: 1px dotted var(--line); color: var(--soft); vertical-align: top; }
+  .results td:first-child { color: var(--cream); font-weight: 600; }
+  .results .d { color: var(--apricot); font-family: var(--mono); font-weight: 700; white-space: nowrap; }
+  .results .knee td { color: var(--mint); }
+  .results .knee td:first-child { color: var(--cream); }
+  .results .knee .d { color: var(--mint); }
+  .aside { font-family: var(--serif); font-size: 15.5px; color: var(--soft); line-height: 1.7; margin-top: 18px; max-width: 640px; }
+
   .feat { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
   @media (max-width: 560px) { .feat { grid-template-columns: 1fr; } }
   .feat div {
@@ -156,6 +169,21 @@
     <div><b>Injury-aware progression</b>Flagged joints cap loads and gate jumps until they clear.</div>
     <div><b>Honest recaps</b>Weekly and end-of-block reviews that tell you what moved, not a stat dump.</div>
   </div>
+</section>
+
+<section>
+  <h2>Real results</h2>
+  <p class="sub">One athlete's numbers, April to August 2026, straight from the system's training log.</p>
+  <table class="results">
+    <tr><th>Lift</th><th>April</th><th>August</th><th class="d">Change</th></tr>
+    <tr><td>Seated DB Press</td><td>45 lb × 8</td><td>60 lb × 6</td><td class="d">+33%</td></tr>
+    <tr><td>Arnold Press</td><td>35 lb × 8</td><td>45 lb × 10</td><td class="d">+29%</td></tr>
+    <tr><td>Back Extension</td><td>205 lb</td><td>250 lb × 12</td><td class="d">+22%</td></tr>
+    <tr><td>Cable Row</td><td>145 lb</td><td>175 lb</td><td class="d">+21%</td></tr>
+    <tr><td>DB Flat Press</td><td>60 lb × 8</td><td>70 lb × 8 × 3</td><td class="d">+17%</td></tr>
+    <tr class="knee"><td>Knee (patellar flare)</td><td>training around pain</td><td>pain-free sessions, longest ride since the injury</td><td class="d">rehabbed</td></tr>
+  </table>
+  <p class="aside">PRs landed in every five-week training block since launch, while an injured knee was loaded back to pain-free. That combination is the point: a logging app records what you did and leaves the thinking to you. Here the log is the input, not the product. The coach decides what's next, how heavy, and when to say no.</p>
 </section>
 
 <section id="demo">
