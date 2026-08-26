@@ -1,7 +1,7 @@
 {
  "build-muscle|full-gym|none": {
   "plan": {
-   "title": "Hypertrophy — full gym — no limitation",
+   "title": "Hypertrophy session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -47,7 +47,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -61,7 +61,7 @@
  },
  "build-muscle|full-gym|knee": {
   "plan": {
-   "title": "Hypertrophy — full gym — knee (patellar tendon)",
+   "title": "Hypertrophy session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -107,7 +107,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -121,7 +121,7 @@
  },
  "build-muscle|full-gym|shoulder": {
   "plan": {
-   "title": "Hypertrophy — full gym — shoulder",
+   "title": "Hypertrophy session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -167,7 +167,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -181,7 +181,7 @@
  },
  "build-muscle|full-gym|lower-back": {
   "plan": {
-   "title": "Hypertrophy — full gym — lower back",
+   "title": "Hypertrophy session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -227,7 +227,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -241,7 +241,7 @@
  },
  "build-muscle|full-gym|wrist": {
   "plan": {
-   "title": "Hypertrophy — full gym — wrist / grip",
+   "title": "Hypertrophy session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -287,7 +287,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -301,7 +301,7 @@
  },
  "build-muscle|dumbbells-only|none": {
   "plan": {
-   "title": "Hypertrophy — dumbbells only — no limitation",
+   "title": "Hypertrophy session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -347,7 +347,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -361,7 +361,7 @@
  },
  "build-muscle|dumbbells-only|knee": {
   "plan": {
-   "title": "Hypertrophy — dumbbells only — knee (patellar tendon)",
+   "title": "Hypertrophy session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -407,7 +407,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -421,7 +421,7 @@
  },
  "build-muscle|dumbbells-only|shoulder": {
   "plan": {
-   "title": "Hypertrophy — dumbbells only — shoulder",
+   "title": "Hypertrophy session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -467,7 +467,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -481,7 +481,7 @@
  },
  "build-muscle|dumbbells-only|lower-back": {
   "plan": {
-   "title": "Hypertrophy — dumbbells only — lower back",
+   "title": "Hypertrophy session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -527,7 +527,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -541,7 +541,7 @@
  },
  "build-muscle|dumbbells-only|wrist": {
   "plan": {
-   "title": "Hypertrophy — dumbbells only — wrist / grip",
+   "title": "Hypertrophy session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -582,7 +582,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -596,7 +596,7 @@
  },
  "build-muscle|hotel-gym|none": {
   "plan": {
-   "title": "Hypertrophy — hotel gym — no limitation",
+   "title": "Hypertrophy session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -642,7 +642,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -656,7 +656,7 @@
  },
  "build-muscle|hotel-gym|knee": {
   "plan": {
-   "title": "Hypertrophy — hotel gym — knee (patellar tendon)",
+   "title": "Hypertrophy session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -702,7 +702,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -716,7 +716,7 @@
  },
  "build-muscle|hotel-gym|shoulder": {
   "plan": {
-   "title": "Hypertrophy — hotel gym — shoulder",
+   "title": "Hypertrophy session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -762,7 +762,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -776,7 +776,7 @@
  },
  "build-muscle|hotel-gym|lower-back": {
   "plan": {
-   "title": "Hypertrophy — hotel gym — lower back",
+   "title": "Hypertrophy session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -822,7 +822,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -836,7 +836,7 @@
  },
  "build-muscle|hotel-gym|wrist": {
   "plan": {
-   "title": "Hypertrophy — hotel gym — wrist / grip",
+   "title": "Hypertrophy session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -872,7 +872,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -886,7 +886,7 @@
  },
  "build-muscle|bodyweight|none": {
   "plan": {
-   "title": "Hypertrophy — bodyweight — no limitation",
+   "title": "Hypertrophy session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -932,7 +932,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -946,7 +946,7 @@
  },
  "build-muscle|bodyweight|knee": {
   "plan": {
-   "title": "Hypertrophy — bodyweight — knee (patellar tendon)",
+   "title": "Hypertrophy session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -992,7 +992,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1006,7 +1006,7 @@
  },
  "build-muscle|bodyweight|shoulder": {
   "plan": {
-   "title": "Hypertrophy — bodyweight — shoulder",
+   "title": "Hypertrophy session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -1052,7 +1052,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1066,7 +1066,7 @@
  },
  "build-muscle|bodyweight|lower-back": {
   "plan": {
-   "title": "Hypertrophy — bodyweight — lower back",
+   "title": "Hypertrophy session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -1112,7 +1112,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1126,7 +1126,7 @@
  },
  "build-muscle|bodyweight|wrist": {
   "plan": {
-   "title": "Hypertrophy — bodyweight — wrist / grip",
+   "title": "Hypertrophy session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -1172,7 +1172,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1186,7 +1186,7 @@
  },
  "get-stronger|full-gym|none": {
   "plan": {
-   "title": "Strength — full gym — no limitation",
+   "title": "Strength session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -1227,7 +1227,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1241,7 +1241,7 @@
  },
  "get-stronger|full-gym|knee": {
   "plan": {
-   "title": "Strength — full gym — knee (patellar tendon)",
+   "title": "Strength session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -1282,7 +1282,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1296,7 +1296,7 @@
  },
  "get-stronger|full-gym|shoulder": {
   "plan": {
-   "title": "Strength — full gym — shoulder",
+   "title": "Strength session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -1337,7 +1337,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1351,7 +1351,7 @@
  },
  "get-stronger|full-gym|lower-back": {
   "plan": {
-   "title": "Strength — full gym — lower back",
+   "title": "Strength session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -1392,7 +1392,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1406,7 +1406,7 @@
  },
  "get-stronger|full-gym|wrist": {
   "plan": {
-   "title": "Strength — full gym — wrist / grip",
+   "title": "Strength session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -1447,7 +1447,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1461,7 +1461,7 @@
  },
  "get-stronger|dumbbells-only|none": {
   "plan": {
-   "title": "Strength — dumbbells only — no limitation",
+   "title": "Strength session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -1502,7 +1502,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1516,7 +1516,7 @@
  },
  "get-stronger|dumbbells-only|knee": {
   "plan": {
-   "title": "Strength — dumbbells only — knee (patellar tendon)",
+   "title": "Strength session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -1557,7 +1557,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1571,7 +1571,7 @@
  },
  "get-stronger|dumbbells-only|shoulder": {
   "plan": {
-   "title": "Strength — dumbbells only — shoulder",
+   "title": "Strength session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -1612,7 +1612,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1626,7 +1626,7 @@
  },
  "get-stronger|dumbbells-only|lower-back": {
   "plan": {
-   "title": "Strength — dumbbells only — lower back",
+   "title": "Strength session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -1667,7 +1667,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1681,7 +1681,7 @@
  },
  "get-stronger|dumbbells-only|wrist": {
   "plan": {
-   "title": "Strength — dumbbells only — wrist / grip",
+   "title": "Strength session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -1722,7 +1722,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1736,7 +1736,7 @@
  },
  "get-stronger|hotel-gym|none": {
   "plan": {
-   "title": "Strength — hotel gym — no limitation",
+   "title": "Strength session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -1777,7 +1777,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1791,7 +1791,7 @@
  },
  "get-stronger|hotel-gym|knee": {
   "plan": {
-   "title": "Strength — hotel gym — knee (patellar tendon)",
+   "title": "Strength session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -1832,7 +1832,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1846,7 +1846,7 @@
  },
  "get-stronger|hotel-gym|shoulder": {
   "plan": {
-   "title": "Strength — hotel gym — shoulder",
+   "title": "Strength session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -1887,7 +1887,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1901,7 +1901,7 @@
  },
  "get-stronger|hotel-gym|lower-back": {
   "plan": {
-   "title": "Strength — hotel gym — lower back",
+   "title": "Strength session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -1942,7 +1942,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -1956,7 +1956,7 @@
  },
  "get-stronger|hotel-gym|wrist": {
   "plan": {
-   "title": "Strength — hotel gym — wrist / grip",
+   "title": "Strength session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -1992,7 +1992,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2006,7 +2006,7 @@
  },
  "get-stronger|bodyweight|none": {
   "plan": {
-   "title": "Strength — bodyweight — no limitation",
+   "title": "Strength session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -2047,7 +2047,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2061,7 +2061,7 @@
  },
  "get-stronger|bodyweight|knee": {
   "plan": {
-   "title": "Strength — bodyweight — knee (patellar tendon)",
+   "title": "Strength session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -2102,7 +2102,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2116,7 +2116,7 @@
  },
  "get-stronger|bodyweight|shoulder": {
   "plan": {
-   "title": "Strength — bodyweight — shoulder",
+   "title": "Strength session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -2157,7 +2157,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2171,7 +2171,7 @@
  },
  "get-stronger|bodyweight|lower-back": {
   "plan": {
-   "title": "Strength — bodyweight — lower back",
+   "title": "Strength session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -2212,7 +2212,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2226,7 +2226,7 @@
  },
  "get-stronger|bodyweight|wrist": {
   "plan": {
-   "title": "Strength — bodyweight — wrist / grip",
+   "title": "Strength session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -2267,7 +2267,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2281,7 +2281,7 @@
  },
  "conditioning|full-gym|none": {
   "plan": {
-   "title": "Conditioning — full gym — no limitation",
+   "title": "Conditioning session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -2327,7 +2327,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2341,7 +2341,7 @@
  },
  "conditioning|full-gym|knee": {
   "plan": {
-   "title": "Conditioning — full gym — knee (patellar tendon)",
+   "title": "Conditioning session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -2387,7 +2387,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2401,7 +2401,7 @@
  },
  "conditioning|full-gym|shoulder": {
   "plan": {
-   "title": "Conditioning — full gym — shoulder",
+   "title": "Conditioning session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -2447,7 +2447,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2461,7 +2461,7 @@
  },
  "conditioning|full-gym|lower-back": {
   "plan": {
-   "title": "Conditioning — full gym — lower back",
+   "title": "Conditioning session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -2507,7 +2507,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2521,7 +2521,7 @@
  },
  "conditioning|full-gym|wrist": {
   "plan": {
-   "title": "Conditioning — full gym — wrist / grip",
+   "title": "Conditioning session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -2567,7 +2567,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2581,7 +2581,7 @@
  },
  "conditioning|dumbbells-only|none": {
   "plan": {
-   "title": "Conditioning — dumbbells only — no limitation",
+   "title": "Conditioning session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -2627,7 +2627,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2641,7 +2641,7 @@
  },
  "conditioning|dumbbells-only|knee": {
   "plan": {
-   "title": "Conditioning — dumbbells only — knee (patellar tendon)",
+   "title": "Conditioning session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -2687,7 +2687,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2701,7 +2701,7 @@
  },
  "conditioning|dumbbells-only|shoulder": {
   "plan": {
-   "title": "Conditioning — dumbbells only — shoulder",
+   "title": "Conditioning session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -2747,7 +2747,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2761,7 +2761,7 @@
  },
  "conditioning|dumbbells-only|lower-back": {
   "plan": {
-   "title": "Conditioning — dumbbells only — lower back",
+   "title": "Conditioning session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -2807,7 +2807,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2821,7 +2821,7 @@
  },
  "conditioning|dumbbells-only|wrist": {
   "plan": {
-   "title": "Conditioning — dumbbells only — wrist / grip",
+   "title": "Conditioning session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -2862,7 +2862,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2876,7 +2876,7 @@
  },
  "conditioning|hotel-gym|none": {
   "plan": {
-   "title": "Conditioning — hotel gym — no limitation",
+   "title": "Conditioning session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -2922,7 +2922,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2936,7 +2936,7 @@
  },
  "conditioning|hotel-gym|knee": {
   "plan": {
-   "title": "Conditioning — hotel gym — knee (patellar tendon)",
+   "title": "Conditioning session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -2982,7 +2982,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -2996,7 +2996,7 @@
  },
  "conditioning|hotel-gym|shoulder": {
   "plan": {
-   "title": "Conditioning — hotel gym — shoulder",
+   "title": "Conditioning session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -3042,7 +3042,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3056,7 +3056,7 @@
  },
  "conditioning|hotel-gym|lower-back": {
   "plan": {
-   "title": "Conditioning — hotel gym — lower back",
+   "title": "Conditioning session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -3102,7 +3102,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3116,7 +3116,7 @@
  },
  "conditioning|hotel-gym|wrist": {
   "plan": {
-   "title": "Conditioning — hotel gym — wrist / grip",
+   "title": "Conditioning session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -3157,7 +3157,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3171,7 +3171,7 @@
  },
  "conditioning|bodyweight|none": {
   "plan": {
-   "title": "Conditioning — bodyweight — no limitation",
+   "title": "Conditioning session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -3217,7 +3217,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3231,7 +3231,7 @@
  },
  "conditioning|bodyweight|knee": {
   "plan": {
-   "title": "Conditioning — bodyweight — knee (patellar tendon)",
+   "title": "Conditioning session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -3277,7 +3277,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3291,7 +3291,7 @@
  },
  "conditioning|bodyweight|shoulder": {
   "plan": {
-   "title": "Conditioning — bodyweight — shoulder",
+   "title": "Conditioning session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -3337,7 +3337,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3351,7 +3351,7 @@
  },
  "conditioning|bodyweight|lower-back": {
   "plan": {
-   "title": "Conditioning — bodyweight — lower back",
+   "title": "Conditioning session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -3397,7 +3397,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3411,7 +3411,7 @@
  },
  "conditioning|bodyweight|wrist": {
   "plan": {
-   "title": "Conditioning — bodyweight — wrist / grip",
+   "title": "Conditioning session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -3457,7 +3457,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3471,7 +3471,7 @@
  },
  "return-from-break|full-gym|none": {
   "plan": {
-   "title": "Return to training — full gym — no limitation",
+   "title": "Return to training session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -3512,7 +3512,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3526,7 +3526,7 @@
  },
  "return-from-break|full-gym|knee": {
   "plan": {
-   "title": "Return to training — full gym — knee (patellar tendon)",
+   "title": "Return to training session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -3567,7 +3567,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3581,7 +3581,7 @@
  },
  "return-from-break|full-gym|shoulder": {
   "plan": {
-   "title": "Return to training — full gym — shoulder",
+   "title": "Return to training session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -3622,7 +3622,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3636,7 +3636,7 @@
  },
  "return-from-break|full-gym|lower-back": {
   "plan": {
-   "title": "Return to training — full gym — lower back",
+   "title": "Return to training session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -3677,7 +3677,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3691,7 +3691,7 @@
  },
  "return-from-break|full-gym|wrist": {
   "plan": {
-   "title": "Return to training — full gym — wrist / grip",
+   "title": "Return to training session · full gym",
    "blocks": [
     {
      "slot": "B1",
@@ -3732,7 +3732,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3746,7 +3746,7 @@
  },
  "return-from-break|dumbbells-only|none": {
   "plan": {
-   "title": "Return to training — dumbbells only — no limitation",
+   "title": "Return to training session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -3787,7 +3787,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3801,7 +3801,7 @@
  },
  "return-from-break|dumbbells-only|knee": {
   "plan": {
-   "title": "Return to training — dumbbells only — knee (patellar tendon)",
+   "title": "Return to training session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -3842,7 +3842,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3856,7 +3856,7 @@
  },
  "return-from-break|dumbbells-only|shoulder": {
   "plan": {
-   "title": "Return to training — dumbbells only — shoulder",
+   "title": "Return to training session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -3897,7 +3897,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3911,7 +3911,7 @@
  },
  "return-from-break|dumbbells-only|lower-back": {
   "plan": {
-   "title": "Return to training — dumbbells only — lower back",
+   "title": "Return to training session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -3952,7 +3952,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -3966,7 +3966,7 @@
  },
  "return-from-break|dumbbells-only|wrist": {
   "plan": {
-   "title": "Return to training — dumbbells only — wrist / grip",
+   "title": "Return to training session · dumbbells only",
    "blocks": [
     {
      "slot": "B1",
@@ -4007,7 +4007,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -4021,7 +4021,7 @@
  },
  "return-from-break|hotel-gym|none": {
   "plan": {
-   "title": "Return to training — hotel gym — no limitation",
+   "title": "Return to training session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -4062,7 +4062,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -4076,7 +4076,7 @@
  },
  "return-from-break|hotel-gym|knee": {
   "plan": {
-   "title": "Return to training — hotel gym — knee (patellar tendon)",
+   "title": "Return to training session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -4117,7 +4117,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -4131,7 +4131,7 @@
  },
  "return-from-break|hotel-gym|shoulder": {
   "plan": {
-   "title": "Return to training — hotel gym — shoulder",
+   "title": "Return to training session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -4172,7 +4172,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -4186,7 +4186,7 @@
  },
  "return-from-break|hotel-gym|lower-back": {
   "plan": {
-   "title": "Return to training — hotel gym — lower back",
+   "title": "Return to training session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -4227,7 +4227,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -4241,7 +4241,7 @@
  },
  "return-from-break|hotel-gym|wrist": {
   "plan": {
-   "title": "Return to training — hotel gym — wrist / grip",
+   "title": "Return to training session · hotel gym",
    "blocks": [
     {
      "slot": "B1",
@@ -4277,7 +4277,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -4291,7 +4291,7 @@
  },
  "return-from-break|bodyweight|none": {
   "plan": {
-   "title": "Return to training — bodyweight — no limitation",
+   "title": "Return to training session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -4332,7 +4332,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -4346,7 +4346,7 @@
  },
  "return-from-break|bodyweight|knee": {
   "plan": {
-   "title": "Return to training — bodyweight — knee (patellar tendon)",
+   "title": "Return to training session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -4387,7 +4387,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -4401,7 +4401,7 @@
  },
  "return-from-break|bodyweight|shoulder": {
   "plan": {
-   "title": "Return to training — bodyweight — shoulder",
+   "title": "Return to training session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -4442,7 +4442,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -4456,7 +4456,7 @@
  },
  "return-from-break|bodyweight|lower-back": {
   "plan": {
-   "title": "Return to training — bodyweight — lower back",
+   "title": "Return to training session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -4497,7 +4497,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",
@@ -4511,7 +4511,7 @@
  },
  "return-from-break|bodyweight|wrist": {
   "plan": {
-   "title": "Return to training — bodyweight — wrist / grip",
+   "title": "Return to training session · bodyweight",
    "blocks": [
     {
      "slot": "B1",
@@ -4552,7 +4552,7 @@
    },
    {
     "step": "Balance check",
-    "detail": "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system."
+    "detail": "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system."
    },
    {
     "step": "Limitation pass",

@@ -180,7 +180,7 @@ for (const goal of Object.keys(GOALS)) {
         },
         {
           step: "Balance check",
-          detail: "Pushing and pulling stay balanced across the session and no two same-plane movements stack back-to-back — an ordering rule carried over from the production system.",
+          detail: "Pushing and pulling stay balanced across the session, and no two same-plane movements stack back-to-back. That ordering rule is carried over from the production system.",
         },
         lim === "none"
           ? {
@@ -195,7 +195,7 @@ for (const goal of Object.keys(GOALS)) {
       ];
       out[`${goal}|${eq}|${lim}`] = {
         plan: {
-          title: `${g.label} — ${eq.replace(/-/g, " ")} — ${LIMITS[lim].name}`,
+          title: `${g.label} session · ${eq.replace(/-/g, " ")}`,
           blocks,
           limitation_note: lim === "none" ? "" : LIMITS[lim].why,
         },

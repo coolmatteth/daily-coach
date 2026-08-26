@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fitness Trainer — a coach that knows your history</title>
+<title>Fitness Trainer · a coach that knows your history</title>
 <meta name="description" content="An AI coach that programs your next workout from what you've actually done, works around injuries, and explains every decision.">
 <style>
   :root {
@@ -107,7 +107,7 @@
   }
   #result { display: none; margin-top: 26px; }
 
-  .feat { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 8px; }
+  .feat { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
   @media (max-width: 560px) { .feat { grid-template-columns: 1fr; } }
   .feat div {
     background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
@@ -136,7 +136,7 @@
 
 <header>
   <h1>A coach that knows your <em>history</em></h1>
-  <p class="lede">It reads your training log, programs your next session, works around your injuries, and sends the plan to your phone every evening. And every plan explains itself.</p>
+  <p class="lede">It reads your training log, programs your next session, works around your injuries, and sends the plan to your phone the evening before.</p>
   <div class="pill"><span class="dot"></span>In daily use since May 2026</div>
   <div class="cta-row"><a class="cta" href="#demo">Try a demo</a></div>
 </header>
@@ -187,19 +187,19 @@
 <section>
   <h2>Your evening briefing</h2>
   <p class="sub">Every evening, tomorrow's session lands on your phone. Built from your real history: what you trained, what's overdue, what's flagged, where you'll be.</p>
-  <div class="cap">A real briefing · delivered 4:31 PM</div>
+  <div class="cap">A real briefing, sent the evening before (you pick the time)</div>
   <div class="transcript"><span class="hd">Tue 8/25</span>
-<span class="dim">Block day 4/35 — PR window · Logged: 8/24 push</span>
+<span class="dim">Block day 4/35, PR window · Logged: 8/24 push</span>
 
-Pull is 15 days overdue — good slot for it while you're traveling. PR held: too soon after yesterday's strength dip for a max attempt.
+Pull is 15 days overdue. Good slot for it while you're traveling. PR held: too soon after yesterday's strength dip for a max attempt.
 
-<span class="hd">Back — travel gym</span>
-B1 · Seated Cable Row — 3×8-10, reverse pyramid
-B2 · Lat Pulldown — 3×10-12
-B3 · Single-Arm DB Row — 3×10/side
-B4 · Straight-Arm Pulldown — 2×12-15
-B5 · DB Curl — 3×10-12
-B6 · Back Extension — 2×12</div>
+<span class="hd">Back · travel gym</span>
+B1 · Seated Cable Row: 3×8-10, reverse pyramid
+B2 · Lat Pulldown: 3×10-12
+B3 · Single-Arm DB Row: 3×10/side
+B4 · Straight-Arm Pulldown: 2×12-15
+B5 · DB Curl: 3×10-12
+B6 · Back Extension: 2×12</div>
   <div class="why">
     <div class="cap">Every briefing comes with the why</div>
     <ol>
@@ -216,6 +216,7 @@ B6 · Back Extension — 2×12</div>
   <h2>What you get</h2>
   <div class="feat">
     <div><b>Daily programming</b>Tomorrow's session every evening, adapted to the last 14 days.</div>
+    <div><b>A coach you can talk to</b>Tell it how the session went in plain language. It answers like a trainer, and what you tell it shapes tomorrow.</div>
     <div><b>Injury-aware progression</b>Flagged joints cap loads and gate jumps until they clear.</div>
     <div><b>Honest recaps</b>Weekly and end-of-block reviews that tell you what moved, not a stat dump.</div>
   </div>
@@ -254,7 +255,7 @@ B6 · Back Extension — 2×12</div>
 
       document.getElementById("plan-title").textContent = data.plan.title;
       var lines = data.plan.blocks.map(function (b) {
-        return b.slot + " · " + b.exercise + " — " + b.scheme;
+        return b.slot + " · " + b.exercise + ": " + b.scheme;
       });
       if (data.plan.limitation_note) lines.push("", "Worked around: " + data.plan.limitation_note);
       document.getElementById("plan-out").textContent = lines.join("\n");
