@@ -125,7 +125,7 @@ const GOALS = {
     blocks: 5,
     scheme: (i) => (i === 0 ? "3 × 8-10, well shy of failure" : "2 × 10-12, easy"),
     shape: "After months off the job is tolerance, not intensity: five blocks, simple movements, everything 2-3 reps shy of failure. The win is showing up again Thursday, not maxing out today.",
-    loading: "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive — underdoing it is the correct call.",
+    loading: "Every set ends 2-3 reps in the tank, on purpose. Soreness from a comeback session is information the next session has to survive, so underdoing it is the correct call.",
   },
 };
 
