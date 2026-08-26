@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fitness Claude — an autonomous training agent</title>
-<meta name="description" content="A six-agent system that has programmed my real training daily since May 2026. The outputs, the reasoning, and how I know it's good.">
+<title>Fitness Trainer — a coach that knows your history</title>
+<meta name="description" content="An AI coach that programs your next workout from what you've actually done, works around injuries, and explains every decision.">
 <style>
   :root {
     --bg: #17191e;
@@ -27,65 +27,37 @@
   }
   .wrap { max-width: 700px; margin: 0 auto; padding: 0 22px 90px; }
 
-  .brand {
-    padding: 30px 0 0; font-size: 13px; letter-spacing: .22em;
-    text-transform: uppercase; color: var(--dim); font-weight: 600;
-  }
+  nav { padding: 28px 0 0; display: flex; justify-content: space-between; align-items: baseline; }
+  .brand { font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: var(--cream); font-weight: 700; }
+  nav a.minor { font-size: 13px; color: var(--dim); }
 
-  header { padding: 46px 0 10px; }
+  header { padding: 58px 0 10px; }
   h1 {
     font-family: var(--serif); font-weight: 500;
-    font-size: clamp(32px, 6vw, 46px); line-height: 1.16;
-    letter-spacing: -.01em; margin: 0 0 14px; color: var(--cream);
+    font-size: clamp(34px, 6.4vw, 50px); line-height: 1.14;
+    letter-spacing: -.01em; margin: 0 0 16px; color: var(--cream);
   }
   h1 em { font-style: italic; color: var(--apricot); }
-  .byline { font-size: 14px; color: var(--dim); margin-bottom: 18px; }
-  .byline a { font-weight: 600; }
-  .lede { font-size: clamp(16px, 2.5vw, 18px); color: var(--soft); line-height: 1.65; }
-  .outcome {
-    margin-top: 22px; padding: 16px 18px; border-left: 2px solid var(--apricot);
-    background: rgba(217, 164, 65, .06); font-size: 16px; color: var(--cream);
-    font-family: var(--serif); line-height: 1.6;
+  .lede { font-size: clamp(16px, 2.6vw, 19px); color: var(--soft); line-height: 1.65; max-width: 620px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 20px;
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 6px 14px; font-size: 13px; color: var(--soft); background: rgba(0,0,0,.18);
   }
-  .outcome b { color: var(--apricot); font-family: var(--sans); font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); }
+  .cta-row { margin-top: 26px; }
+  .cta {
+    display: inline-block; background: var(--apricot); color: #17191e;
+    border-radius: 6px; padding: 13px 26px; font-size: 15px; font-weight: 700;
+  }
+  .cta:hover { text-decoration: none; filter: brightness(1.08); }
 
-  section { margin-top: 66px; }
+  section { margin-top: 70px; }
   h2 {
     font-family: var(--serif); font-size: 26px; font-weight: 500; color: var(--cream);
     margin-bottom: 6px;
   }
-  h2 .no {
-    font-family: var(--mono); font-size: 13px; color: var(--dim);
-    margin-right: 12px; vertical-align: 4px; letter-spacing: .06em;
-  }
   .sub { color: var(--dim); font-size: 15px; margin-bottom: 20px; max-width: 620px; }
-  p { margin-bottom: 14px; }
-
-  .diagram { margin: 8px 0 6px; border: 1px solid var(--line); border-radius: 8px; padding: 18px; background: rgba(0,0,0,.16); }
-  .d-band { display: grid; grid-template-columns: 118px 1fr; gap: 14px; align-items: start; }
-  @media (max-width: 560px) { .d-band { grid-template-columns: 1fr; gap: 6px; } }
-  .d-label {
-    font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--dim); font-weight: 700; padding-top: 10px;
-  }
-  .d-boxes { display: flex; flex-wrap: wrap; gap: 8px; }
-  .d-box {
-    background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
-    padding: 8px 12px; font-size: 12.5px; color: var(--soft); flex: 1 1 150px; line-height: 1.45;
-  }
-  .d-box b { display: block; color: var(--cream); font-size: 12.5px; }
-  .d-box b small { color: var(--apricot); font-family: var(--mono); font-size: 10.5px; font-weight: 400; margin-left: 6px; }
-  .d-box.gate { border-color: rgba(217, 164, 65, .45); }
-  .d-box.gate b { color: var(--apricot); }
-  .d-arrow { text-align: center; padding: 8px 0; }
-  .d-arrow span { font-size: 11.5px; color: var(--dim); font-family: var(--mono); }
-
-  .scar {
-    margin-top: 24px; font-family: var(--serif); font-size: 15.5px; color: var(--soft);
-    border-top: 1px dotted var(--line); padding-top: 18px; line-height: 1.7;
-  }
-  .scar b { color: var(--cream); font-weight: 600; }
-  .scar .num { color: var(--apricot); font-family: var(--mono); font-size: 14px; }
 
   .cap {
     font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase;
@@ -113,12 +85,6 @@
   }
   .why b { color: var(--cream); }
 
-  .eval p { font-family: var(--serif); font-size: 16.5px; color: var(--soft); line-height: 1.7; margin-bottom: 18px; }
-  .eval .lead-in {
-    font-family: var(--sans); font-weight: 700; font-size: 12.5px; color: var(--mint);
-    letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: 3px;
-  }
-
   .picker { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
   @media (max-width: 560px) { .picker { grid-template-columns: 1fr; } }
   .picker label { font-size: 12px; color: var(--dim); display: flex; flex-direction: column; gap: 6px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
@@ -141,6 +107,14 @@
   }
   #result { display: none; margin-top: 26px; }
 
+  .feat { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 8px; }
+  @media (max-width: 560px) { .feat { grid-template-columns: 1fr; } }
+  .feat div {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px 16px; font-size: 13.5px; color: var(--soft); line-height: 1.5;
+  }
+  .feat b { display: block; color: var(--cream); margin-bottom: 3px; font-size: 14px; }
+
   footer {
     margin-top: 84px; padding-top: 20px; border-top: 1px dotted var(--line);
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
@@ -154,96 +128,22 @@
 <body>
 <div class="wrap">
 
-<div class="brand">Fitness Claude</div>
+<nav>
+  <!-- "Fitness Trainer" is a placeholder name, per Matt -->
+  <div class="brand">Fitness Trainer</div>
+  <a class="minor" href="how-its-built.html">How it's built</a>
+</nav>
 
 <header>
-  <h1>An AI coach that programs every workout I do, and shows its <em>reasoning</em></h1>
-  <div class="byline">A spare-time build by <a href="https://www.linkedin.com/in/mattyfsmith/" rel="me">Matt Smith</a> · running daily since May 2026</div>
-  <p class="lede">Six scheduled Claude agents read my training history in Notion, decide tomorrow's session, and send it to my phone every evening.</p>
-  <div class="outcome"><b>The outcome</b>It has run every day for months, and I've followed its programming with my own body the whole time. Improved a knee injury. Hit PRs in every training block since it started. That's my bar for trusting an agent.</div>
+  <h1>A coach that knows your <em>history</em></h1>
+  <p class="lede">It reads your training log, programs your next session, works around your injuries, and sends the plan to your phone every evening. And every plan explains itself.</p>
+  <div class="pill"><span class="dot"></span>In daily use since May 2026</div>
+  <div class="cta-row"><a class="cta" href="#demo">Try a demo</a></div>
 </header>
 
-<section>
-  <h2><span class="no">01</span>The system</h2>
-  <p class="sub">Each agent owns one job. Notion is the shared data layer. The worker is the only thing allowed to send.</p>
-  <div class="diagram">
-    <div class="d-band">
-      <div class="d-label">Data</div>
-      <div class="d-boxes">
-        <div class="d-box"><b>Notion</b>Athlete File · training log · dashboard</div>
-        <div class="d-box"><b>Google Calendar</b>every session and rest day</div>
-      </div>
-    </div>
-    <div class="d-arrow"><span>agents read ↓ · two write back ↑</span></div>
-    <div class="d-band">
-      <div class="d-label">Agents</div>
-      <div class="d-boxes">
-        <div class="d-box"><b>Daily planner<small>4:31 PM</small></b>programs tomorrow from the file + 14 days of logs</div>
-        <div class="d-box"><b>Retry<small>9:31 PM</small></b>re-runs if the primary failed</div>
-        <div class="d-box"><b>Calendar sync<small>nightly ↑</small></b>writes sessions to the calendar</div>
-        <div class="d-box"><b>File update<small>Sun ↑</small></b>rescans the week, updates PRs and the block clock</div>
-        <div class="d-box"><b>Block debrief<small>5 wks</small></b>closes out each training block</div>
-      </div>
-    </div>
-    <div class="d-arrow"><span>every plan POSTs to the worker. agents can't message me directly ↓</span></div>
-    <div class="d-band">
-      <div class="d-label">Worker</div>
-      <div class="d-boxes">
-        <div class="d-box gate"><b>Gates, in code</b>PR-window date check · duplicate and late-delivery rejection · spend limits</div>
-      </div>
-    </div>
-    <div class="d-arrow"><span>only what passes gets sent ↓</span></div>
-    <div class="d-band">
-      <div class="d-label">Me</div>
-      <div class="d-boxes">
-        <div class="d-box"><b>Telegram</b>the evening briefing</div>
-        <div class="d-box"><b>Notion worksheet</b>I edit it at the gym. It becomes tomorrow's history. ↺</div>
-      </div>
-    </div>
-  </div>
-  <p class="scar">The guardrails are scar tissue. A failed API call once retried itself in a loop and burned <span class="num">$3.64 and 820K tokens</span> on the same request. Now agents fail cheap and loud: spend limits, retry caps, errors surfaced where I'll see them. A 2 AM platform re-run once sent a duplicate briefing and archived a live workout sheet. Delivery windows are now enforced <b>in worker code, not in prompts</b>.</p>
-</section>
-
-<section>
-  <h2><span class="no">02</span>One night's output</h2>
-  <p class="sub">A real briefing, lightly sanitized, next to the agent's decision trail from its run log.</p>
-  <div class="cap">Delivered to Telegram · Aug 24 · 4:31 PM</div>
-  <div class="transcript"><span class="hd">Tue 8/25</span>
-<span class="dim">Block day 4/35 — PR window · Logged: 8/24 push</span>
-
-Pull is 15 days overdue — good slot for it while you're traveling. PR held: too soon after yesterday's strength dip for a max attempt.
-
-<span class="hd">Back — travel gym</span>
-B1 · Seated Cable Row — 3×8-10, reverse pyramid
-B2 · Lat Pulldown — 3×10-12
-B3 · Single-Arm DB Row — 3×10/side
-B4 · Straight-Arm Pulldown — 2×12-15
-B5 · DB Curl — 3×10-12
-B6 · Back Extension — 2×12
-
-<span class="dim">Worksheet created in Notion — edit it at the gym, the system reads it back tonight.</span></div>
-  <div class="why">
-    <div class="cap">From the run log: why this plan</div>
-    <ol>
-      <li><b>Computed the block clock first.</b> Day 4 of 35, inside the open PR window. Every later decision keys off this.</li>
-      <li><b>Caught a plan override.</b> I trained push instead of the prepared workout and logged it in chat. It counted the real session as the record instead of marking the day skipped.</li>
-      <li><b>Found a travel note.</b> Away gym for three days, so the plan uses cables and dumbbells it can count on.</li>
-      <li><b>Picked pull.</b> Longest gap at 15 days, and it doesn't load the flagged knee. Dropped rear-delt work because yesterday's session already hit it.</li>
-      <li><b>Held the PR.</b> The window is open, but yesterday's pressing was below proven weight and a shoulder flag was inside its cooldown. It says so in the briefing instead of deciding silently.</li>
-    </ol>
-  </div>
-</section>
-
-<section class="eval">
-  <h2><span class="no">03</span>How I know it's good</h2>
-  <!-- MATT: bless or rewrite. Full version lives in notes.html. -->
-  <p>The outputs are grounded in an Athlete File a second agent keeps current, and hard rules are checked in code, not just prompted. Beyond that: I've trained for years, bad programming is obvious to me, and I've been the eval harness every day since May. What it would take to trust this beyond one expert user is its own story. [MATT — approve/edit]</p>
-  <p class="sub" style="margin-bottom:0">The failures, fixes, and how I'd eval it at scale: <a href="notes.html">build notes</a>.</p>
-</section>
-
-<section>
-  <h2><span class="no">04</span>Try the rules engine</h2>
-  <p class="sub">The same rules, pointed at a generic profile instead of my history. All 80 combinations were generated ahead of time: a demo page with zero moving parts can't fail while you're looking at it. That trade-off is deliberate. The live API version sits in the repo.</p>
+<section id="demo">
+  <h2>Try a demo</h2>
+  <p class="sub">Pick a goal, your equipment, and anything that's bothering you. The engine builds a session and shows its thinking.</p>
   <div class="picker">
     <label>Goal
       <select id="goal">
@@ -271,22 +171,59 @@ B6 · Back Extension — 2×12
       </select>
     </label>
   </div>
-  <button class="gen-btn" id="generate">Show the session</button>
-  <p class="gen-note">Nothing you pick is stored.</p>
+  <button class="gen-btn" id="generate">Build my session</button>
+  <p class="gen-note">Demo sessions are pregenerated samples from the programming engine. Nothing you pick is stored.</p>
   <div id="gen-error"></div>
   <div id="result">
-    <div class="cap">Generated · <span id="plan-title"></span></div>
+    <div class="cap"><span id="plan-title"></span></div>
     <div class="transcript" id="plan-out"></div>
     <div class="why">
-      <div class="cap">Engine reasoning</div>
+      <div class="cap">Why this session</div>
       <ol id="reasoning-out"></ol>
     </div>
   </div>
 </section>
 
+<section>
+  <h2>Your evening briefing</h2>
+  <p class="sub">Every evening, tomorrow's session lands on your phone. Built from your real history: what you trained, what's overdue, what's flagged, where you'll be.</p>
+  <div class="cap">A real briefing · delivered 4:31 PM</div>
+  <div class="transcript"><span class="hd">Tue 8/25</span>
+<span class="dim">Block day 4/35 — PR window · Logged: 8/24 push</span>
+
+Pull is 15 days overdue — good slot for it while you're traveling. PR held: too soon after yesterday's strength dip for a max attempt.
+
+<span class="hd">Back — travel gym</span>
+B1 · Seated Cable Row — 3×8-10, reverse pyramid
+B2 · Lat Pulldown — 3×10-12
+B3 · Single-Arm DB Row — 3×10/side
+B4 · Straight-Arm Pulldown — 2×12-15
+B5 · DB Curl — 3×10-12
+B6 · Back Extension — 2×12</div>
+  <div class="why">
+    <div class="cap">Every briefing comes with the why</div>
+    <ol>
+      <li><b>It knows where you are in your training block.</b> Day 4 of 35 here, so a max attempt is allowed but not owed.</li>
+      <li><b>It counts what you actually did.</b> Trained something else instead of the plan? The real session becomes the record, not a "skipped" mark.</li>
+      <li><b>It plans around your life.</b> Traveling for three days, so the session only uses equipment a hotel gym will have.</li>
+      <li><b>It protects what's flagged.</b> Pull was chosen partly because it doesn't load a flagged knee.</li>
+      <li><b>It says no for you.</b> A PR attempt was held here, with the reason stated, instead of decided silently.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <h2>What you get</h2>
+  <div class="feat">
+    <div><b>Daily programming</b>Tomorrow's session every evening, adapted to the last 14 days.</div>
+    <div><b>Injury-aware progression</b>Flagged joints cap loads and gate jumps until they clear.</div>
+    <div><b>Honest recaps</b>Weekly and end-of-block reviews that tell you what moved, not a stat dump.</div>
+  </div>
+</section>
+
 <footer>
-  <div>Built and operated by <b>Matt Smith</b></div>
-  <div><a href="https://www.linkedin.com/in/mattyfsmith/" rel="me">LinkedIn</a></div>
+  <div>Built by <b>Matt Smith</b> · <a href="https://www.linkedin.com/in/mattyfsmith/" rel="me">LinkedIn</a></div>
+  <div><a href="how-its-built.html">How it's built</a></div>
 </footer>
 
 </div>
@@ -313,7 +250,7 @@ B6 · Back Extension — 2×12
         document.getElementById("limitation").value,
       ].join("|");
       var data = plans[key];
-      if (!data) throw new Error("That combination is missing, which would be a bug worth telling me about.");
+      if (!data) throw new Error("That combination is missing, which would be a bug worth reporting.");
 
       document.getElementById("plan-title").textContent = data.plan.title;
       var lines = data.plan.blocks.map(function (b) {

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it's built · Fitness Trainer</title>
+<meta name="description" content="The architecture: six scheduled Claude agents, Notion as the data layer, and a worker that enforces the rules in code.">
+<style>
+  :root {
+    --bg: #17191e;
+    --panel: #101216;
+    --cream: #ece7db;
+    --soft: #b9b2a4;
+    --dim: #837d70;
+    --apricot: #d9a441;
+    --mint: #8fbf9a;
+    --line: rgba(236, 231, 219, .13);
+    --mono: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+    --serif: Charter, "Bitstream Charter", Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--cream); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 700px; margin: 0 auto; padding: 0 22px 90px; }
+  nav { padding: 28px 0 0; display: flex; justify-content: space-between; align-items: baseline; }
+  .brand { font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: var(--dim); font-weight: 600; }
+  .brand a { color: var(--dim); }
+  header { padding: 44px 0 6px; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 5.6vw, 40px); line-height: 1.18; margin-bottom: 12px; }
+  .lede { font-size: 16.5px; color: var(--soft); max-width: 620px; }
+
+  .diagram { margin: 34px 0 6px; border: 1px solid var(--line); border-radius: 8px; padding: 18px; background: rgba(0,0,0,.16); }
+  .d-band { display: grid; grid-template-columns: 118px 1fr; gap: 14px; align-items: start; }
+  @media (max-width: 560px) { .d-band { grid-template-columns: 1fr; gap: 6px; } }
+  .d-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); font-weight: 700; padding-top: 10px; }
+  .d-boxes { display: flex; flex-wrap: wrap; gap: 8px; }
+  .d-box {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+    padding: 8px 12px; font-size: 12.5px; color: var(--soft); flex: 1 1 150px; line-height: 1.45;
+  }
+  .d-box b { display: block; color: var(--cream); font-size: 12.5px; }
+  .d-box b small { color: var(--apricot); font-family: var(--mono); font-size: 10.5px; font-weight: 400; margin-left: 6px; }
+  .d-box.gate { border-color: rgba(217, 164, 65, .45); }
+  .d-box.gate b { color: var(--apricot); }
+  .d-arrow { text-align: center; padding: 8px 0; }
+  .d-arrow span { font-size: 11.5px; color: var(--dim); font-family: var(--mono); }
+
+  .notes { margin-top: 30px; }
+  .notes p { font-family: var(--serif); font-size: 16px; color: var(--soft); line-height: 1.7; margin-bottom: 14px; }
+  .notes b { color: var(--cream); }
+
+  .stack { font-family: var(--mono); font-size: 13px; color: var(--dim); border-top: 1px dotted var(--line); padding-top: 16px; margin-top: 30px; line-height: 1.8; }
+  a { color: var(--apricot); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  footer { margin-top: 60px; padding-top: 18px; border-top: 1px dotted var(--line); font-size: 14px; color: var(--dim); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  footer b { color: var(--cream); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+  <div class="brand"><a href="/">← Fitness Trainer</a></div>
+</nav>
+
+<header>
+  <h1>How it's built</h1>
+  <p class="lede">Six scheduled Claude agents, each owning one job, coordinating through Notion. Nothing reaches the athlete's phone except through a worker that enforces the rules in code.</p>
+</header>
+
+<div class="diagram">
+  <div class="d-band">
+    <div class="d-label">Data</div>
+    <div class="d-boxes">
+      <div class="d-box"><b>Notion</b>Athlete File · training log · dashboard</div>
+      <div class="d-box"><b>Google Calendar</b>every session and rest day</div>
+    </div>
+  </div>
+  <div class="d-arrow"><span>agents read ↓ · two write back ↑</span></div>
+  <div class="d-band">
+    <div class="d-label">Agents</div>
+    <div class="d-boxes">
+      <div class="d-box"><b>Daily planner<small>4:31 PM</small></b>programs tomorrow from the file + 14 days of logs</div>
+      <div class="d-box"><b>Retry<small>9:31 PM</small></b>re-runs if the primary failed</div>
+      <div class="d-box"><b>Calendar sync<small>nightly ↑</small></b>writes sessions to the calendar</div>
+      <div class="d-box"><b>File update<small>Sun ↑</small></b>rescans the week, updates PRs and the block clock</div>
+      <div class="d-box"><b>Block debrief<small>5 wks</small></b>closes out each training block</div>
+    </div>
+  </div>
+  <div class="d-arrow"><span>every plan POSTs to the worker. agents can't message the athlete directly ↓</span></div>
+  <div class="d-band">
+    <div class="d-label">Worker</div>
+    <div class="d-boxes">
+      <div class="d-box gate"><b>Gates, in code</b>PR-window date check · duplicate and late-delivery rejection · spend limits</div>
+    </div>
+  </div>
+  <div class="d-arrow"><span>only what passes gets sent ↓</span></div>
+  <div class="d-band">
+    <div class="d-label">Athlete</div>
+    <div class="d-boxes">
+      <div class="d-box"><b>Telegram</b>the evening briefing</div>
+      <div class="d-box"><b>Notion worksheet</b>edited at the gym. It becomes tomorrow's history. ↺</div>
+    </div>
+  </div>
+</div>
+
+<div class="notes">
+  <p><b>Grounding over prompting.</b> The planner works from an Athlete File: profile, working weights, injury state, current training block. A second agent keeps that file current by rescanning the logs weekly. The daily calendar sync exists so the planner always knows what day it is and what was actually trained.</p>
+  <p><b>The model proposes, code disposes.</b> Safety-relevant rules are not trusted to the model. A deterministic worker re-checks PR timing against dated windows, rejects duplicate or late deliveries, and caps spend. If a plan violates a rule, the flag is stripped before anything is sent.</p>
+  <p><b>The demo on the front page</b> runs the same programming rules against a generic profile. Its 80 input combinations are pregenerated, so the demo has zero moving parts.</p>
+</div>
+
+<div class="stack">stack: Claude scheduled agents · Notion · Cloudflare Workers · Telegram · Vercel</div>
+
+<footer>
+  <div>Built by <b>Matt Smith</b> · <a href="https://www.linkedin.com/in/mattyfsmith/" rel="me">LinkedIn</a></div>
+  <div><a href="/">Try the demo</a></div>
+</footer>
+
+</div>
+</body>
+</html>
