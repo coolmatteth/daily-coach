@@ -4,63 +4,89 @@
   body {
     width: 1200px; height: 675px; background: #17191e; color: #ece7db;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    padding: 44px 56px; overflow: hidden;
+    padding: 40px 56px 34px; overflow: hidden;
     display: flex; flex-direction: column; justify-content: center;
   }
-  .band { margin: 4px 0; }
-  .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 34px; }
+  .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; }
   .title { font-family: Charter, Georgia, serif; font-size: 34px; }
   .title em { font-style: italic; color: #d9a441; }
   .sub { font-size: 15px; color: #837d70; font-family: Consolas, monospace; }
-  .band { display: grid; grid-template-columns: 120px 1fr; gap: 18px; align-items: center; }
+
+  .diag { position: relative; padding-left: 34px; }
+  .rail { position: absolute; left: 4px; top: 16px; bottom: 12px; width: 15px;
+    border: 1px solid rgba(236,231,219,.3); border-right: 0; border-radius: 12px 0 0 12px; }
+  .rail::before { content: ""; position: absolute; top: -5px; right: -9px;
+    border-left: 9px solid rgba(236,231,219,.3); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+
+  .band { display: grid; grid-template-columns: 96px 1fr; gap: 16px; align-items: center; }
   .label { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #837d70; font-weight: 700; }
-  .boxes { display: flex; gap: 10px; }
+  .boxes { display: flex; gap: 10px; align-items: stretch; }
   .box {
     background: #101216; border: 1px solid rgba(236,231,219,.16); border-radius: 8px;
-    padding: 12px 14px; font-size: 13.5px; color: #b9b2a4; flex: 1; line-height: 1.4;
+    padding: 10px 13px; font-size: 13px; color: #b9b2a4; flex: 1; line-height: 1.4;
   }
-  .box b { display: block; color: #ece7db; font-size: 14px; }
+  .box b { display: block; color: #ece7db; font-size: 13.5px; }
   .box b small { color: #d9a441; font-family: Consolas, monospace; font-size: 11px; font-weight: 400; margin-left: 6px; }
+  .box b small i { font-style: normal; color: #8fbf9a; }
   .box.gate { border-color: rgba(217,164,65,.55); }
   .box.gate b { color: #d9a441; }
-  .arrow { text-align: center; padding: 7px 0 7px 138px; font-size: 12px; color: #837d70; font-family: Consolas, monospace; }
+  .pair { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .pair .box { flex: none; }
+  .pair .box.sub2 { margin-left: 18px; position: relative; }
+  .pair .box.sub2::before { content: ""; position: absolute; left: -11px; top: -6px; bottom: 60%; width: 8px;
+    border-left: 1px solid rgba(236,231,219,.3); border-bottom: 1px solid rgba(236,231,219,.3); border-radius: 0 0 0 6px; }
+
+  .arrow { display: flex; align-items: center; gap: 10px; padding: 5px 0 5px 112px; }
+  .arrow i { position: relative; width: 1px; height: 18px; background: rgba(236,231,219,.3); display: block; flex: none; }
+  .arrow i::after { content: ""; position: absolute; bottom: -1px; left: -4.5px;
+    border-top: 7px solid rgba(236,231,219,.3); border-left: 4.5px solid transparent; border-right: 4.5px solid transparent; }
+  .arrow span { font-size: 12px; color: #837d70; font-family: Consolas, monospace; }
+
+  .loop { margin-top: 8px; font-size: 12px; color: #837d70; font-family: Consolas, monospace; }
+  .loop b { color: #b9b2a4; font-weight: 400; }
 </style></head>
 <body>
   <div class="top">
-    <div class="title">Fitness Claude — six agents, one <em>athlete</em></div>
+    <div class="title">Fitness Claude. Five agents, one <em>athlete</em>.</div>
     <div class="sub">running daily since May 2026</div>
   </div>
-  <div class="band">
-    <div class="label">Data</div>
-    <div class="boxes">
-      <div class="box"><b>Notion</b>Athlete File · training log · dashboard</div>
-      <div class="box"><b>Google Calendar</b>every session and rest day</div>
+  <div class="diag">
+    <div class="rail"></div>
+    <div class="band">
+      <div class="label">Data</div>
+      <div class="boxes">
+        <div class="box"><b>Notion</b>Athlete File · training log · live worksheet</div>
+        <div class="box"><b>Google Calendar</b>every session and rest day</div>
+      </div>
     </div>
-  </div>
-  <div class="arrow">agents read ↓ · two write back ↑</div>
-  <div class="band">
-    <div class="label">Agents</div>
-    <div class="boxes">
-      <div class="box"><b>Planner<small>4:31p</small></b>programs tomorrow</div>
-      <div class="box"><b>Retry<small>9:31p</small></b>if the primary failed</div>
-      <div class="box"><b>Cal sync<small>nightly</small></b>writes history back</div>
-      <div class="box"><b>File update<small>Sun</small></b>PRs + block clock</div>
-      <div class="box"><b>Debrief<small>5 wks</small></b>closes the block</div>
+    <div class="arrow"><i></i><span>every agent starts by reading this</span></div>
+    <div class="band">
+      <div class="label">Agents</div>
+      <div class="boxes">
+        <div class="pair">
+          <div class="box"><b>Planner<small>4:31p</small></b>programs tomorrow</div>
+          <div class="box sub2"><b>Retry<small>9:31p</small></b>if the planner died</div>
+        </div>
+        <div class="box"><b>Cal sync<small>nightly · <i>writes back</i></small></b>keeps the calendar true</div>
+        <div class="box"><b>File update<small>Sun · <i>writes back</i></small></b>PRs + block clock</div>
+        <div class="box"><b>Debrief<small>5 wks</small></b>closes the block</div>
+      </div>
     </div>
-  </div>
-  <div class="arrow">every plan POSTs to the worker · agents can't message me directly ↓</div>
-  <div class="band">
-    <div class="label">Worker</div>
-    <div class="boxes">
-      <div class="box gate"><b>Gates, in code</b>PR-window date check · duplicate + late-delivery rejection · spend limits</div>
+    <div class="arrow"><i></i><span>plans POST to the worker. No agent can message me directly</span></div>
+    <div class="band">
+      <div class="label">Worker</div>
+      <div class="boxes">
+        <div class="box gate"><b>Gates, in code</b>PR-window date check · duplicate + late-delivery rejection · plan repair · spend limits</div>
+      </div>
     </div>
-  </div>
-  <div class="arrow">only what passes gets sent ↓</div>
-  <div class="band">
-    <div class="label">Me</div>
-    <div class="boxes">
-      <div class="box"><b>Telegram</b>the evening briefing</div>
-      <div class="box"><b>Notion worksheet</b>edited at the gym → becomes tomorrow's history ↺</div>
+    <div class="arrow"><i></i><span>only what passes is sent</span></div>
+    <div class="band">
+      <div class="label">Me</div>
+      <div class="boxes">
+        <div class="box"><b>Telegram</b>the evening briefing, one message</div>
+        <div class="box"><b>Notion worksheet</b>edited at the gym, or one tap: "Did this workout"</div>
+      </div>
     </div>
+    <div class="loop">↺ <b>my edits become the log. The log is what the next plan reads.</b></div>
   </div>
 </body></html>

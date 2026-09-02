@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How it's built · Daily Coach</title>
-<meta name="description" content="The architecture: six scheduled Claude agents, Notion as the data layer, and a worker that enforces the rules in code.">
+<meta name="description" content="The architecture: five scheduled Claude agents, Notion as the data layer, and a worker that enforces the rules in code.">
 <style>
   :root {
     --bg: #17191e;
@@ -15,6 +15,7 @@
     --apricot: #d9a441;
     --mint: #8fbf9a;
     --line: rgba(236, 231, 219, .13);
+    --rail: rgba(236, 231, 219, .28);
     --mono: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
     --serif: Charter, "Bitstream Charter", Georgia, "Times New Roman", serif;
     --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -29,21 +30,46 @@
   h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 5.6vw, 40px); line-height: 1.18; margin-bottom: 12px; }
   .lede { font-size: 16.5px; color: var(--soft); max-width: 620px; }
 
-  .diagram { margin: 34px 0 6px; border: 1px solid var(--line); border-radius: 8px; padding: 18px; background: rgba(0,0,0,.16); }
-  .d-band { display: grid; grid-template-columns: 118px 1fr; gap: 14px; align-items: start; }
-  @media (max-width: 560px) { .d-band { grid-template-columns: 1fr; gap: 6px; } }
-  .d-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); font-weight: 700; padding-top: 10px; }
-  .d-boxes { display: flex; flex-wrap: wrap; gap: 8px; }
-  .d-box {
-    background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
-    padding: 8px 12px; font-size: 12.5px; color: var(--soft); flex: 1 1 150px; line-height: 1.45;
+  /* ── Diagram: one vertical pipeline, one return rail ─────────────── */
+  .diagram { margin: 34px 0 6px; border: 1px solid var(--line); border-radius: 8px; background: rgba(0,0,0,.16); padding: 22px 20px 22px 44px; position: relative; }
+
+  /* return rail: athlete band back up to the data band */
+  .d-rail { position: absolute; left: 15px; width: 13px; top: 46px; bottom: 64px; border: 1px solid var(--rail); border-right: 0; border-radius: 10px 0 0 10px; }
+  .d-rail::before { /* arrowhead entering the data band */
+    content: ""; position: absolute; top: -5px; right: -8px;
+    border-left: 8px solid var(--rail); border-top: 4.5px solid transparent; border-bottom: 4.5px solid transparent;
   }
+
+  .d-stage { margin: 0; }
+  .d-head { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); font-weight: 700; margin-bottom: 8px; }
+  .d-head em { font-style: normal; color: var(--mint); letter-spacing: 0; text-transform: none; font-family: var(--mono); font-weight: 400; font-size: 11px; margin-left: 8px; }
+
+  .d-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  @media (max-width: 520px) { .d-row { grid-template-columns: 1fr; } }
+  .d-box { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 9px 12px; font-size: 12.5px; color: var(--soft); line-height: 1.45; }
   .d-box b { display: block; color: var(--cream); font-size: 12.5px; }
-  .d-box b small { color: var(--apricot); font-family: var(--mono); font-size: 10.5px; font-weight: 400; margin-left: 6px; }
-  .d-box.gate { border-color: rgba(217, 164, 65, .45); }
-  .d-box.gate b { color: var(--apricot); }
-  .d-arrow { text-align: center; padding: 8px 0; }
-  .d-arrow span { font-size: 11.5px; color: var(--dim); font-family: var(--mono); }
+
+  /* agents: one aligned list, schedule chip on the right */
+  .d-agents { display: grid; gap: 6px; }
+  .d-agent { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: baseline; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; }
+  .d-agent b { color: var(--cream); font-size: 12.5px; font-weight: 600; }
+  .d-agent .desc { grid-column: 1 / -1; font-size: 12.5px; color: var(--soft); line-height: 1.45; }
+  .d-agent .when { font-family: var(--mono); font-size: 10.5px; color: var(--apricot); white-space: nowrap; }
+  .d-agent.sub { margin-left: 22px; position: relative; }
+  .d-agent.sub::before { content: ""; position: absolute; left: -13px; top: -8px; bottom: 50%; width: 9px; border-left: 1px solid var(--rail); border-bottom: 1px solid var(--rail); border-radius: 0 0 0 6px; }
+  .d-agent .tag { font-family: var(--mono); font-size: 10.5px; color: var(--mint); }
+
+  /* connectors: a drawn line + arrowhead, label beside it */
+  .d-link { display: flex; align-items: center; gap: 10px; padding: 7px 0 7px 2px; }
+  .d-link i { position: relative; width: 1px; height: 26px; background: var(--rail); display: block; flex: none; margin-left: 9px; }
+  .d-link i::after { content: ""; position: absolute; bottom: -1px; left: -4.5px; border-top: 7px solid var(--rail); border-left: 4.5px solid transparent; border-right: 4.5px solid transparent; }
+  .d-link span { font-size: 11.5px; color: var(--dim); font-family: var(--mono); line-height: 1.4; }
+
+  .d-box.gate, .d-agent.gate { border-color: rgba(217, 164, 65, .45); }
+  .gate b { color: var(--apricot); }
+
+  .d-loop { margin-top: 10px; font-family: var(--mono); font-size: 11.5px; color: var(--dim); line-height: 1.5; }
+  .d-loop b { color: var(--soft); font-weight: 400; }
 
   .notes { margin-top: 30px; }
   .notes p { font-family: var(--serif); font-size: 16px; color: var(--soft); line-height: 1.7; margin-bottom: 14px; }
@@ -65,48 +91,57 @@
 
 <header>
   <h1>How it's built</h1>
-  <p class="lede">Six scheduled Claude agents, each owning one job, coordinating through Notion. Nothing reaches the athlete's phone except through a worker that enforces the rules in code.</p>
+  <p class="lede">Five scheduled Claude agents, each owning one job, coordinating through Notion. Nothing reaches the athlete's phone except through a worker that enforces the rules in code. The whole thing is a loop. What you do today is what tomorrow's plan is built from.</p>
 </header>
 
-<div class="diagram">
-  <div class="d-band">
-    <div class="d-label">Data</div>
-    <div class="d-boxes">
-      <div class="d-box"><b>Notion</b>Athlete File · training log · dashboard</div>
+<div class="diagram" role="img" aria-label="Pipeline diagram: a Notion and Google Calendar data layer is read by five scheduled agents; their plans pass through a worker that enforces rules in code; only what passes reaches the athlete by Telegram and a Notion worksheet, and the athlete's worksheet edits flow back into the data layer.">
+  <div class="d-rail" aria-hidden="true"></div>
+
+  <div class="d-stage">
+    <div class="d-head">Data</div>
+    <div class="d-row">
+      <div class="d-box"><b>Notion</b>Athlete File · training log · live worksheet</div>
       <div class="d-box"><b>Google Calendar</b>every session and rest day</div>
     </div>
   </div>
-  <div class="d-arrow"><span>agents read ↓ · two write back ↑</span></div>
-  <div class="d-band">
-    <div class="d-label">Agents</div>
-    <div class="d-boxes">
-      <div class="d-box"><b>Daily planner<small>evening</small></b>programs tomorrow from the file + 14 days of logs</div>
-      <div class="d-box"><b>Retry<small>+5 hrs</small></b>re-runs if the primary failed</div>
-      <div class="d-box"><b>Calendar sync<small>nightly ↑</small></b>writes sessions to the calendar</div>
-      <div class="d-box"><b>File update<small>Sun ↑</small></b>rescans the week, updates PRs and the block clock</div>
-      <div class="d-box"><b>Block debrief<small>5 wks</small></b>closes out each training block</div>
+
+  <div class="d-link"><i></i><span>every agent starts by reading this</span></div>
+
+  <div class="d-stage">
+    <div class="d-head">Agents <em>writes back = direct data access</em></div>
+    <div class="d-agents">
+      <div class="d-agent"><b>Daily planner</b><span class="when">4:30 pm</span><span class="desc">programs tomorrow from the file and 14 days of logs</span></div>
+      <div class="d-agent sub"><b>Retry</b><span class="when">+5 hrs</span><span class="desc">runs the same job if the planner died quietly</span></div>
+      <div class="d-agent"><b>Calendar sync</b><span class="when">nightly · <span class="tag">writes back</span></span><span class="desc">keeps the calendar matching what was actually trained</span></div>
+      <div class="d-agent"><b>File update</b><span class="when">Sundays · <span class="tag">writes back</span></span><span class="desc">rescans the week, updates PRs and the block clock</span></div>
+      <div class="d-agent"><b>Block debrief</b><span class="when">every 5 wks</span><span class="desc">closes out each training block</span></div>
     </div>
   </div>
-  <div class="d-arrow"><span>every plan POSTs to the worker. agents can't message the athlete directly ↓</span></div>
-  <div class="d-band">
-    <div class="d-label">Worker</div>
-    <div class="d-boxes">
-      <div class="d-box gate"><b>Gates, in code</b>PR-window date check · duplicate and late-delivery rejection · spend limits</div>
+
+  <div class="d-link"><i></i><span>plans POST to the worker. No agent can message the athlete directly</span></div>
+
+  <div class="d-stage">
+    <div class="d-head">Worker</div>
+    <div class="d-agent gate"><b>Gates, in code</b><span class="when">every send</span><span class="desc">PR-window date check · duplicate and late-delivery rejection · plan repair for dropped required blocks · 7-block cap · spend limits</span></div>
+  </div>
+
+  <div class="d-link"><i></i><span>only what passes is sent</span></div>
+
+  <div class="d-stage">
+    <div class="d-head">Athlete</div>
+    <div class="d-row">
+      <div class="d-box"><b>Telegram</b>the evening briefing, one message</div>
+      <div class="d-box"><b>Notion worksheet</b>edit it at the gym, or one tap: "Did this workout"</div>
     </div>
   </div>
-  <div class="d-arrow"><span>only what passes gets sent ↓</span></div>
-  <div class="d-band">
-    <div class="d-label">Athlete</div>
-    <div class="d-boxes">
-      <div class="d-box"><b>Telegram</b>the evening briefing</div>
-      <div class="d-box"><b>Notion worksheet</b>edited at the gym. It becomes tomorrow's history. ↺</div>
-    </div>
-  </div>
+
+  <div class="d-loop">↺ <b>worksheet edits become the confirmed log. The log is what the next plan reads.</b></div>
 </div>
 
 <div class="notes">
   <p><b>Grounding over prompting.</b> The planner works from an Athlete File: profile, working weights, injury state, current training block. A second agent keeps that file current by rescanning the logs weekly. The daily calendar sync exists so the planner always knows what day it is and what was actually trained.</p>
-  <p><b>The model proposes, code disposes.</b> Safety-relevant rules are not trusted to the model. A deterministic worker re-checks PR timing against dated windows, rejects duplicate or late deliveries, and caps spend. If a plan violates a rule, the flag is stripped before anything is sent.</p>
+  <p><b>The model proposes, code disposes.</b> Safety-relevant rules are not trusted to the model. A deterministic worker re-checks PR timing against dated windows, rejects duplicate or late deliveries, restores required exercises a plan dropped, and caps spend. The model never has to guess whether the athlete trained yesterday. Edit timestamps on the worksheet answer that.</p>
+  <p><b>Tested like software.</b> Fifteen eval scenarios run before any prompt or model change ships. Each one is rebuilt from a real mistake the system once made. The suite taught an honest lesson on its first day. Every reasoning scenario passed while production failed in layers the tests never touched, like stale data and duplicate sends. New scenarios now come from real incidents, and the deterministic gates outrank the eval.</p>
   <p><b>The demo on the front page</b> runs the same programming rules against a generic profile. Its 80 input combinations are pregenerated, so the demo has zero moving parts.</p>
 </div>
 
