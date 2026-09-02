@@ -113,8 +113,8 @@
       <div class="d-agent"><b>Daily planner</b><span class="when">4:30 pm</span><span class="desc">programs tomorrow from the file and 14 days of logs</span></div>
       <div class="d-agent sub"><b>Retry</b><span class="when">+5 hrs</span><span class="desc">runs the same job if the planner died quietly</span></div>
       <div class="d-agent"><b>Calendar sync</b><span class="when">nightly · <span class="tag">writes back</span></span><span class="desc">keeps the calendar matching what was actually trained</span></div>
-      <div class="d-agent"><b>File update</b><span class="when">Sundays · <span class="tag">writes back</span></span><span class="desc">rescans the week, updates PRs and the block clock</span></div>
-      <div class="d-agent"><b>Block debrief</b><span class="when">every 5 wks</span><span class="desc">closes out each training block</span></div>
+      <div class="d-agent"><b>File update</b><span class="when">Sundays · <span class="tag">writes back</span></span><span class="desc">rescans the week, updates PRs and the block clock (where the athlete sits in the five-week training cycle)</span></div>
+      <div class="d-agent"><b>Block debrief</b><span class="when">every 5 wks</span><span class="desc">closes out each five-week cycle with a verdict, not a stat dump</span></div>
     </div>
   </div>
 
@@ -139,13 +139,15 @@
 </div>
 
 <div class="notes">
-  <p><b>Grounding over prompting.</b> The planner works from an Athlete File: profile, working weights, injury state, current training block. A second agent keeps that file current by rescanning the logs weekly. The daily calendar sync exists so the planner always knows what day it is and what was actually trained.</p>
-  <p><b>The model proposes, code disposes.</b> Safety-relevant rules are not trusted to the model. A deterministic worker re-checks PR timing against dated windows, rejects duplicate or late deliveries, restores required exercises a plan dropped, and caps spend. The model never has to guess whether the athlete trained yesterday. Edit timestamps on the worksheet answer that.</p>
+  <p><b>Grounding over prompting.</b> The planner reads an Athlete File before it writes anything. Working weights, injury rules, and where the five-week cycle stands. A second agent rescans the logs every Sunday to keep that file true. Most of the quality came from making the inputs true, not from prompt wording.</p>
+  <p><b>The model proposes, code disposes.</b> The worker re-checks every plan before sending. A PR attempt outside its dated window gets stripped. A duplicate or late delivery gets rejected. A dropped required exercise gets restored. The model never has to guess whether the athlete trained yesterday. Edit timestamps on the worksheet answer that.</p>
   <p><b>Tested like software.</b> Fifteen eval scenarios run before any prompt or model change ships. Each one is rebuilt from a real mistake the system once made. The suite taught an honest lesson on its first day. Every reasoning scenario passed while production failed in layers the tests never touched, like stale data and duplicate sends. New scenarios now come from real incidents, and the deterministic gates outrank the eval.</p>
+  <p><b>What it doesn't do.</b> It coaches one athlete, and I don't claim the results generalize. Visitors get pregenerated samples, not live generation. It makes no medical judgments. A physical therapist set the injury rules, and the system's job is to enforce them on the days the athlete wouldn't.</p>
   <p><b>The demo on the front page</b> runs the same programming rules against a generic profile. Its 80 input combinations are pregenerated, so the demo has zero moving parts.</p>
 </div>
 
-<div class="stack">stack: Claude scheduled agents · Notion · Cloudflare Workers · Telegram · Vercel</div>
+<div class="stack">daily since May 2026 · one briefing per evening, about eight minutes of agent time · no per-plan API cost, it runs on a flat Claude plan · 15 eval scenarios</div>
+<div class="stack" style="border-top:0; margin-top:0; padding-top:2px">stack: Claude scheduled agents · Notion · Cloudflare Workers · Telegram · Vercel</div>
 
 <footer>
   <div><a href="https://www.linkedin.com/in/mattyfsmith/" rel="me">Contact me on LinkedIn</a></div>
