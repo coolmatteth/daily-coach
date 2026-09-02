@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How it's built · Daily Coach</title>
-<meta name="description" content="The architecture: five scheduled Claude agents, Notion as the data layer, and a worker that enforces the rules in code.">
+<meta name="description" content="The architecture. Six agents run it. Five are scheduled Claude agents, and the sixth is a worker that enforces the rules in code.">
 <style>
   :root {
     --bg: #17191e;
@@ -91,7 +91,7 @@
 
 <header>
   <h1>How it's built</h1>
-  <p class="lede">Five scheduled Claude agents, each owning one job, coordinating through Notion. Nothing reaches the athlete's phone except through a worker that enforces the rules in code. The whole thing is a loop. What you do today is what tomorrow's plan is built from.</p>
+  <p class="lede">Six agents run this system. Five are scheduled Claude agents, each owning one job and coordinating through Notion. The sixth is a deterministic worker, the only one allowed to send, and it enforces the rules in code. The whole thing is a loop. What you do today is what tomorrow's plan is built from.</p>
 </header>
 
 <div class="diagram" role="img" aria-label="Pipeline diagram: a Notion and Google Calendar data layer is read by five scheduled agents; their plans pass through a worker that enforces rules in code; only what passes reaches the athlete by Telegram and a Notion worksheet, and the athlete's worksheet edits flow back into the data layer.">
@@ -108,7 +108,7 @@
   <div class="d-link"><i></i><span>every agent starts by reading this</span></div>
 
   <div class="d-stage">
-    <div class="d-head">Agents <em>writes back = direct data access</em></div>
+    <div class="d-head">Scheduled agents <em>writes back = direct data access</em></div>
     <div class="d-agents">
       <div class="d-agent"><b>Daily planner</b><span class="when">4:30 pm</span><span class="desc">programs tomorrow from the file and 14 days of logs</span></div>
       <div class="d-agent sub"><b>Retry</b><span class="when">+5 hrs</span><span class="desc">runs the same job if the planner died quietly</span></div>
@@ -121,7 +121,7 @@
   <div class="d-link"><i></i><span>plans POST to the worker. No agent can message the athlete directly</span></div>
 
   <div class="d-stage">
-    <div class="d-head">Worker</div>
+    <div class="d-head">Worker · the sixth agent</div>
     <div class="d-agent gate"><b>Gates, in code</b><span class="when">every send</span><span class="desc">PR-window date check · duplicate and late-delivery rejection · plan repair for dropped required blocks · 7-block cap · spend limits</span></div>
   </div>
 
