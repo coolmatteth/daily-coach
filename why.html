@@ -76,6 +76,11 @@
 
   <p>More importantly, I spent nights and weekends building a system of <a href="how-its-built.html">six autonomous agents</a> that program my training based on historical records and send me a recommended workout every evening. Built on my actual training history, rules enforced in code, all running on my existing Claude subscription.</p>
 
+  <figure style="margin: 0 0 22px;">
+    <a href="assets/briefing-shot.png"><img src="assets/briefing-shot.png" alt="An evening briefing in Telegram. A push session with weights on every line, a worksheet link, and Swap buttons underneath." style="width:100%;border-radius:10px;border:1px solid var(--line)"></a>
+    <figcaption style="font-size:12.5px;color:var(--dim);margin-top:8px;">What lands on my phone every evening. Real system output, generated in the sandbox that runs the production code.</figcaption>
+  </figure>
+
   <p>It broke a lot before it got good. One API call got stuck in a retry loop burning all my credits on the same failed request. It'd hallucinate PRs I never hit and machines that don't exist. Each failure turned into a guardrail: API spend caps, a grounding "Athlete File" about who I actually am and how I train, and code that reviews every plan for accuracy before it hits my phone.</p>
 
   <div class="pull">
