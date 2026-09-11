@@ -87,6 +87,7 @@
 
 <nav>
   <div class="brand"><a href="/">← Daily Coach</a></div>
+  <a style="font-size:13px;color:var(--dim)" href="why.html">Why I built this</a>
 </nav>
 
 <header>
@@ -130,7 +131,7 @@
   <div class="d-stage">
     <div class="d-head">Athlete</div>
     <div class="d-row">
-      <div class="d-box"><b>Telegram</b>the evening briefing, one message</div>
+      <div class="d-box"><b>Telegram</b>the evening briefing, one message · Swap buttons to change the day</div>
       <div class="d-box"><b>Notion worksheet</b>edit it at the gym, or one tap: "Did this workout"</div>
     </div>
   </div>
@@ -141,6 +142,7 @@
 <div class="notes">
   <p><b>Grounding over prompting.</b> The planner reads an Athlete File before it writes anything. Working weights, injury rules, and where the five-week cycle stands. A second agent rescans the logs every Sunday to keep that file true. Most of the quality came from making the inputs true, not from prompt wording.</p>
   <p><b>The model proposes, code disposes.</b> The worker re-checks every plan before sending. A PR attempt outside its dated window gets stripped. A duplicate or late delivery gets rejected. A dropped required exercise gets restored. The model never has to guess whether the athlete trained yesterday. Edit timestamps on the worksheet answer that.</p>
+  <p><b>Change your mind with one tap.</b> Every briefing carries Swap buttons under it. Tap Swap to Legs and a full legs session arrives in about two seconds. The nightly run pre-builds a coached alternate for every other training type under the same rules, so a swap is real programming served from cache, not a rerun of last time. No model runs at tap time, which is why it is instant and free.</p>
   <p><b>Tested like software.</b> Twenty eval scenarios run before any prompt or model change ships. Each one is rebuilt from a real mistake the system once made. The suite taught an honest lesson on its first day. Every reasoning scenario passed while production failed in layers the tests never touched, like stale data and duplicate sends. New scenarios now come from real incidents, and the deterministic gates outrank the eval.</p>
   <p><b>What it doesn't do.</b> It coaches one athlete, and I don't claim the results generalize. Visitors get pregenerated samples, not live generation. It makes no medical judgments. A physical therapist set the injury rules, and the system's job is to enforce them on the days the athlete wouldn't.</p>
   <p><b>The demo on the front page</b> runs the same programming rules against a generic profile. Its 80 input combinations are pregenerated, so the demo has zero moving parts.</p>

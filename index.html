@@ -58,6 +58,9 @@
     border-radius: 6px; padding: 13px 26px; font-size: 15px; font-weight: 700;
   }
   .cta:hover { text-decoration: none; filter: brightness(1.08); }
+  .cta.ghost { background: transparent; color: var(--cream); border: 1px solid var(--line); font-weight: 600; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  nav .links { display: flex; gap: 18px; }
 
   section { margin-top: 70px; }
   h2 {
@@ -150,20 +153,23 @@
 
 <nav>
   <div class="brand">Daily Coach</div>
-  <a class="minor" href="how-its-built.html">How it's built</a>
+  <div class="links">
+    <a class="minor" href="why.html">Why I built this</a>
+    <a class="minor" href="how-its-built.html">How it's built</a>
+  </div>
 </nav>
 
 <header>
   <h1>A coach that knows your <em>history</em></h1>
   <p class="lede">Customized workouts pushed to your phone daily. It learns from every session, works around injuries, and explains its choices.</p>
   <div class="pill"><span class="dot"></span>In daily use since May 2026</div>
-  <div class="cta-row"><a class="cta" href="#demo">Try a demo</a></div>
+  <div class="cta-row"><a class="cta" href="#demo">Try a demo</a><a class="cta ghost" href="why.html">Why I built this</a></div>
 </header>
 
 <section>
   <h2>What you get</h2>
   <div class="feat">
-    <div><b>Daily programming</b>Tomorrow's session every evening, adapted to the last 14 days.</div>
+    <div><b>Daily programming</b>Tomorrow's session every evening, adapted to the last 14 days. Not feeling it? One tap swaps it for a fully programmed session of any other type.</div>
     <div><b>A coach you can talk to</b>Tell it how the session went in plain language. It answers like a trainer, and what you tell it shapes tomorrow.</div>
     <div><b>Injury-aware progression</b>Flagged joints cap loads and gate jumps until they clear.</div>
     <div><b>Honest recaps</b>Weekly and end-of-block reviews that tell you what moved, not a stat dump.</div>
@@ -260,7 +266,7 @@ B6 · Back Extension: 2×12</div>
 
 <footer>
   <div><a href="https://www.linkedin.com/in/mattyfsmith/" rel="me">Contact me on LinkedIn</a></div>
-  <div><a href="how-its-built.html">How it's built</a></div>
+  <div><a href="why.html">Why I built this</a> · <a href="how-its-built.html">How it's built</a></div>
 </footer>
 
 </div>
