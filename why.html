@@ -62,7 +62,7 @@
 
 <header>
   <h1>Why I built this</h1>
-  <p class="byline">Written by a human. The agents write the workouts, not this page.</p>
+  <p class="byline">Written by a human.</p>
 </header>
 
 <div class="story">
@@ -76,7 +76,7 @@
 
   <p>More importantly, I spent nights and weekends building a system of <a href="how-its-built.html">six autonomous agents</a> that program my training based on historical records and send me a recommended workout every evening. Built on my actual training history, rules enforced in code, all running on my existing Claude subscription.</p>
 
-  <p>It broke a lot before it got good. Back when it ran on API credits, one call got stuck in a retry loop burning all of them on the same failed request. It'd hallucinate PRs I never hit and machines that don't exist. Each failure turned into a guardrail: API spend caps, a grounding "Athlete File" about who I actually am and how I train, and code that reviews every plan for accuracy before it hits my phone.</p>
+  <p>It broke a lot before it got good. One API call got stuck in a retry loop burning all my credits on the same failed request. It'd hallucinate PRs I never hit and machines that don't exist. Each failure turned into a guardrail: API spend caps, a grounding "Athlete File" about who I actually am and how I train, and code that reviews every plan for accuracy before it hits my phone.</p>
 
   <div class="pull">
     <p>My biggest lesson: agents fail often, silently, and expensively until you build them to fail loud and cheap.</p>
