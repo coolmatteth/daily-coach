@@ -30,24 +30,6 @@
   h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 5.6vw, 40px); line-height: 1.18; margin-bottom: 12px; }
   .lede { font-size: 16.5px; color: var(--soft); max-width: 620px; }
 
-  /* ── Demo video ──────────────────────────────────────────────────── */
-  .demo { margin: 34px 0 10px; }
-  .demo h2 { font-family: var(--serif); font-size: 24px; font-weight: 500; margin-bottom: 4px; }
-  .demo .sub { color: var(--dim); font-size: 14px; margin-bottom: 14px; }
-  .player { position: relative; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden;
-            border: 1px solid var(--line); background: #000; cursor: pointer; }
-  .player img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .player .pb { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-  .player .pb span { width: 74px; height: 74px; border-radius: 50%; background: rgba(23,25,30,.82);
-    border: 1px solid rgba(236,231,219,.35); display: flex; align-items: center; justify-content: center; }
-  .player .pb span::after { content: ""; margin-left: 6px; border-left: 22px solid var(--cream);
-    border-top: 13px solid transparent; border-bottom: 13px solid transparent; }
-  .player:hover .pb span { background: rgba(217,164,65,.9); }
-  .player:hover .pb span::after { border-left-color: #17191e; }
-  .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-  .vcap { font-family: var(--mono); font-size: 12.5px; color: var(--dim); margin-top: 10px; line-height: 1.8; }
-  .vcap a { color: var(--apricot); cursor: pointer; }
-
   /* ── Diagram: one vertical pipeline, one return rail ─────────────── */
   .diagram { margin: 34px 0 6px; border: 1px solid var(--line); border-radius: 8px; background: rgba(0,0,0,.16); padding: 22px 20px 22px 44px; position: relative; }
 
@@ -113,21 +95,6 @@
   <p class="lede">Six agents run this system. Five are scheduled Claude agents, each owning one job and coordinating through Notion. The sixth is a deterministic worker, the only one allowed to send, and it enforces the rules in code. The whole thing is a loop. What you do today is what tomorrow's plan is built from.</p>
 </header>
 
-<div class="demo">
-  <h2>Fifty-nine seconds of it running</h2>
-  <p class="sub">One athlete, one message a day, a year in production. Real system output, rendered for the screen.</p>
-  <div class="player" id="player" aria-label="Play the Daily Coach demo video">
-    <img src="assets/video-poster.png" alt="Daily Coach demo video poster" loading="lazy">
-    <div class="pb"><span></span></div>
-  </div>
-  <p class="vcap">
-    <a data-t="0">0:00 the evening message</a> ·
-    <a data-t="27">0:27 the one tap reroll</a> ·
-    <a data-t="32">0:32 what the checks catch</a> ·
-    <a data-t="44">0:44 the Sunday coach</a>
-  </p>
-</div>
-
 <div class="diagram" role="img" aria-label="Pipeline diagram: a Notion and Google Calendar data layer is read by five scheduled agents; their plans pass through a worker that enforces rules in code; only what passes reaches the athlete by Telegram and a Notion worksheet, and the athlete's worksheet edits flow back into the data layer.">
   <div class="d-rail" aria-hidden="true"></div>
 
@@ -190,36 +157,5 @@
 </footer>
 
 </div>
-<script>
-(function () {
-  var VIDEO_ID = "8SsAjzimrLM"; // the demo video; swap this to update
-  var player = document.getElementById("player");
-  var frame = null;
-
-  function mount(startAt) {
-    frame = document.createElement("iframe");
-    frame.src = "https://www.youtube-nocookie.com/embed/" + VIDEO_ID +
-      "?autoplay=1&rel=0&enablejsapi=1" + (startAt ? "&start=" + startAt : "");
-    frame.allow = "autoplay; encrypted-media; picture-in-picture";
-    frame.allowFullscreen = true;
-    player.innerHTML = "";
-    player.appendChild(frame);
-    player.style.cursor = "default";
-  }
-
-  player.addEventListener("click", function () { if (!frame) mount(0); });
-
-  document.querySelectorAll(".vcap a").forEach(function (a) {
-    a.addEventListener("click", function () {
-      var t = parseInt(a.getAttribute("data-t"), 10);
-      if (!frame) { mount(t); return; }
-      frame.contentWindow.postMessage(JSON.stringify(
-        { event: "command", func: "seekTo", args: [t, true] }), "*");
-      frame.contentWindow.postMessage(JSON.stringify(
-        { event: "command", func: "playVideo", args: [] }), "*");
-    });
-  });
-})();
-</script>
 </body>
 </html>

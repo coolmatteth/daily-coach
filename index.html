@@ -62,6 +62,23 @@
   .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
   nav .links { display: flex; gap: 18px; }
 
+  /* walkthrough video — the first thing under the hero */
+  .walkthrough { margin-top: 40px; }
+  .player { position: relative; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden;
+            border: 1px solid var(--line); background: #000; cursor: pointer;
+            box-shadow: 0 18px 48px rgba(0,0,0,.35); }
+  .player img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .player .pb { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .player .pb span { width: 78px; height: 78px; border-radius: 50%; background: rgba(23,25,30,.82);
+    border: 1px solid rgba(236,231,219,.35); display: flex; align-items: center; justify-content: center;
+    transition: transform .15s ease; }
+  .player .pb span::after { content: ""; margin-left: 7px; border-left: 24px solid var(--cream);
+    border-top: 14px solid transparent; border-bottom: 14px solid transparent; }
+  .player:hover .pb span { background: rgba(217,164,65,.92); transform: scale(1.06); }
+  .player:hover .pb span::after { border-left-color: #17191e; }
+  .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .vnote { font-size: 12.5px; color: var(--dim); margin-top: 9px; }
+
   section { margin-top: 70px; }
   h2 {
     font-family: var(--serif); font-size: 26px; font-weight: 500; color: var(--cream);
@@ -165,6 +182,15 @@
   <div class="pill"><span class="dot"></span>In daily use since May 2026</div>
   <div class="cta-row"><a class="cta" href="#demo">Try a demo</a><a class="cta ghost" href="why.html">Why I built this</a></div>
 </header>
+
+<div class="walkthrough">
+  <div class="cap">The walkthrough · 59 seconds</div>
+  <div class="player" id="player" aria-label="Play the Daily Coach walkthrough">
+    <img src="assets/video-poster.png" alt="Daily Coach walkthrough video" fetchpriority="high">
+    <div class="pb"><span></span></div>
+  </div>
+  <p class="vnote">Real system output, rendered for the screen.</p>
+</div>
 
 <section>
   <h2>What you get</h2>
@@ -279,6 +305,22 @@ B6 · Back Extension: 2×12</div>
 
 </div>
 <script>
+(function () {
+  var VIDEO_ID = "8SsAjzimrLM"; // the walkthrough video; swap this to update
+  var player = document.getElementById("player");
+  var mounted = false;
+  player.addEventListener("click", function () {
+    if (mounted) return;
+    mounted = true;
+    var frame = document.createElement("iframe");
+    frame.src = "https://www.youtube-nocookie.com/embed/" + VIDEO_ID + "?autoplay=1&rel=0";
+    frame.allow = "autoplay; encrypted-media; picture-in-picture";
+    frame.allowFullscreen = true;
+    player.innerHTML = "";
+    player.appendChild(frame);
+    player.style.cursor = "default";
+  });
+})();
 (function () {
   var btn = document.getElementById("generate");
   var result = document.getElementById("result");
