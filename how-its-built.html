@@ -74,6 +74,12 @@
   .notes { margin-top: 30px; }
   .notes p { font-family: var(--serif); font-size: 16px; color: var(--soft); line-height: 1.7; margin-bottom: 14px; }
   .notes b { color: var(--cream); }
+  .split { width: 100%; border-collapse: collapse; margin: 6px 0 18px; font-size: 14px; line-height: 1.45; }
+  .split th { text-align: left; font-family: var(--sans); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); font-weight: 700; padding: 0 10px 8px 0; border-bottom: 1px solid var(--line); }
+  .split th span { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--mint); font-family: var(--mono); font-size: 11px; }
+  .split td { vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px dotted var(--line); color: var(--soft); width: 50%; }
+  .split td:first-child { color: var(--cream); }
+  @media (max-width: 520px) { .split { font-size: 13px; } }
 
   .stack { font-family: var(--mono); font-size: 13px; color: var(--dim); border-top: 1px dotted var(--line); padding-top: 16px; margin-top: 30px; line-height: 1.8; }
   a { color: var(--apricot); text-decoration: none; }
@@ -95,7 +101,7 @@
   <p class="lede">Six agents run this system. Five are scheduled Claude agents, each owning one job and coordinating through Notion. The sixth is a deterministic worker, the only one allowed to send, and it enforces the rules in code. The whole thing is a loop. What you do today is what tomorrow's plan is built from.</p>
 </header>
 
-<div class="diagram" role="img" aria-label="Pipeline diagram: a Notion and Google Calendar data layer is read by five scheduled agents; their plans pass through a worker that enforces rules in code; only what passes reaches the athlete by Telegram and a Notion worksheet, and the athlete's worksheet edits flow back into the data layer.">
+<div class="diagram" role="img" aria-label="Pipeline diagram: a Notion, Google Calendar and Apple Watch data layer is read by five scheduled agents; their plans pass through a worker that enforces rules in code; only what passes reaches the athlete by Telegram and a Notion worksheet, and the athlete's worksheet edits flow back into the data layer.">
   <div class="d-rail" aria-hidden="true"></div>
 
   <div class="d-stage">
@@ -103,6 +109,7 @@
     <div class="d-row">
       <div class="d-box"><b>Notion</b>Athlete File · training log · live worksheet</div>
       <div class="d-box"><b>Google Calendar</b>every session and rest day</div>
+      <div class="d-box"><b>Apple Watch</b>workouts, sleep, HRV. Information only, it never changes a plan</div>
     </div>
   </div>
 
@@ -114,8 +121,8 @@
       <div class="d-agent"><b>Daily planner</b><span class="when">4:30 pm</span><span class="desc">programs tomorrow from the file and 14 days of logs</span></div>
       <div class="d-agent sub"><b>Retry</b><span class="when">+5 hrs</span><span class="desc">runs the same job if the planner died quietly</span></div>
       <div class="d-agent"><b>Calendar sync</b><span class="when">nightly · <span class="tag">writes back</span></span><span class="desc">keeps the calendar matching what was actually trained</span></div>
-      <div class="d-agent"><b>File update</b><span class="when">Sundays · <span class="tag">writes back</span></span><span class="desc">rescans the week, updates PRs and the block clock (where the athlete sits in the five-week training cycle)</span></div>
-      <div class="d-agent"><b>Block debrief</b><span class="when">every 5 wks</span><span class="desc">closes out each five-week cycle with a verdict, not a stat dump</span></div>
+      <div class="d-agent"><b>File update</b><span class="when">Sundays · <span class="tag">writes back</span></span><span class="desc">rescans the week, updates working weights, PRs and the block clock (where the athlete sits in the training block)</span></div>
+      <div class="d-agent"><b>Sunday coach</b><span class="when">Sundays</span><span class="desc">recaps the week as what moved and by how much, plans the next one, and proposes program changes the athlete approves with a 👍 or 👎 tap</span></div>
     </div>
   </div>
 
@@ -123,7 +130,7 @@
 
   <div class="d-stage">
     <div class="d-head">Worker · the sixth agent</div>
-    <div class="d-agent gate"><b>Gates, in code</b><span class="when">every send</span><span class="desc">PR-window date check · duplicate and late-delivery rejection · plan repair for dropped required blocks · 7-block cap · spend limits</span></div>
+    <div class="d-agent gate"><b>Gates, in code</b><span class="when">every send</span><span class="desc">PR-window date check · duplicate and late-delivery rejection · plan repair for dropped required blocks · 7-block cap · rest-day messages written in code · recap length, structure and "is this actually a change" checks · every number the recap uses</span></div>
   </div>
 
   <div class="d-link"><i></i><span>only what passes is sent</span></div>
@@ -140,15 +147,29 @@
 </div>
 
 <div class="notes">
-  <p><b>Grounding over prompting.</b> The planner reads an Athlete File before it writes anything. Working weights, injury rules, and where the five-week cycle stands. A second agent rescans the logs every Sunday to keep that file true. Most of the quality came from making the inputs true, not from prompt wording.</p>
-  <p><b>The model proposes, code disposes.</b> The worker re-checks every plan before sending. A PR attempt outside its dated window gets stripped. A duplicate or late delivery gets rejected. A dropped required exercise gets restored. The model never has to guess whether the athlete trained yesterday. Edit timestamps on the worksheet answer that.</p>
+  <p><b>Grounding over prompting.</b> The planner reads an Athlete File before it writes anything. Working weights, injury rules, and where the training block stands. A second agent rescans the logs every Sunday to keep that file true. Most of the quality came from making the inputs true, not from prompt wording.</p>
+  <p><b>The model proposes, code disposes.</b> The reasoning engine is probabilistic. Reliability comes from deciding, per behavior, which side of the line it lives on. Where being wrong has a cost and the right answer is computable, it is code. Where it takes judgment or a coach's voice, it is the model, inside an envelope that code checks.</p>
+
+  <table class="split" aria-label="What the model decides versus what code decides">
+    <thead><tr><th>The model decides <span>(probabilistic)</span></th><th>Code decides <span>(deterministic)</span></th></tr></thead>
+    <tbody>
+      <tr><td>Which split tomorrow is, and why</td><td>Whether a PR attempt is inside its dated window. Fails closed</td></tr>
+      <tr><td>The coach's read of the last session</td><td>Whether a briefing for that date already went out</td></tr>
+      <tr><td>Which movement fills each required pattern slot</td><td>Whether every required slot is filled, and restores it if not</td></tr>
+      <tr><td>What the weekly recap says went well</td><td>Every number in it: counts, percentages, first-to-last changes</td></tr>
+      <tr><td>Whether a day is a rest day</td><td>The rest-day message itself, three lines from the block clock</td></tr>
+      <tr><td>Whether a program change is worth proposing</td><td>Whether that proposal changes anything, and whether it is arithmetic that should have applied itself</td></tr>
+    </tbody>
+  </table>
+
+  <p><b>Three patterns cover every guard.</b> The gate: the model decides the branch, code owns the output (rest days). The validated envelope: the model writes, code checks the shape at the boundary and rejects with a reason the model can act on (the weekly recap). Precomputed content: the model does the judgment work the night before, code serves it instantly (the Swap buttons). The model never has to guess whether the athlete trained yesterday either. Edit timestamps on the worksheet answer that.</p>
   <p><b>Change your mind with one tap.</b> Every briefing carries Swap buttons under it. Tap Swap to Legs and a full legs session arrives in about two seconds. The nightly run pre-builds a coached alternate for every other training type under the same rules, so a swap is real programming served from cache, not a rerun of last time. No model runs at tap time, which is why it is instant and free.</p>
-  <p><b>Tested like software.</b> Twenty eval scenarios run before any prompt or model change ships. Each one is rebuilt from a real mistake the system once made. The suite taught an honest lesson on its first day. Every reasoning scenario passed while production failed in layers the tests never touched, like stale data and duplicate sends. New scenarios now come from real incidents, and the deterministic gates outrank the eval.</p>
+  <p><b>Tested like software.</b> Twenty-three eval scenarios run before any prompt or model change ships. Each one is rebuilt from a real mistake the system once made. The suite taught an honest lesson on its first day. Every reasoning scenario passed while production failed in layers the tests never touched, like stale data and duplicate sends. New scenarios now come from real incidents, and the deterministic gates outrank the eval.</p>
   <p><b>What it doesn't do.</b> It coaches one athlete, and I don't claim the results generalize. Visitors get pregenerated samples, not live generation. It makes no medical judgments. A physical therapist set the injury rules, and the system's job is to enforce them on the days the athlete wouldn't.</p>
   <p><b>The demo on the front page</b> runs the same programming rules against a generic profile. Its 80 input combinations are pregenerated, so the demo has zero moving parts.</p>
 </div>
 
-<div class="stack">daily since May 2026 · one briefing per evening, about eight minutes of agent time · no per-plan API cost, it runs on a flat Claude plan · 20 eval scenarios</div>
+<div class="stack">daily since May 2026 · one briefing per evening, about eight minutes of agent time · no per-plan API cost, it runs on a flat Claude plan · 23 eval scenarios</div>
 <div class="stack" style="border-top:0; margin-top:0; padding-top:2px">stack: Claude scheduled agents · Notion · Cloudflare Workers · Telegram · Vercel</div>
 
 <footer>
