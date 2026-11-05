@@ -107,9 +107,9 @@
   <div class="d-stage">
     <div class="d-head">Data</div>
     <div class="d-row">
-      <div class="d-box"><b>Notion</b>Athlete File · training log · live worksheet</div>
+      <div class="d-box"><b>Notion</b>Athlete File (rules and history) · Block Schedule · training log · live worksheet</div>
       <div class="d-box"><b>Google Calendar</b>every session and rest day</div>
-      <div class="d-box"><b>Apple Watch</b>workouts, sleep, HRV. Information only, it never changes a plan</div>
+      <div class="d-box"><b>Apple Watch</b>workouts, steps, heart rate, imported once a block. Information only, it never changes a plan</div>
     </div>
   </div>
 
@@ -121,7 +121,7 @@
       <div class="d-agent"><b>Daily planner</b><span class="when">4:30 pm</span><span class="desc">programs tomorrow from the file and 14 days of logs</span></div>
       <div class="d-agent sub"><b>Retry</b><span class="when">+5 hrs</span><span class="desc">runs the same job if the planner died quietly</span></div>
       <div class="d-agent"><b>Calendar sync</b><span class="when">nightly · <span class="tag">writes back</span></span><span class="desc">keeps the calendar matching what was actually trained</span></div>
-      <div class="d-agent"><b>File update</b><span class="when">Sundays · <span class="tag">writes back</span></span><span class="desc">rescans the week, updates working weights, PRs and the block clock (where the athlete sits in the training block)</span></div>
+      <div class="d-agent"><b>File update</b><span class="when">Sundays · <span class="tag">writes back</span></span><span class="desc">rescans the week and updates the lift table and PRs in the Athlete File</span></div>
       <div class="d-agent"><b>Sunday coach</b><span class="when">Sundays</span><span class="desc">recaps the week as what moved and by how much, plans the next one, and proposes program changes the athlete approves with a 👍 or 👎 tap</span></div>
     </div>
   </div>
@@ -165,12 +165,12 @@
 
   <p>Three ways that plays out. Code owns the output (rest days). Code checks the model's output at the boundary and bounces it with a reason the model can fix (the weekly recap). The model does the thinking the night before and code serves it instantly (the Swap buttons).</p>
 
-  <p><b>Tested like software.</b> 24 eval scenarios, each rebuilt from a real mistake. They run before any prompt or model change ships. They taught me something early. Production failed on things the tests never touched, like stale data and duplicate sends. So the code guards outrank the evals.</p>
+  <p><b>Tested like software.</b> 30 eval scenarios, each rebuilt from a real mistake. They run before any prompt or model change ships. They taught me something early. Production failed on things the tests never touched, like stale data and duplicate sends. So the code guards outrank the evals.</p>
 
   <p><b>What it isn't.</b> One athlete, me. No medical judgment. A physical therapist set the knee rules and the system enforces them on the days I wouldn't. The demo on the front page is 80 pregenerated sessions, nothing live.</p>
 </div>
 
-<div class="stack">daily since May 2026 · one briefing per evening, about eight minutes of agent time · no per-plan API cost, it runs on a flat Claude plan · 24 eval scenarios</div>
+<div class="stack">daily since May 2026 · one briefing per evening, about eight minutes of agent time · no per-plan API cost, it runs on a flat Claude plan · 30 eval scenarios</div>
 <div class="stack" style="border-top:0; margin-top:0; padding-top:2px">stack: Claude scheduled agents · Notion · Cloudflare Workers · Telegram · Vercel</div>
 
 <footer>
