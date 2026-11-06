@@ -1,0 +1,46 @@
+# GLP-1 Coach worker. Separate from matt-fitness-agent in every way: its own
+# name, its own D1, its own bot token, its own secrets.
+name = "glp1-coach"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# No scheduled work yet. The evening plan and the Sunday pass arrive with
+# PR 4 and PR 2; until then nothing fires.
+[triggers]
+crons = []
+
+# Create with `npx wrangler d1 create glp1-coach` and paste the id here.
+[[d1_databases]]
+binding = "DB"
+database_name = "glp1-coach"
+database_id = "REPLACE_WITH_D1_ID"
+migrations_dir = "migrations"
+
+[vars]
+ANTHROPIC_MODEL = "claude-sonnet-5-5"
+
+# Secrets, set with `npx wrangler secret put <NAME>` (and again with
+# `--env staging` for staging):
+#   ADMIN_SECRET              header X-Admin-Secret for /telegram/setup and /sim/*
+#   TELEGRAM_BOT_TOKEN        a new bot from @BotFather, never the private one
+#   TELEGRAM_WEBHOOK_SECRET   what Telegram sends back in its header
+#   ANTHROPIC_API_KEY         (from PR 3 on)
+
+# Staging: own worker, own D1. STAGING=1 routes every outbound message to
+# the outbox table instead of Telegram and turns on the /sim/* routes.
+[env.staging]
+name = "glp1-coach-staging"
+
+[env.staging.triggers]
+crons = []
+
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "glp1-coach-staging"
+database_id = "REPLACE_WITH_STAGING_D1_ID"
+migrations_dir = "migrations"
+
+[env.staging.vars]
+ANTHROPIC_MODEL = "claude-sonnet-5-5"
+STAGING = "1"

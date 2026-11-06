@@ -1,0 +1,85 @@
+# daily-coach (GLP-1 Coach, experimental stage)
+
+A free, public coach for people on GLP-1 drugs who lift or want to start:
+a Cloudflare Worker (plain TypeScript; the model only estimates meals and
+drafts plans, code owns every number) talking to users over Telegram, with
+one D1 database. Matt is the builder; nobody else uses it yet.
+
+## Read first
+1. `docs/SPEC.md` — the product brief: thesis, the Athlete File, the math
+   with its sources, onboarding, MVP scope, PR order. Every decision is in
+   there with the reason. Change the spec when a decision changes.
+2. This file — where things are and the rules of the road.
+
+## The one rule that matters most
+This is a separate product from `coolmatteth/fitness-agent` (Matt's private
+coach). Nothing here touches that repo, its worker, its KV, its Notion, its
+bot or its secrets. Read it for patterns; copy the progression engine when
+PR 4 comes; never share code, data or infrastructure with it. Matt's system
+is the advanced one; this is the experimental stage.
+
+## Layout
+- `index.html`, `how-its-built.html`, `why.html`, `assets/`, `api/` — the
+  existing static site (Vercel, dailycoach.fitness). Not rewritten yet; it
+  still describes the private system. `api/generate.js` is dormant.
+- `src/` — the worker.
+  - `index.ts` routes. `GET /version` and `GET /health` are public.
+    `POST /telegram/webhook` checks Telegram's secret header.
+    `POST /telegram/setup` registers the webhook (admin secret).
+    `/sim/*` exists only on staging: the simulated-user harness talks to
+    the bot through it (admin secret).
+  - `bot.ts` — `handleIncoming`: one message in, zero or more messages
+    out, through a Transport. Pure of HTTP; the tests call it directly.
+  - `transport.ts` — the message-transport interface. Telegram today;
+    an outbox on staging (staging never texts anyone); a fake for tests.
+    SMS or WhatsApp later is a new implementation, not a rewrite.
+  - `store.ts` — the Store interface over D1, with an in-memory
+    implementation for tests. Every table has a user in it.
+  - `quota.ts` — per-user daily model-call cap. `ratelimit.ts` — per-IP
+    and per-instance limits on every POST. `clock.ts` — the test clock
+    staging can move forward so a simulated week runs in minutes.
+  - `telegram.ts` — the few Bot API calls we use.
+- `migrations/` — D1 schema, applied by the deploy workflow.
+- `evals/` — plain-code checks, `npx tsx evals/<name>-check.ts`. CI runs
+  all of them on every PR. Add one per PR.
+- `.github/workflows/deploy.yml` — PR: typecheck + evals. Merge to
+  `master`: migrations + deploy to staging → `/version` must show the
+  commit → migrations + deploy to production.
+
+## Rules of the road
+- `npx tsc --noEmit` and the evals green before any push.
+- Never prod first. Staging is `glp1-coach-staging`; its outbound messages
+  land in the `outbox` table, never in Telegram.
+- Every rule a user can feel gets a plain-English comment with the reason
+  and the source, dated.
+- No "hold", "stay" or "step" about a dose, anywhere a user can read it.
+  The prescriber summary only. A test guards this once the recap exists.
+- No medical claims. "Helps you keep protein up, train consistently and
+  see your trends." Never "prevents muscle loss."
+- One row per user, deletable with `/delete me`. No pixels, no analytics
+  beyond counts. A drug name typed by a user is health information.
+- Small PRs with tests. Matt reviews anything that changes a rule, wording
+  the user sees, the deploy workflow, `wrangler.toml` or secrets.
+- Never commit secrets. `.dev.vars` is gitignored.
+
+## First deploy (one-time, on the PC, in this repo's folder)
+```
+npx wrangler login
+npx wrangler d1 create glp1-coach            # paste the id into wrangler.toml [[d1_databases]]
+npx wrangler d1 create glp1-coach-staging    # paste into [env.staging.d1_databases]
+npx wrangler secret put ADMIN_SECRET --env staging
+npx wrangler secret put ADMIN_SECRET
+npx wrangler secret put TELEGRAM_BOT_TOKEN            # a NEW bot from @BotFather, not the private one
+npx wrangler secret put TELEGRAM_WEBHOOK_SECRET
+```
+Then in GitHub → Settings → Secrets and variables → Actions on THIS repo:
+`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `STAGING_ADMIN_SECRET`,
+and the variable `WORKERS_SUBDOMAIN` (the `<name>.workers.dev` part).
+A merge to `master` then deploys. `GET /version` on either worker says
+which commit is live.
+
+## Status
+PR 1 (skeleton): `/start`, `/version`, `/delete me`, the transport
+interface, the sim routes, quota and rate limits, the deploy pipeline.
+Next: PR 2 onboarding math and the Athlete File; PR 3 Food Log; PR 4
+training bot; PR 5 the simulated-user harness; then the site and waitlist.
