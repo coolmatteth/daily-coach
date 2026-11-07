@@ -31,6 +31,7 @@ jobs:
       - run: npx tsx evals/targets-check.ts
       - run: npx tsx evals/weighins-check.ts
       - run: npx tsx evals/athlete-check.ts
+      - run: npx tsx evals/food-check.ts
 
   staging:
     needs: check

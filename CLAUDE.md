@@ -42,6 +42,14 @@ is the advanced one; this is the experimental stage.
     with the source of every number in a dated comment. `weighins.ts` —
     the 7-day average, the noise band, the 12-week plateau rule, the
     rapid-loss rule, and the safety wording (no number in the message).
+  - `food.ts` — the Food Log's plain-code parts: totals, tiers, the bar,
+    corrections in plain words, the 20-minute merge, shortcuts.
+    `estimator.ts` — the one model call (reads a message or photo, names
+    an action, JSON schema output) behind an interface; the system prompt
+    is built per user from their file. `recap.ts` — the Sunday verdict and
+    the prescriber summary; `FORBIDDEN_DOSE_WORDS` and a test guard the
+    wording. `weekly.ts` — the Sunday pass the hourly cron runs: send the
+    recap at 5 PM local and write one coach line into the file.
   - `quota.ts` — per-user daily model-call cap. `ratelimit.ts` — per-IP
     and per-instance limits on every POST. `clock.ts` — the test clock
     staging can move forward so a simulated week runs in minutes.
@@ -78,6 +86,8 @@ npx wrangler secret put ADMIN_SECRET --env staging
 npx wrangler secret put ADMIN_SECRET
 npx wrangler secret put TELEGRAM_BOT_TOKEN            # a NEW bot from @BotFather, not the private one
 npx wrangler secret put TELEGRAM_WEBHOOK_SECRET
+npx wrangler secret put ANTHROPIC_API_KEY --env staging   # its own key, with a monthly cap set in the console
+npx wrangler secret put ANTHROPIC_API_KEY
 ```
 Then in GitHub → Settings → Secrets and variables → Actions on THIS repo:
 `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `STAGING_ADMIN_SECRET`,
@@ -91,5 +101,9 @@ interface, the sim routes, quota and rate limits, the deploy pipeline.
 PR 2 (onboarding + Athlete File): the three day-one questions and the
 one-a-day follow-ups, per-user targets with named formulas, `/me`,
 `/note`, `/forget`, `/weight`, "why", the weigh-in rules.
-Next: PR 3 Food Log; PR 4 training bot; PR 5 the simulated-user harness;
-then the site and waitlist.
+PR 3 (Food Log): text or photo to protein and calories, corrections in
+plain words, shortcuts, `/today`, `/week`, `/delete N`, `/undo`,
+`/recap` with the prescriber summary, the Sunday pass, a per-user lock,
+the model-call cap enforced. `/sim/weekly` runs the pass on staging.
+Next: PR 4 training bot; PR 5 the simulated-user harness; then the site
+and waitlist.
