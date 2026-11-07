@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "tsx evals/skeleton-check.ts",
+    "test": "tsx evals/skeleton-check.ts && tsx evals/targets-check.ts && tsx evals/weighins-check.ts && tsx evals/athlete-check.ts",
     "dev": "wrangler dev",
     "deploy:staging": "wrangler deploy --env staging",
     "deploy": "wrangler deploy"

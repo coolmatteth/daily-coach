@@ -25,13 +25,14 @@ async function main() {
     const store = new MemoryStore();
     check('unknown user gets "say /start"', (await send(store, 'u1', 'hello'))[0] === NOT_STARTED_TEXT);
     const r = await send(store, 'u1', '/start');
-    check('/start replies with the disclosure', r.length === 1 && r[0] === START_TEXT);
+    check('/start replies with the disclosure, then the first question', r.length === 2 && r[0] === START_TEXT);
     check('/start text names software, not a person', START_TEXT.includes('software, not a person'));
     check('/start text says not medical advice', START_TEXT.includes('is medical advice') && START_TEXT.includes('nothing I say'));
     check('/start creates the user', (await store.getUserByChat('sim', 'u1')) !== null);
     const again = await send(store, 'u1', '/start');
     check('/start twice does not duplicate the user', again[0] === START_TEXT && (await store.getUserByChat('sim', 'u1'))?.id === 1);
-    check('known user, unknown text gets "not built yet"', (await send(store, 'u1', 'what do I eat'))[0] === NOT_BUILT_TEXT);
+    check('known user, unknown text while a question is pending gets the retry', /0 to 4/.test((await send(store, 'u1', 'what do I eat'))[0]));
+    check('known user, unknown command gets "not built yet"', (await send(store, 'u1', '/foo'))[0] === NOT_BUILT_TEXT);
     check('/version answers with the sha', (await send(store, 'u1', '/version'))[0] === 'GLP-1 Coach abc1234');
     check('delete me deletes the row', (await send(store, 'u1', 'delete me'))[0] === DELETED_TEXT && (await store.getUserByChat('sim', 'u1')) === null);
     check('delete me on nobody still answers', (await send(store, 'u9', 'Delete  Me'))[0] === DELETED_TEXT);
