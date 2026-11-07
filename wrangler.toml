@@ -5,10 +5,10 @@ main = "src/index.ts"
 compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat"]
 
-# No scheduled work yet. The evening plan and the Sunday pass arrive with
-# PR 4 and PR 2; until then nothing fires.
+# Hourly: the Sunday pass runs for whoever is at 5 PM local on a Sunday
+# (src/weekly.ts). The evening plan joins it in PR 4.
 [triggers]
-crons = []
+crons = ["0 * * * *"]
 
 # Create with `npx wrangler d1 create glp1-coach` and paste the id here.
 [[d1_databases]]
@@ -25,7 +25,7 @@ ANTHROPIC_MODEL = "claude-sonnet-5-5"
 #   ADMIN_SECRET              header X-Admin-Secret for /telegram/setup and /sim/*
 #   TELEGRAM_BOT_TOKEN        a new bot from @BotFather, never the private one
 #   TELEGRAM_WEBHOOK_SECRET   what Telegram sends back in its header
-#   ANTHROPIC_API_KEY         (from PR 3 on)
+#   ANTHROPIC_API_KEY         the Food Log's estimates; set a monthly cap in the console
 
 # Staging: own worker, own D1. STAGING=1 routes every outbound message to
 # the outbox table instead of Telegram and turns on the /sim/* routes.
@@ -33,7 +33,7 @@ ANTHROPIC_MODEL = "claude-sonnet-5-5"
 name = "glp1-coach-staging"
 
 [env.staging.triggers]
-crons = []
+crons = ["0 * * * *"]
 
 [[env.staging.d1_databases]]
 binding = "DB"

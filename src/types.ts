@@ -30,6 +30,9 @@ export interface Profile {
   pendingField: ProfileField | null;
   lastAskedDay: string | null;
   skipped: ProfileField[];
+  pendingMeal: string | null;   // JSON of a FoodEntry the bot asked about, not logged
+  pendingUntil: string | null;  // ISO; the pending meal expires
+  lastRecapDay: string | null;  // YYYY-MM-DD the Sunday pass last ran for this user
 }
 
 export interface User extends Profile {
@@ -51,3 +54,21 @@ export interface Note {
   source: 'user' | 'coach';
   createdAt: string;
 }
+
+export interface FoodItem { name: string; protein_g: number; kcal: number }
+export type Confidence = 'high' | 'medium' | 'low';
+
+export interface FoodEntry {
+  id?: number;       // set once stored
+  at: string;        // ISO, when the meal was eaten (or logged)
+  text: string;      // what the user sent (caption for a photo)
+  photo: boolean;
+  items: FoodItem[];
+  protein_g: number;
+  kcal: number;
+  confidence: Confidence;
+}
+
+export interface FoodAlias { word: string; item: FoodItem }
+
+export interface DaySummary { day: string; protein_g: number; kcal: number; meals: number }
