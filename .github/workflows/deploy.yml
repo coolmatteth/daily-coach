@@ -1,0 +1,99 @@
+# GLP-1 Coach deploy. Pull requests: typecheck + checks. Merge to master:
+# migrations + deploy to staging → staging must answer with this commit →
+# migrations + deploy to production. Never prod first.
+# Secrets (this repo → Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, STAGING_ADMIN_SECRET
+# Variable: WORKERS_SUBDOMAIN (the <name>.workers.dev part of the account)
+name: Deploy
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npx tsx evals/skeleton-check.ts
+
+  staging:
+    needs: check
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      SUBDOMAIN: ${{ vars.WORKERS_SUBDOMAIN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Migrate staging
+        run: npx wrangler d1 migrations apply glp1-coach-staging --env staging --remote
+      - name: Deploy to staging
+        run: npx wrangler deploy --env staging --var GIT_SHA:${{ github.sha }} --var DEPLOYED_BY:actions
+      - name: Staging answers with this commit
+        env:
+          STAGING_ADMIN_SECRET: ${{ secrets.STAGING_ADMIN_SECRET }}
+        run: |
+          base="https://glp1-coach-staging.${SUBDOMAIN}.workers.dev"
+          for i in $(seq 1 12); do
+            sleep 5
+            live=$(curl -sS "$base/version")
+            echo "$live" | grep -q "${{ github.sha }}" && break
+          done
+          echo "$live"
+          echo "$live" | grep -q "${{ github.sha }}" || { echo "staging not on ${{ github.sha }} after 60 s"; exit 1; }
+          # The bot must answer /start through the sim route.
+          code=$(curl -sS -o start.json -w '%{http_code}' -X POST "$base/sim/message" \
+            -H "X-Admin-Secret: $STAGING_ADMIN_SECRET" -H 'Content-Type: application/json' \
+            -d '{"chatId":"deploy-check","text":"/start"}')
+          cat start.json; echo
+          [ "$code" = "200" ] && grep -q "software, not a person" start.json || { echo "staging /start failed ($code)"; exit 1; }
+          curl -sS -X POST "$base/sim/reset" -H "X-Admin-Secret: $STAGING_ADMIN_SECRET" \
+            -H 'Content-Type: application/json' -d '{"chatId":"deploy-check"}' > /dev/null
+
+  production:
+    needs: staging
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      SUBDOMAIN: ${{ vars.WORKERS_SUBDOMAIN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Migrate production
+        run: npx wrangler d1 migrations apply glp1-coach --remote
+      - name: Deploy to production
+        run: npx wrangler deploy --var GIT_SHA:${{ github.sha }} --var DEPLOYED_BY:actions
+      - name: Production answers with this commit
+        run: |
+          base="https://glp1-coach.${SUBDOMAIN}.workers.dev"
+          for i in $(seq 1 12); do
+            sleep 5
+            live=$(curl -sS "$base/version")
+            echo "$live" | grep -q "${{ github.sha }}" && break
+          done
+          echo "$live"
+          echo "$live" | grep -q "${{ github.sha }}"
