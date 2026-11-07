@@ -28,6 +28,9 @@ jobs:
       - run: npm ci
       - run: npx tsc --noEmit
       - run: npx tsx evals/skeleton-check.ts
+      - run: npx tsx evals/targets-check.ts
+      - run: npx tsx evals/weighins-check.ts
+      - run: npx tsx evals/athlete-check.ts
 
   staging:
     needs: check

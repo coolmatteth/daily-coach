@@ -35,6 +35,13 @@ is the advanced one; this is the experimental stage.
     SMS or WhatsApp later is a new implementation, not a rewrite.
   - `store.ts` — the Store interface over D1, with an in-memory
     implementation for tests. Every table has a user in it.
+  - `athlete.ts` — onboarding (three questions on day one, then one a
+    day with its reason, "skip" declines) and the Athlete File: `/me`
+    prints it, `/note` adds a dated line, `/forget N` removes one.
+  - `targets.ts` — the math: protein tiers, calorie band, burn, pace,
+    with the source of every number in a dated comment. `weighins.ts` —
+    the 7-day average, the noise band, the 12-week plateau rule, the
+    rapid-loss rule, and the safety wording (no number in the message).
   - `quota.ts` — per-user daily model-call cap. `ratelimit.ts` — per-IP
     and per-instance limits on every POST. `clock.ts` — the test clock
     staging can move forward so a simulated week runs in minutes.
@@ -81,5 +88,8 @@ which commit is live.
 ## Status
 PR 1 (skeleton): `/start`, `/version`, `/delete me`, the transport
 interface, the sim routes, quota and rate limits, the deploy pipeline.
-Next: PR 2 onboarding math and the Athlete File; PR 3 Food Log; PR 4
-training bot; PR 5 the simulated-user harness; then the site and waitlist.
+PR 2 (onboarding + Athlete File): the three day-one questions and the
+one-a-day follow-ups, per-user targets with named formulas, `/me`,
+`/note`, `/forget`, `/weight`, "why", the weigh-in rules.
+Next: PR 3 Food Log; PR 4 training bot; PR 5 the simulated-user harness;
+then the site and waitlist.

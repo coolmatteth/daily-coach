@@ -16,7 +16,23 @@ export async function readOffsetMs(store: Store, staging: boolean): Promise<numb
   return Number.isFinite(n) ? n : 0;
 }
 
-export function dayKey(d: Date): string {
-  // UTC calendar day until onboarding knows the user's time zone (PR 2).
-  return d.toISOString().slice(0, 10);
+// The calendar day in the user's time zone (UTC until they tell us one).
+export function dayKey(d: Date, tz?: string | null): string {
+  if (!tz) return d.toISOString().slice(0, 10);
+  try {
+    const parts = new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(d);
+    const get = (t: string) => parts.find((p) => p.type === t)?.value ?? '';
+    return `${get('year')}-${get('month')}-${get('day')}`;
+  } catch {
+    return d.toISOString().slice(0, 10);
+  }
+}
+
+export function addDays(day: string, n: number): string {
+  return new Date(Date.parse(`${day}T00:00:00Z`) + n * 86_400_000).toISOString().slice(0, 10);
+}
+
+// 0 Sunday .. 6 Saturday for a YYYY-MM-DD.
+export function weekday(day: string): number {
+  return new Date(Date.parse(`${day}T00:00:00Z`)).getUTCDay();
 }

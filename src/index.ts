@@ -13,6 +13,10 @@ const json = (data: unknown, status = 200) =>
 
 const COMMANDS = [
   { command: 'start', description: 'Begin, or read what this is' },
+  { command: 'me', description: 'Your file: profile, numbers, notes' },
+  { command: 'note', description: 'Add a line to your file' },
+  { command: 'weight', description: 'Log a weigh-in' },
+  { command: 'why', description: 'Where your numbers come from' },
   { command: 'version', description: 'Which build is answering' },
 ];
 
