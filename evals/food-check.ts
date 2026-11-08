@@ -89,13 +89,16 @@ const entry = (protein_g: number, kcal: number, name = 'meal', confidence: FoodE
   check('a post-shot light day does not count', !/days under your floor/.test(shotWk.text));
   const noBand = weeklyRecap({ days: [...last, ...week(() => [165, 2150])], band: null, tiers: T, dayAfterShot: no });
   check('no band: protein-only verdict', /band appears once/.test(noBand.text) && noBand.verdict === 'on track');
+  const starving = weeklyRecap({ days: [...last, ...week(() => [40, 520])], band: null, tiers: T, dayAfterShot: no });
+  check('no band but a few hundred calories a day: the safety wording', starving.verdict === 'under the floor' && /may be helpful/.test(starving.text), starving.text);
   for (const r of [onTrack, slow, off, under, lightWk, noBand]) {
     check('recap never says hold, stay or step about a dose', !FORBIDDEN_DOSE_WORDS.test(r.text) && !/\b(hold|step up)\b/i.test(r.text), r.text);
   }
   const s = prescriberSummary({ drug: 'Zepbound', weeksOnDose: 5, sideEffectDays: 2, proteinGoalDays: 5, loggedDays: 7, kcalAvg: 2100, band: B, trendPct12wk: -4.1, weeks: 14 });
   check('summary carries weeks, side-effect days, protein, calories, trend', /5 weeks on your current dose of Zepbound/.test(s) && /2 side-effect days/.test(s) && /Protein at goal 5 of 7/.test(s) && /inside your band/.test(s) && /down 4.1%/.test(s), s);
   check('summary ends with "worth bringing" and names no action', /worth bringing to your next check-in/.test(s) && !FORBIDDEN_DOSE_WORDS.test(s) && !/\byou should\b/i.test(s));
-  check('summary with no dose note asks for one', /count the weeks/.test(prescriberSummary({ drug: 'Wegovy', weeksOnDose: null, sideEffectDays: 0, proteinGoalDays: 0, loggedDays: 2, kcalAvg: null, band: null, trendPct12wk: null, weeks: 0 })));
+  const noDose = prescriberSummary({ drug: 'Wegovy', weeksOnDose: null, sideEffectDays: 0, proteinGoalDays: 0, loggedDays: 2, kcalAvg: null, band: null, trendPct12wk: null, weeks: 0 });
+  check('summary with no dose note asks for one, with no dose number in the example', /count the weeks/.test(noDose) && !/\d+\s*mg/.test(noDose), noDose);
   check('no summary without a drug', prescriberSummary({ drug: 'none', weeksOnDose: null, sideEffectDays: 0, proteinGoalDays: 0, loggedDays: 0, kcalAvg: null, band: null, trendPct12wk: null, weeks: 0 }) === '');
   check('weeksOnDose from the latest dose note', weeksOnDose([{ id: 1, userId: 1, date: '2026-10-01', kind: 'dose', text: 'x', value: null, source: 'user', createdAt: '' }, { id: 2, userId: 1, date: '2026-09-01', kind: 'dose', text: 'y', value: null, source: 'user', createdAt: '' }], '2026-11-07') === 5);
   check('FORBIDDEN catches the private wording', FORBIDDEN_DOSE_WORDS.test('Hold the dose; the body adapts.') && FORBIDDEN_DOSE_WORDS.test('the sign to talk about the next dose step up'));
@@ -135,6 +138,9 @@ async function main() {
     'lunch at 1pm': A({ items: [{ name: 'tuna sandwich', protein_g: 30, kcal: 450 }], time: '13:00' }),
     'remove the rice': A({ action: 'edit', remove_items: ['rice'], items: [] }),
     'how much protein': A({ action: 'answer', reply: 'Your goal is on your file; /me shows it.' }),
+    'latte': A({ action: 'ask', items: [], confidence: 'low', question: 'I could not read "latte" as food.' }),
+    'burrito': A({ items: [{ name: 'chicken burrito', protein_g: 38, kcal: 650 }] }),
+    '232': A({ action: 'ask', items: [], confidence: 'low', question: 'I could not read "232" as food. What was it?' }),
   });
   const store = new MemoryStore();
   async function send(chatId: string, text: string, now = T0, photo?: () => Promise<Block | null>): Promise<string[]> {
@@ -154,6 +160,9 @@ async function main() {
   r = await send('u1', 'yes', at(6));
   check('"yes" logs the pending guess with no model call, merged into the sitting', /Added to your .* meal: broccoli 4 g/.test(r[0]) && est.calls === 2, r[0]);
   check('merged: still one meal with three items', (await store.listMeals(1, '2026-11-07'))[0].items.length === 3);
+  r = await send('u1', '232', at(6, ));
+  check('a bare number the model cannot read hints at /weight and offers no "yes"', /say "weight 232"/.test(r[0]) && !/Reply "yes"/.test(r[0]), r[0]);
+  check('an empty reading leaves nothing pending', (await store.getUserByChat('sim', 'u1'))?.pendingMeal === null);
 
   r = await send('u1', 'remove the rice', at(7));
   check('a plain-word correction removes the item', /Removed rice 4 g/.test(r[0]) && (await store.listMeals(1, '2026-11-07'))[0].items.length === 2, r[0]);
@@ -188,10 +197,28 @@ async function main() {
   check('/recap with too few days says so, and still gives the prescriber summary', /a verdict needs 4/.test(r[0]) && /For your prescriber/.test(r[0]) && /count the weeks/.test(r[0]), r[0]);
   check('recap text has no forbidden dose words', !FORBIDDEN_DOSE_WORDS.test(r[0]));
 
+  // Friction fixes from the transcripts (11/8/26).
+  const D2 = (min: number) => new Date(Date.UTC(2026, 10, 8, 12, min));
+  r = await send('u1', 'latte', D2(0));
+  check('an unknown one-word meal offers a one-time definition', /I don't know "latte" yet/.test(r[0]) && /make "latte" a shortcut/.test(r[0]), r[0]);
+  r = await send('u1', 'oat milk latte, 8 g, 180 kcal', D2(1));
+  check('the definition logs it and saves the shortcut', r.some((x) => /Logged ~8 g/.test(x)) && r.some((x) => /"latte" is a shortcut now/.test(x)) && (await store.listAliases(1)).some((a) => a.word === 'latte'), r.join(' | '));
+  r = await send('u1', 'latte', D2(2));
+  check('the word now logs with no model call', /(Logged ~8 g|Added to your .* meal: oat milk latte 8 g)/.test(r[0]), r[0]);
+  const before2 = est.calls;
+  r = await send('u1', 'burrito', D2(3));
+  check('a readable one-word meal is logged and offered as a shortcut', r.some((x) => /Want "burrito" to mean this every time\? Reply "save"/.test(x)), r.join(' | '));
+  r = await send('u1', 'save', D2(4));
+  check('"save" saves it with the estimated numbers', /Saved: "burrito"/.test(r[0]) && (await store.listAliases(1)).some((a) => a.word === 'burrito'), r[0]);
+  check('one model call for the burrito, none for save', est.calls === before2 + 1);
+  r = await send('u1', 'remove the rice', D2(5));
+  check('a correction that matches nothing is one line', /No rice in today's meals\. \/today shows what is\./.test(r[0]), r[0]);
+
   // Quota: the cap stops model calls, logging by shortcut still works.
-  for (let i = est.calls; i < MODEL_CALLS_PER_DAY; i++) await send('u1', `meal number ${i}`, at(200 + i));
+  for (let i = await store.countModelCalls(1, '2026-11-07'); i < MODEL_CALLS_PER_DAY; i++) await send('u1', `meal number ${i}`, at(200 + i));
+  const beforeQ = est.calls;
   r = await send('u1', 'one more meal please', at(300));
-  check('over the cap: a plain refusal, no model call', r[0] === QUOTA_MESSAGE && est.calls === MODEL_CALLS_PER_DAY, r[0]);
+  check('over the cap: a plain refusal, no model call', r[0] === QUOTA_MESSAGE && est.calls === beforeQ, r[0]);
   r = await send('u1', 'shake', at(301));
   check('shortcuts still log over the cap', /Logged ~50 g/.test(r[0]));
   r = await send('u1', 'one more meal please', new Date('2026-11-08T18:00:00Z'));
@@ -218,8 +245,11 @@ async function main() {
   await store.releaseLock(u2!.id);
 
   // A pending onboarding question does not swallow a meal.
+  // The shot-day question has been asked twice already in this script; reset
+  // the ask count so this tests the drop-on-meal rule, not the stop rule.
+  await store.updateUser(1, { askCount: 0, pendingField: null });
   r = await send('u1', 'hello', new Date('2026-11-09T18:00:00Z'));
-  check('a day-two question is asked', r[1]?.startsWith('Which day is your shot'));
+  check('a day-two question is asked', r[1]?.startsWith('Which day is your shot'), r.join(' || '));
   r = await send('u1', 'chicken thigh and rice', new Date('2026-11-09T18:01:00Z'));
   check('a meal while a later question is pending is logged, the question dropped for today', /Logged ~48 g/.test(r[0]) && (await store.getUserByChat('sim', 'u1'))?.pendingField === null, r[0]);
 

@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "tsx evals/skeleton-check.ts && tsx evals/targets-check.ts && tsx evals/weighins-check.ts && tsx evals/athlete-check.ts && tsx evals/food-check.ts && tsx evals/progression-check.ts && tsx evals/training-check.ts",
+    "test": "tsx evals/skeleton-check.ts && tsx evals/targets-check.ts && tsx evals/weighins-check.ts && tsx evals/athlete-check.ts && tsx evals/food-check.ts && tsx evals/progression-check.ts && tsx evals/training-check.ts && tsx evals/sim-check.ts",
     "dev": "wrangler dev",
+    "sim": "tsx sim/run.ts",
     "deploy:staging": "wrangler deploy --env staging",
     "deploy": "wrangler deploy"
   },

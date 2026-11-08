@@ -11,6 +11,7 @@ import { kcalDayOf, tierOf, kc, type KcalDay, type Tier } from './food';
 import { UNDER_FLOOR_TEXT } from './weighins';
 
 export const RECAP_MIN_DAYS = 4;
+export const ABSOLUTE_FLOOR_KCAL = 1000;
 
 const dayName = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString('en-US', { weekday: 'short', timeZone: 'UTC' });
 const md = (d: string) => d.slice(5).replace('-', '/');
@@ -53,8 +54,16 @@ export function weeklyRecap(input: RecapInput): Recap {
   let verdict: Verdict = 'on track';
   if (!band) {
     lines.push(`Calories: ${n0(kcal)} a day. Your band appears once I have your height, age and sex.`);
-    verdict = goalDays >= Math.ceil(logged.length / 2) ? 'on track' : 'a touch slow';
-    lines.push(verdict === 'on track' ? 'On track: protein at goal most days.' : 'A touch slow: protein under goal most days. Smaller sittings, more of them.');
+    // No band yet, but the Delphi consensus's absolute floor (1,000 to
+    // 1,200 kcal/day) is below either sex's floor, so a week under it is
+    // the safety case whoever the user is.
+    if (kcal < ABSOLUTE_FLOOR_KCAL) {
+      verdict = 'under the floor';
+      lines.push(`Very little food logged on average: appetite is the limit this week, not discipline. ${UNDER_FLOOR_TEXT}`);
+    } else {
+      verdict = goalDays >= Math.ceil(logged.length / 2) ? 'on track' : 'a touch slow';
+      lines.push(verdict === 'on track' ? 'On track: protein at goal most days.' : 'A touch slow: protein under goal most days. Smaller sittings, more of them.');
+    }
   } else {
     const kcount = (k: KcalDay) => logged.filter((d) => kcalDayOf(d.kcal, band) === k).length;
     const priorLogged = prior.filter((d) => d.meals > 0);
@@ -99,7 +108,7 @@ export interface SummaryFacts {
 export function prescriberSummary(f: SummaryFacts): string {
   if (!f.drug || f.drug === 'none') return '';
   const parts: string[] = [];
-  parts.push(f.weeksOnDose !== null ? `${f.weeksOnDose} week${f.weeksOnDose === 1 ? '' : 's'} on your current dose of ${f.drug}.` : `On ${f.drug}; tell me "/note dose 5 mg on 10/30" and I will count the weeks for you.`);
+  parts.push(f.weeksOnDose !== null ? `${f.weeksOnDose} week${f.weeksOnDose === 1 ? '' : 's'} on your current dose of ${f.drug}.` : `On ${f.drug}; tell me when your current dose started ("/note dose started 10/30") and I will count the weeks for you.`);
   parts.push(f.sideEffectDays > 0 ? `${f.sideEffectDays} side-effect day${f.sideEffectDays === 1 ? '' : 's'} logged this week.` : 'No side-effect days logged this week.');
   if (f.loggedDays >= RECAP_MIN_DAYS) {
     parts.push(`Protein at goal ${f.proteinGoalDays} of ${f.loggedDays} logged days.`);

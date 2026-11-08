@@ -35,6 +35,12 @@ export interface Profile {
   lastRecapDay: string | null;  // YYYY-MM-DD the Sunday pass last ran for this user
   lastPlanDay: string | null;   // the evening send already ran for this local day
   pendingCheckinDay: string | null; // a stomach/energy check-in was asked for this day
+  pendingTries: number;             // failed answers to the pending question
+  deferredDay: string | null;       // day-one questions were set aside for this day
+  lastAskedField: ProfileField | null; // the one-a-day question asked today, so a late answer still counts
+  askCount: number;                 // times lastAskedField has been asked without an answer
+  pendingAliasWord: string | null;  // a one-word meal the coach offered to save as a shortcut
+  pendingAliasItem: string | null;  // JSON FoodItem for that offer, null when the word was unreadable
 }
 
 export interface User extends Profile {

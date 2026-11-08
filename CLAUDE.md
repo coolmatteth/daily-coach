@@ -19,9 +19,12 @@ PR 4 comes; never share code, data or infrastructure with it. Matt's system
 is the advanced one; this is the experimental stage.
 
 ## Layout
-- `index.html`, `how-its-built.html`, `why.html`, `assets/`, `api/` — the
-  existing static site (Vercel, dailycoach.fitness). Not rewritten yet; it
-  still describes the private system. `api/generate.js` is dormant.
+- `index.html`, `how-its-built.html`, `why.html`, `assets/site.css` — the
+  static site (Vercel, dailycoach.fitness): the pitch, the waitlist form,
+  how it's built, why. The form posts to the worker's `POST /waitlist`
+  (`src/waitlist.ts`, D1 `waitlist` table, CORS for the site only); set the
+  worker URL in `data-waitlist` on `<html>` in `index.html` once the
+  subdomain is known. The old demo generator and its files are gone.
 - `src/` — the worker.
   - `index.ts` routes. `GET /version` and `GET /health` are public.
     `POST /telegram/webhook` checks Telegram's secret header.
@@ -62,6 +65,13 @@ is the advanced one; this is the experimental stage.
     and per-instance limits on every POST. `clock.ts` — the test clock
     staging can move forward so a simulated week runs in minutes.
   - `telegram.ts` — the few Bot API calls we use.
+- `sim/` — the simulated users: six personas, the invariants every coach
+  message must pass, a transcript per persona in `sim/out/` (gitignored).
+  `npx tsx sim/run.ts` runs the cast in process; with `SIM_BASE` and
+  `SIM_SECRET` it runs against staging through `/sim/*`; with
+  `PERSONA_MODEL=1` a model plays each persona and answers the three
+  feedback questions weekly. `sim/README.md` has the cast and what the
+  first runs found.
 - `migrations/` — D1 schema, applied by the deploy workflow.
 - `evals/` — plain-code checks, `npx tsx evals/<name>-check.ts`. CI runs
   all of them on every PR. Add one per PR.
@@ -118,4 +128,9 @@ no loads ("pick 7 of 10"), loads from the progression engine, one step a
 session, replies with numbers recorded as sets, `/plan`, the rest-day
 check-in (`/checkin`, or two bare numbers), the 6 PM evening send, the
 day-after-shot easier session. `/sim/evening` runs the send on staging.
-Next: PR 5 the simulated-user harness; then the site and waitlist.
+PR 5 (simulated users): the cast, the invariants, the transcripts, and
+six fixes the first runs found (see `sim/README.md`).
+Site rewritten for the product with the waitlist; `POST /waitlist` on the
+worker. The deploy workflow skips with a warning until the secrets exist.
+Next: the one-time Cloudflare setup, then the cast against staging with the
+real model, then point `data-waitlist` at the live worker and open the list.

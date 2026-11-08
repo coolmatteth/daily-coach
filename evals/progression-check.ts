@@ -90,5 +90,12 @@ const log = (date: string, w: number | number[], reps: number | number[], n = 3)
   check('first session inside the template range → repeat it, aim for the template top', first.weight === 180 && first.reason === 'hold' && first.repsHigh === 12 && first.repsLow === 8, JSON.stringify(first));
 }
 
+{
+  const jump = nextPrescription([log('2026-11-02', 180, 12), log('2026-11-05', 180, 12), log('2026-11-09', 1800, 12)], 'leg press', '2026-11-12')!;
+  check('a jump far above the working weight is not followed (typo guard)', jump.weight === 180 && jump.reason === 'hold' && /far above/.test(jump.why), JSON.stringify(jump));
+  const real = nextPrescription([log('2026-11-02', 180, 12), log('2026-11-05', 180, 12), log('2026-11-09', 230, 12)], 'leg press', '2026-11-12')!;
+  check('a plausible jump is repeated to confirm', real.weight === 230 && real.reason === 'fill', JSON.stringify(real));
+}
+
 console.log(failures === 0 ? '\nall checks passed' : `\n${failures} check(s) failed`);
 if (failures) process.exit(1);

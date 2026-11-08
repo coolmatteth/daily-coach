@@ -10,5 +10,5 @@
     "noEmit": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*.ts", "evals/**/*.ts"]
+  "include": ["src/**/*.ts", "evals/**/*.ts", "sim/**/*.ts"]
 }

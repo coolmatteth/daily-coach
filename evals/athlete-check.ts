@@ -95,6 +95,51 @@ async function main() {
   r = await send(store, 'u1', '46', day(4));
   check('age ack without a band (height skipped)', r.length === 1 && r[0].startsWith('Thanks'));
 
+  // Found by the simulated users: meals typed into a day-one question.
+  const s3 = new MemoryStore();
+  await send(s3, 'u3', '/start');
+  r = await send(s3, 'u3', 'two eggs and toast');
+  check('deferral: first miss retries', /0 to 4/.test(r[0]));
+  r = await send(s3, 'u3', 'chicken salad');
+  check('deferral: second miss retries', /0 to 4/.test(r[0]));
+  r = await send(s3, 'u3', 'pizza two slices');
+  check('deferral: third message is read as a message, not a retry', !/0 to 4/.test(r[0]) && /weigh/.test(r[0]), r.join(' | '));
+  check('deferral: the question is set aside for today', (await s3.getUserByChat('sim', 'u3'))?.deferredDay === '2026-11-07');
+  r = await send(s3, 'u3', 'hello', day(1));
+  check('deferral: tomorrow the day-one question is asked again', r.some((x) => /0 to 4|weigh/.test(x)), r.join(' | '));
+
+  // A late answer after a meal came between (found by the simulated users).
+  const s4 = new MemoryStore();
+  await send(s4, 'u4', '/start'); await send(s4, 'u4', '2'); await send(s4, 'u4', '232'); await send(s4, 'u4', 'Zepbound');
+  r = await send(s4, 'u4', 'hello', day(1));
+  check('late answer: shot day asked', r[1]?.startsWith('Which day is your shot'));
+  r = await send(s4, 'u4', 'chicken salad', day(1));
+  check('late answer: a meal drops the question for now', (await s4.getUserByChat('sim', 'u4'))?.pendingField === null);
+  r = await send(s4, 'u4', 'Thursday', day(1));
+  check('late answer: "Thursday" later that day still sets the shot day', (await s4.getUserByChat('sim', 'u4'))?.shotDay === 4 && /day after your shot/.test(r[0]), r.join(' | '));
+
+  // A pill has no shot day; an ignored question stops after three asks; "skip" late counts.
+  const s5 = new MemoryStore();
+  await send(s5, 'u5', '/start'); await send(s5, 'u5', '0'); await send(s5, 'u5', '198'); await send(s5, 'u5', 'wegovy pill');
+  let u5 = await s5.getUserByChat('sim', 'u5');
+  check('pill: shot day set to daily, never asked', u5?.shotDay === -1 && u5.drug === 'Wegovy');
+  r = await send(s5, 'u5', 'hello', day(1));
+  check('pill: the next question is height, not shot day', r[1]?.startsWith('Height'), r.join(' | '));
+  r = await send(s5, 'u5', 'hello', day(2));
+  r = await send(s5, 'u5', 'hello', day(3));
+  r = await send(s5, 'u5', 'hello', day(4));
+  check('ignored three times: the coach stops asking', r.some((x) => /stop asking/.test(x)), r.join(' | '));
+  u5 = await s5.getUserByChat('sim', 'u5');
+  check('the field is marked skipped', u5?.skipped.includes('heightIn') === true);
+  r = await send(s5, 'u5', 'hello', day(5));
+  check('next day a different question comes', r[1]?.startsWith('Sex'), r.join(' | '));
+  r = await send(s5, 'u5', 'chicken salad', day(5));
+  r = await send(s5, 'u5', 'skip', day(5));
+  check('"skip" after a meal displaced the question still skips it', r[0] === SKIPPED_TEXT && (await s5.getUserByChat('sim', 'u5'))?.skipped.includes('sex') === true, r.join(' | '));
+  r = await send(s5, 'u5', 'hello', day(6));
+  r = await send(s5, 'u5', 'whenever', day(6));
+  check('a short non-answer gets the retry once, not the food model', /A number, please\. Age\?/.test(r[0]), r.join(' | '));
+
   // Notes
   r = await send(store, 'u1', '/note left knee, no deep squats', day(5));
   check('note added with its id', /Noted #1 \(injury\)/.test(r[0]));

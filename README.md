@@ -1,24 +1,12 @@
-# Fitness Claude — public demo
+# GLP-1 Coach (daily-coach)
 
-Single-page demo of a personal AI training agent, for the story behind it see the page itself. Static HTML + one Vercel serverless function (`api/generate.js`) for the interactive generator.
+A free text-message coach for people on a GLP-1 who lift or want to start.
+Read `CLAUDE.md` for the layout and the rules of the road, and
+`docs/SPEC.md` for the product brief.
 
-## Deploy
-
-```bash
-vercel login          # one-time
-vercel                # preview deploy
-vercel --prod         # production
-```
-
-## Interactive generator setup (required for the "Try it" section)
-
-1. Create an API key at console.anthropic.com (its own workspace recommended).
-2. **Set a hard monthly spend limit on that workspace in the console** (Settings → Limits). This is the real backstop — do not skip it. $5–10 is plenty (Haiku 4.5, ~1 cent per generation).
-3. Add the key to Vercel: `vercel env add ANTHROPIC_API_KEY` (Production + Preview).
-
-Guardrails in code: dropdown-only inputs (no free text reaches the model), per-IP and per-instance hourly rate limits, `max_tokens` capped. The page shows a friendly message when any guard trips.
-
-## Placeholders to fill before sharing
-
-- `index.html` footer: LinkedIn URL.
-- `index.html` eval section: three hand-written lines (marked with `[MATT — your prose here]`).
+- The static site (`index.html`, `how-its-built.html`, `why.html`,
+  `assets/`) deploys on Vercel to dailycoach.fitness. The waitlist form
+  posts to the worker's `/waitlist` route; set the worker URL in the
+  `data-waitlist` attribute on `<html>` in `index.html`.
+- The worker (`src/`) deploys on Cloudflare via `.github/workflows/deploy.yml`.
+- `npm test` runs every check; `npx tsx sim/run.ts` runs the simulated users.

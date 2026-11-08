@@ -142,8 +142,10 @@ export function renderPlan(plan: Plan, forTomorrow: boolean): string {
   return lines.join('\n');
 }
 
-export const REST_TEXT = (tomorrow: string) => `Tomorrow, ${dayName(tomorrow)}: rest. A walk if you like.\n\nStomach and energy today, 1 to 5? Reply with two numbers, like "4 3".`;
-export const NO_LIFT_TEXT = (tomorrow: string) => `Tomorrow, ${dayName(tomorrow)}: a 20-minute walk and protein. Say "/me" and change your lifting days when you are ready to add the gym.\n\nStomach and energy today, 1 to 5? Reply with two numbers, like "4 3".`;
+// The check-in line: the full form the first few times, then the short one.
+export const CHECKIN_ASK = (seen: boolean) => seen ? 'Stomach and energy today, 1 to 5?' : 'Stomach and energy today, 1 to 5? Reply with two numbers, like "4 3".';
+export const REST_TEXT = (tomorrow: string, seen = false) => `Tomorrow, ${dayName(tomorrow)}: rest. A walk if you like.\n\n${CHECKIN_ASK(seen)}`;
+export const NO_LIFT_TEXT = (tomorrow: string, seen = false) => `Tomorrow, ${dayName(tomorrow)}: ${seen ? 'a walk and protein.' : 'a 20-minute walk and protein. Say "/me" and change your lifting days when you are ready to add the gym.'}\n\n${CHECKIN_ASK(seen)}`;
 
 // ---------- replies with numbers ----------
 
@@ -236,6 +238,13 @@ export function parseCheckIn(text: string): CheckIn | null {
   if (![stomach, energy].every((n) => n >= 1 && n <= 5)) return null;
   return { stomach, energy };
 }
+
+// Two bare numbers that are not both 1 to 5: say so instead of treating
+// them as food. (The chaos tester sent "9 9".)
+export function looksLikeCheckIn(text: string): boolean {
+  return /^\s*\d{1,2}\s*[\/,\s-]\s*\d{1,2}\s*$/.test(text) && !/^\s*\d{2,}\s*x/i.test(text);
+}
+export const CHECKIN_RANGE_TEXT = 'Two numbers from 1 to 5, please: stomach first, then energy. Like "4 3".';
 
 // A rough stomach (1 or 2) counts as a side-effect day in the recap.
 export const ROUGH_STOMACH = 2;
