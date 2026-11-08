@@ -81,6 +81,7 @@ const entry = (protein_g: number, kcal: number, name = 'meal', confidence: FoodE
   check('off pace over the ceiling', off.verdict === 'off pace');
   const under = weeklyRecap({ days: [...last, ...week(() => [160, 1650])], band: B, tiers: T, dayAfterShot: no });
   check('a week under the floor gets the safety wording', under.verdict === 'under the floor' && /may be helpful/.test(under.text), under.text);
+  check('the under-floor line says it once', (under.text.match(/below the range|Under your floor/g) ?? []).length === 1, under.text);
   const few = weeklyRecap({ days: [...last, d('2026-10-12', 180, 2200), ...week(() => [0, 0]).slice(1).map((x) => ({ ...x, meals: 0 }))], band: B, tiers: T, dayAfterShot: no });
   check('too few days: no verdict', few.verdict === 'no verdict' && /a verdict needs 4/.test(few.text));
   const lightWk = weeklyRecap({ days: [...last, ...week((i) => [150, [0, 1, 3].includes(i) ? 1600 : 2100])], band: B, tiers: T, dayAfterShot: no });
@@ -189,7 +190,7 @@ async function main() {
   check('/undo removes the last meal', /Deleted 4\./.test(r[0]) && (await store.listMeals(1, '2026-11-07')).length === 3);
 
   r = await send('u1', 'how much protein should I eat', at(127));
-  check('a question gets an answer and the status', /Your goal is on your file/.test(r[0]) && /Today:/.test(r[0]));
+  check('a question gets an answer, with no protein bar under it', /Your goal is on your file/.test(r[0]) && !/Today:/.test(r[0]), r[0]);
 
   r = await send('u1', '/week', at(128));
   check('/week reads the last 7 days', /Last 7 days:/.test(r[0]) && /11\/07 — /.test(r[0]));

@@ -59,7 +59,7 @@ export function weeklyRecap(input: RecapInput): Recap {
     // the safety case whoever the user is.
     if (kcal < ABSOLUTE_FLOOR_KCAL) {
       verdict = 'under the floor';
-      lines.push(`Very little food logged on average: appetite is the limit this week, not discipline. ${UNDER_FLOOR_TEXT}`);
+      lines.push(`Very little food logged on average: appetite is the limit this week, not discipline. ${UNDER_FLOOR_TEXT.replace(/^This week's calories averaged below the range this coach is built for\. /, '')}`);
     } else {
       verdict = goalDays >= Math.ceil(logged.length / 2) ? 'on track' : 'a touch slow';
       lines.push(verdict === 'on track' ? 'On track: protein at goal most days.' : 'A touch slow: protein under goal most days. Smaller sittings, more of them.');
@@ -74,7 +74,7 @@ export function weeklyRecap(input: RecapInput): Recap {
     const light = logged.filter((d) => kcalDayOf(d.kcal, band) === 'light' && !dayAfterShot(d.day));
     if (kcal < band.floor) {
       verdict = 'under the floor';
-      lines.push(`Under your floor on average: appetite is the limit this week, not discipline. ${UNDER_FLOOR_TEXT}`);
+      lines.push(`Under your floor on average: appetite is the limit this week, not discipline. ${UNDER_FLOOR_TEXT.replace(/^This week's calories averaged below the range this coach is built for\. /, '')}`);
     } else if (kcal <= band.target + 100 && goalDays >= Math.ceil(logged.length / 2)) {
       lines.push('On track: inside the band, protein at goal most days.');
     } else if (kcal <= band.ceiling) {

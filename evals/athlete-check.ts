@@ -127,12 +127,14 @@ async function main() {
   check('pill: the next question is height, not shot day', r[1]?.startsWith('Height'), r.join(' | '));
   r = await send(s5, 'u5', 'hello', day(2));
   r = await send(s5, 'u5', 'hello', day(3));
+  check('a repeat ask drops the parenthetical reason', r[1] === 'Height?', r.join(' | '));
   r = await send(s5, 'u5', 'hello', day(4));
   check('ignored three times: the coach stops asking', r.some((x) => /stop asking/.test(x)), r.join(' | '));
   u5 = await s5.getUserByChat('sim', 'u5');
   check('the field is marked skipped', u5?.skipped.includes('heightIn') === true);
   r = await send(s5, 'u5', 'hello', day(5));
   check('next day a different question comes', r[1]?.startsWith('Sex'), r.join(' | '));
+  check('a first ask carries its reason', /\(.*\)$/.test(r[1] ?? '') || r[1] === 'Sex, for the calorie math: F or M?');
   r = await send(s5, 'u5', 'chicken salad', day(5));
   r = await send(s5, 'u5', 'skip', day(5));
   check('"skip" after a meal displaced the question still skips it', r[0] === SKIPPED_TEXT && (await s5.getUserByChat('sim', 'u5'))?.skipped.includes('sex') === true, r.join(' | '));
