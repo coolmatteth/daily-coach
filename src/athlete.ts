@@ -109,7 +109,7 @@ export const QUESTIONS: Question[] = [
     field: 'drug',
     ask: 'Which medication are you on? Zepbound, Wegovy, Mounjaro, Ozempic, a pill, or none. (So the week is read against it.)',
     retry: 'The name is enough, or "none". Which medication?',
-    parse: (t) => { const d = parseDrug(t); return d === null ? null : { drug: d }; },
+    parse: (t) => { const d = parseDrug(t); return d === null ? null : isPill(t) ? { drug: d, shotDay: -1 } : { drug: d }; },
   },
   {
     field: 'shotDay',
@@ -153,9 +153,18 @@ export const questionFor = (f: ProfileField) => QUESTIONS.find((q) => q.field ==
 
 export function isMissing(p: Profile, f: ProfileField): boolean {
   if (p.skipped.includes(f)) return false;
-  if (f === 'shotDay' && p.drug === 'none') return false;
+  if (f === 'shotDay' && (p.drug === 'none' || p.drug === null)) return false;
   return p[f] === null;
 }
+
+// "wegovy pill", "rybelsus", "the oral one": a daily pill has no shot day.
+export function isPill(text: string): boolean {
+  return /\b(pill|oral|tablet|rybelsus|foundayo|orforglipron)\b/i.test(text);
+}
+
+// A question ignored this many times stops being asked. The person can
+// still give the answer any time; the file is theirs.
+export const MAX_ASKS = 3;
 
 export function dayOneDone(p: Profile): boolean {
   return DAY_ONE_FIELDS.every((f) => !isMissing(p, f));

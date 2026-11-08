@@ -74,9 +74,11 @@ export function dayAfterShot(u: User, day: string): boolean {
 // The evening message for `tomorrow`: the plan, or rest plus the check-in.
 export async function eveningText(store: Store, u: User, today: string, now: Date): Promise<{ text: string; askCheckIn: boolean }> {
   const tomorrow = addDays(today, 1);
-  if ((u.liftingDays ?? 0) === 0) return { text: NO_LIFT_TEXT(tomorrow), askCheckIn: true };
+  // After the first few answered check-ins the instruction line goes.
+  const seen = (await store.listCheckIns(u.id, addDays(today, -30), today)).length >= 2;
+  if ((u.liftingDays ?? 0) === 0) return { text: NO_LIFT_TEXT(tomorrow, seen), askCheckIn: true };
   const plan = await planFor(store, u, tomorrow);
-  if (!plan) return { text: REST_TEXT(tomorrow), askCheckIn: true };
+  if (!plan) return { text: REST_TEXT(tomorrow, seen), askCheckIn: true };
   await store.savePlan(u.id, tomorrow, JSON.stringify(plan), now);
   return { text: renderPlan(plan, true), askCheckIn: false };
 }

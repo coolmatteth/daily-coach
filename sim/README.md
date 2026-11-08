@@ -53,3 +53,23 @@ day than the cap.
 - The "I could not read that" reply offered a "yes" that would have logged
   an empty meal; and the prescriber summary's example carried a dose
   number. Both reworded.
+
+## What the second read found (11/8/26, Matt: "how do you remove friction")
+
+- "I could not read shake" seven times for Dana. Now an unknown one-word
+  meal gets: tell me what's in it once and I'll log it and make it a
+  shortcut. A readable one-word meal gets: want this word to mean this
+  every time? Reply "save".
+- Linda, on the pill, was asked her shot day nineteen days running. A pill
+  now means no shot day. Any question ignored three times stops being asked.
+- Marcus said "skip" to a question a meal had displaced and was told it was
+  not food. "skip" now counts late, like an answer.
+- Priya's "remove the rice" on a rice-free day got the whole day's list
+  back. Now one line: "No rice in today's meals."
+- The chaos tester's "9 9" was read as food. Two numbers out of range now
+  get "1 to 5, please."
+- The rest-day message repeated its instruction line 108 times across the
+  cast. After two answered check-ins the line is just "Stomach and energy
+  today, 1 to 5?"
+- A single non-answer word to a fresh question ("whenever") got a trip to
+  the food model. A short list of such words gets the retry instead.

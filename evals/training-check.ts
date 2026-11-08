@@ -117,6 +117,8 @@ async function main() {
   check('"4 5" with no check-in pending is not a meal: it is still read as a check-in', /stomach 4, energy 5/.test(r[0]), r[0]);
   r = await send('u1', '/checkin 3 3', at(2, 10));
   check('/checkin logs explicitly', /stomach 3, energy 3/.test(r[0]));
+  r = await send('u1', '9 9', at(2, 11));
+  check('"9 9" is told the range, not treated as food', /Two numbers from 1 to 5/.test(r[0]), r[0]);
 
   // Thursday: the second template day, with Monday's numbers as the baseline.
   const out3 = new FakeTransport('sim');

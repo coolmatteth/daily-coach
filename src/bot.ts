@@ -1,9 +1,9 @@
-import type { Channel, FoodEntry, Profile, ProfileField, User } from './types';
+import type { Channel, FoodEntry, FoodItem, Profile, ProfileField, User } from './types';
 import type { Store, StoredMeal } from './store';
 import type { Transport } from './transport';
 import { addDays, dayKey, weekday } from './clock';
 import {
-  DAY_ONE_FIELDS, MAX_RETRIES, dayOneDone, isMissing, isSkip, nextQuestion, numbersText, parseNote, parseWeightLb, questionFor, renderFile, userTargets, whyText,
+  DAY_ONE_FIELDS, MAX_ASKS, MAX_RETRIES, dayOneDone, isMissing, isSkip, nextQuestion, numbersText, parseNote, parseWeightLb, questionFor, renderFile, userTargets, whyText,
 } from './athlete';
 import { weighInReply, plateau } from './weighins';
 import {
@@ -13,7 +13,7 @@ import {
 import { systemPrompt, todayContext, type Block, type Estimator } from './estimator';
 import { QUOTA_MESSAGE, takeModelCall } from './quota';
 import { prescriberSummary, weeklyRecap, weeksOnDose } from './recap';
-import { checkInReply, parseCheckIn, renderPlan, ROUGH_STOMACH } from './plans';
+import { checkInReply, CHECKIN_RANGE_TEXT, looksLikeCheckIn, parseCheckIn, renderPlan, ROUGH_STOMACH } from './plans';
 import { dayAfterShot as isDayAfterShot, planFor, recordSets } from './training';
 
 export interface Incoming {
@@ -64,6 +64,9 @@ export function isDeleteMe(text: string): boolean {
 }
 
 const WEIGHT_RE = /^\/?(?:weight|weighed|weigh-in|weighin)\s+(.+)$/i;
+// Words that answer nothing. A single word not on this list ("burrito",
+// "shake") is read as a meal, never as a failed answer.
+const NON_ANSWER = /^(idk|dunno|whatever|whenever|maybe|later|no|nah|nope|hmm+|hm+|ok|okay|lol|k|\?+|not sure|no idea|dont know|don't know)$/i;
 const COMMANDS = new Set(['/me', '/file', '/why', '/help', '/version', '/start', '/note', '/forget', '/weight', '/plan', '/checkin']);
 const FOOD_COMMANDS = new Set(['/today', '/week', '/recap', '/undo', '/delete', '/aliases', '/shortcuts', '/alias', '/shortcut']);
 
@@ -149,6 +152,14 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
       await reply(q.retry);
       return;
     }
+    // A single word that answers nothing ("whenever", "idk") gets the retry
+    // once rather than a trip to the food model, but only while the
+    // question is fresh (asked today) and the word is not a shortcut.
+    if (!DAY_ONE_FIELDS.includes(q.field) && user.lastAskedDay === today && user.pendingTries < 1 && NON_ANSWER.test(m.text.trim())) {
+      user = await store.updateUser(user.id, { pendingTries: 1 });
+      await reply(q.retry);
+      return;
+    }
     // Twice not an answer: set the question aside for today and read the
     // message as what it probably is, a meal or a note. The question comes
     // back tomorrow. (Found by the simulated users, 11/8/26.)
@@ -161,6 +172,11 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
   // users, 11/8/26.)
   if (!user.pendingField && user.lastAskedField && user.lastAskedDay === today && isMissing(user, user.lastAskedField) && !commandLike && !DAY_ONE_FIELDS.includes(user.lastAskedField)) {
     const q = questionFor(user.lastAskedField);
+    if (isSkip(m.text)) {
+      user = await store.updateUser(user.id, { lastAskedField: null, skipped: [...user.skipped, q.field] });
+      await reply(SKIPPED_TEXT);
+      return;
+    }
     const parsed = q.parse(m.text);
     if (parsed) {
       user = await store.updateUser(user.id, { ...parsed, lastAskedField: null });
@@ -215,6 +231,7 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
   }
   const checkinText = cmd === '/checkin' ? m.text.trim().slice(8) : m.text;
   const checkin = parseCheckIn(checkinText);
+  if (!checkin && (cmd === '/checkin' || looksLikeCheckIn(checkinText))) { await reply(CHECKIN_RANGE_TEXT); return; }
   if (checkin && (cmd === '/checkin' || !hasPhoto)) {
     // Two small numbers are the check-in, asked or not; a weight is never
     // two digits, a meal never two bare digits.
@@ -305,6 +322,30 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
     return;
   }
 
+  // "save" after a one-word meal makes it a shortcut; a definition after an
+  // unknown word logs it and saves it. (Matt, 11/8/26: "how do you remove
+  // friction so they engage instead of bounce.")
+  if (user.pendingAliasWord && !hasPhoto) {
+    const word = user.pendingAliasWord;
+    if (/^(save|yes save|save it)$/i.test(m.text.trim()) && user.pendingAliasItem) {
+      const item = JSON.parse(user.pendingAliasItem) as FoodItem;
+      await store.setAlias(user.id, { word, item });
+      await store.updateUser(user.id, { pendingAliasWord: null, pendingAliasItem: null });
+      await reply(`Saved: "${word}" = ${item.name}, ${Math.round(item.protein_g)} g, ${Math.round(item.kcal)} kcal. Send "${word}" on its own to log it.`);
+      return;
+    }
+    const def = parseAlias(`/alias ${word} = ${m.text}`);
+    if (!('error' in def) && !user.pendingAliasItem) {
+      await store.setAlias(user.id, def);
+      await store.updateUser(user.id, { pendingAliasWord: null, pendingAliasItem: null });
+      await logEntry(store, user, today, entries, recompute({ at: nowIso, text: word, photo: false, items: [{ ...def.item }], confidence: 'high', protein_g: 0, kcal: 0 }), reply, tiers, tz, m.now);
+      await reply(`And "${word}" is a shortcut now: send it on its own next time.`);
+      return;
+    }
+    await store.updateUser(user.id, { pendingAliasWord: null, pendingAliasItem: null });
+    user = { ...user, pendingAliasWord: null, pendingAliasItem: null };
+  }
+
   // A plain "yes" to a question logs what was asked about, no model call.
   const pending = readPending(user, m.now);
   if (pending && YES.test(m.text.trim()) && !hasPhoto) {
@@ -350,6 +391,15 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
     if (draft.items.length) await store.updateUser(user.id, { pendingMeal: JSON.stringify(draft), pendingUntil: new Date(m.now.getTime() + PENDING_TTL_MS).toISOString() });
     const reading = draft.items.length ? ` I read it as ${itemList(draft.items)}, ~${Math.round(draft.protein_g)} g.` : '';
     const bareNumber = /^\d{2,3}(\.\d)?$/.test(m.text.trim()) ? ' If that is your weight, say "weight ' + m.text.trim() + '".' : '';
+    const word = normalizeWord(m.text);
+    const shortWord = !draft.items.length && !hasPhoto && word.length >= 3 && word.split(' ').length <= 2 && /^[a-z ]+$/.test(word);
+    if (shortWord) {
+      // One word the model cannot read is usually the person's own name for
+      // a staple. One definition logs it and makes it a shortcut.
+      await store.updateUser(user.id, { pendingAliasWord: word, pendingAliasItem: null });
+      await reply(`I don't know "${word}" yet. Tell me what's in it once, like "whey 2 scoops, 50 g, 240 kcal", and I'll log it and make "${word}" a shortcut.`);
+      return;
+    }
     await reply(draft.items.length
       ? `${act.question || 'What was that, exactly?'}${reading}\nReply "yes" to log it, or tell me what it was.`
       : `${act.question || 'What was that, exactly?'}${bareNumber}\nTell me what it was and I will log it.`);
@@ -359,7 +409,8 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
   if (act.action === 'edit') {
     const result = applyEdit(entries, act.entry, act.remove_items, act.items);
     if (!entries.length || (!result.removed.length && !result.added.length && !result.deletedEntry)) {
-      await reply(`I couldn't match that to a meal from today.\n${todayList(entries, tiers, tz)}`);
+      const named = act.remove_items.length ? act.remove_items.join(', ') : 'that';
+      await reply(entries.length ? `No ${named} in today's meals. /today shows what is.` : 'Nothing logged yet today to change.');
       return;
     }
     if (result.deletedEntry) await store.deleteMeal(user.id, result.deletedEntry.id);
@@ -377,6 +428,13 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
 
   const entry: FoodEntry = recompute({ at: atTime(today, act.time, nowIso, tz), text: m.text.trim().slice(0, 300), photo: hasPhoto, items: act.items, confidence: act.confidence, protein_g: 0, kcal: 0 });
   await logEntry(store, user, today, entries, entry, reply, tiers, tz, m.now, Boolean(act.time));
+  // A short name for a meal the model read: offer to make it one word.
+  const short = normalizeWord(m.text);
+  if (!hasPhoto && short.length >= 3 && short.split(' ').length <= 2 && /^[a-z ]+$/.test(short) && !aliases.some((a) => a.word === short)) {
+    const item: FoodItem = { name: entry.items.map((i) => i.name).join(', '), protein_g: entry.protein_g, kcal: entry.kcal };
+    await store.updateUser(user.id, { pendingAliasWord: short, pendingAliasItem: JSON.stringify(item) });
+    await reply(`Want "${short}" to mean this every time? Reply "save".`);
+  }
   // The day's one onboarding question rides on a logged meal, so a person
   // who only ever logs food still gets asked for height, age and time zone.
   // (Found by the simulated users, 11/8/26: Dana was never asked.)
@@ -432,7 +490,15 @@ async function askNext(store: Store, user: User, reply: (t: string) => Promise<v
   const today = dayKey(now, user.tz);
   const q = nextQuestion(user, today);
   if (!q) return;
-  await store.updateUser(user.id, { pendingField: q.field, lastAskedDay: today, lastAskedField: q.field });
+  const count = user.lastAskedField === q.field ? user.askCount + 1 : 1;
+  if (!DAY_ONE_FIELDS.includes(q.field) && count > MAX_ASKS) {
+    // Asked three times, never answered: stop. (Linda, 11/8/26: asked her
+    // shot day nineteen days running.)
+    await store.updateUser(user.id, { skipped: [...user.skipped, q.field], lastAskedField: null, askCount: 0 });
+    await reply(`I'll stop asking about that. Tell me any time if you want it on your file.`);
+    return;
+  }
+  await store.updateUser(user.id, { pendingField: q.field, lastAskedDay: today, lastAskedField: q.field, askCount: count });
   await reply(q.ask);
 }
 
