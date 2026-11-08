@@ -2,7 +2,7 @@
 // rate limiter, all without HTTP or a database. Run: npx tsx evals/skeleton-check.ts
 import { MemoryStore } from '../src/store';
 import { FakeTransport } from '../src/transport';
-import { handleIncoming, START_TEXT, DELETED_TEXT, NOT_STARTED_TEXT, NOT_BUILT_TEXT, isDeleteMe } from '../src/bot';
+import { handleIncoming, START_TEXT, DELETED_TEXT, NOT_STARTED_TEXT, HELP_TEXT, isDeleteMe } from '../src/bot';
 import { quotaDecision, takeModelCall, MODEL_CALLS_PER_DAY } from '../src/quota';
 import { RateLimiter } from '../src/ratelimit';
 import { withOffset, dayKey } from '../src/clock';
@@ -32,7 +32,7 @@ async function main() {
     const again = await send(store, 'u1', '/start');
     check('/start twice does not duplicate the user', again[0] === START_TEXT && (await store.getUserByChat('sim', 'u1'))?.id === 1);
     check('known user, unknown text while a question is pending gets the retry', /0 to 4/.test((await send(store, 'u1', 'what do I eat'))[0]));
-    check('known user, unknown command gets "not built yet"', (await send(store, 'u1', '/foo'))[0] === NOT_BUILT_TEXT);
+    check('known user, unknown command gets help', (await send(store, 'u1', '/foo'))[0].startsWith("I don't know /foo") && (await send(store, 'u1', '/help'))[0] === HELP_TEXT);
     check('/version answers with the sha', (await send(store, 'u1', '/version'))[0] === 'GLP-1 Coach abc1234');
     check('delete me deletes the row', (await send(store, 'u1', 'delete me'))[0] === DELETED_TEXT && (await store.getUserByChat('sim', 'u1')) === null);
     check('delete me on nobody still answers', (await send(store, 'u9', 'Delete  Me'))[0] === DELETED_TEXT);

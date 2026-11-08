@@ -5,13 +5,13 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "tsx evals/skeleton-check.ts && tsx evals/targets-check.ts && tsx evals/weighins-check.ts && tsx evals/athlete-check.ts",
+    "test": "tsx evals/skeleton-check.ts && tsx evals/targets-check.ts && tsx evals/weighins-check.ts && tsx evals/athlete-check.ts && tsx evals/food-check.ts",
     "dev": "wrangler dev",
     "deploy:staging": "wrangler deploy --env staging",
     "deploy": "wrangler deploy"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.70.0",
+    "@anthropic-ai/sdk": "^0.104.1",
     "zod": "^4.4.3"
   },
   "devDependencies": {
