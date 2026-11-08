@@ -13,6 +13,8 @@ import {
 import { systemPrompt, todayContext, type Block, type Estimator } from './estimator';
 import { QUOTA_MESSAGE, takeModelCall } from './quota';
 import { prescriberSummary, weeklyRecap, weeksOnDose } from './recap';
+import { checkInReply, parseCheckIn, renderPlan, ROUGH_STOMACH } from './plans';
+import { dayAfterShot as isDayAfterShot, planFor, recordSets } from './training';
 
 export interface Incoming {
   store: Store;
@@ -43,7 +45,9 @@ export const NOT_STARTED_TEXT = 'Say /start to begin.';
 export const HELP_TEXT = [
   'Text or photograph what you eat and I keep the protein total against your tiers. Corrections in plain words work ("remove the shake", "that was 1 bar not 2"). Meals within 20 minutes count as one sitting. A shortcut word on its own logs a fixed item; /aliases lists them.',
   '',
-  '/today · /week · /recap · /delete N · /undo · /me · /note · /weight · why',
+  'After the gym, reply with your numbers: "leg press 180 x 10 x 3". On a rest day, two numbers for stomach and energy: "4 3".',
+  '',
+  '/plan · /today · /week · /recap · /delete N · /undo · /me · /note · /weight · /checkin · why',
 ].join('\n');
 export const SKIPPED_TEXT = 'Skipped. You can give it later by telling me.';
 export const BUSY_TEXT = 'One at a time: I am still on your last message. Send that again in a moment.';
@@ -60,7 +64,7 @@ export function isDeleteMe(text: string): boolean {
 }
 
 const WEIGHT_RE = /^\/?(?:weight|weighed|weigh-in|weighin)\s+(.+)$/i;
-const COMMANDS = new Set(['/me', '/file', '/why', '/help', '/version', '/start', '/note', '/forget', '/weight']);
+const COMMANDS = new Set(['/me', '/file', '/why', '/help', '/version', '/start', '/note', '/forget', '/weight', '/plan', '/checkin']);
 const FOOD_COMMANDS = new Set(['/today', '/week', '/recap', '/undo', '/delete', '/aliases', '/shortcuts', '/alias', '/shortcut']);
 
 // One message in, zero or more out. No HTTP, no Telegram, no D1 in here:
@@ -183,6 +187,29 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
     await reply(weighInReply(await store.listWeighIns(user.id), today));
     await askNext(store, user, reply, m.now);
     return;
+  }
+
+  // ---- training ----
+  if (cmd === '/plan') {
+    const plan = await planFor(store, user, today);
+    if (plan) { await store.savePlan(user.id, today, JSON.stringify(plan), m.now); await reply(renderPlan(plan, false)); }
+    else await reply((user.liftingDays ?? 0) === 0 ? 'No lifting days set. Tell me how many days a week you can lift and the plans start.' : 'Today is a rest day. Your next plan arrives this evening for tomorrow.');
+    return;
+  }
+  const checkinText = cmd === '/checkin' ? m.text.trim().slice(8) : m.text;
+  const checkin = parseCheckIn(checkinText);
+  if (checkin && (cmd === '/checkin' || !hasPhoto)) {
+    // Two small numbers are the check-in, asked or not; a weight is never
+    // two digits, a meal never two bare digits.
+    const forDay = user.pendingCheckinDay ?? today;
+    await store.addCheckIn(user.id, { day: forDay, ...checkin }, m.now);
+    user = await store.updateUser(user.id, { pendingCheckinDay: null });
+    await reply(checkInReply(checkin, isDayAfterShot(user, forDay)));
+    return;
+  }
+  if (!text.startsWith('/') && !hasPhoto) {
+    const recorded = await recordSets(store, user, m.text, today, m.now);
+    if (recorded) { await reply(recorded); return; }
   }
 
   // ---- the Food Log ----
@@ -352,7 +379,8 @@ export async function recapText(store: Store, user: User, today: string): Promis
   const r = weeklyRecap({ days, band: targets.kcal, tiers: targets.protein, dayAfterShot });
   const notes = await store.listNotes(user.id);
   const weekStart = addDays(today, -7);
-  const sideEffectDays = new Set(notes.filter((n) => n.kind === 'illness' && n.date >= weekStart && n.date < today).map((n) => n.date)).size;
+  const rough = (await store.listCheckIns(user.id, weekStart, addDays(today, -1))).filter((c) => c.stomach <= ROUGH_STOMACH).map((c) => c.day);
+  const sideEffectDays = new Set([...notes.filter((n) => n.kind === 'illness' && n.date >= weekStart && n.date < today).map((n) => n.date), ...rough]).size;
   const ws = await store.listWeighIns(user.id);
   const trend = plateau(ws, addDays(today, -1));
   const weeks = ws.length ? Math.floor((Date.parse(`${today}T00:00:00Z`) - Date.parse(`${ws[0].date}T00:00:00Z`)) / (7 * 86_400_000)) : 0;
