@@ -377,7 +377,10 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
   if (pending) await store.updateUser(user.id, { pendingMeal: null, pendingUntil: null });
 
   if (act.action === 'answer' || (act.action === 'log' && !act.items.length)) {
-    await reply(`${act.reply || 'Send a meal to log it.'}\n${status(entries, tiers)}`);
+    // An answer to a question is an answer; the day's protein bar rides
+    // only on food. (The simulated users, 11/8/26: "these loads are too
+    // light" came back with "Today: 0 g protein" under it.)
+    await reply(act.reply || 'Send a meal to log it.');
     await askNext(store, user, reply, m.now);
     return;
   }
@@ -491,6 +494,8 @@ async function askNext(store: Store, user: User, reply: (t: string) => Promise<v
   const q = nextQuestion(user, today);
   if (!q) return;
   const count = user.lastAskedField === q.field ? user.askCount + 1 : 1;
+  // The reason in parentheses rides on the first ask; a repeat is just the question.
+  const ask = count > 1 ? q.ask.replace(/\s*\([^)]*\)\s*$/, '') : q.ask;
   if (!DAY_ONE_FIELDS.includes(q.field) && count > MAX_ASKS) {
     // Asked three times, never answered: stop. (Linda, 11/8/26: asked her
     // shot day nineteen days running.)
@@ -499,7 +504,7 @@ async function askNext(store: Store, user: User, reply: (t: string) => Promise<v
     return;
   }
   await store.updateUser(user.id, { pendingField: q.field, lastAskedDay: today, lastAskedField: q.field, askCount: count });
-  await reply(q.ask);
+  await reply(ask);
 }
 
 function ackFor(field: ProfileField, p: Profile): string | null {

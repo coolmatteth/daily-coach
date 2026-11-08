@@ -73,3 +73,8 @@ day than the cap.
   today, 1 to 5?"
 - A single non-answer word to a fresh question ("whenever") got a trip to
   the food model. A short list of such words gets the retry instead.
+- An answer to a question came back with the day's protein bar under it.
+  Now only food gets the bar.
+- The under-floor recap said the same thing in two sentences. Once now.
+- Every ask of a question carried its parenthetical reason. The reason
+  rides on the first ask only.
