@@ -3,7 +3,7 @@ import type { Store, StoredMeal } from './store';
 import type { Transport } from './transport';
 import { addDays, dayKey, weekday } from './clock';
 import {
-  DAY_ONE_FIELDS, dayOneDone, isSkip, nextQuestion, numbersText, parseNote, parseWeightLb, questionFor, renderFile, userTargets, whyText,
+  DAY_ONE_FIELDS, MAX_RETRIES, dayOneDone, isMissing, isSkip, nextQuestion, numbersText, parseNote, parseWeightLb, questionFor, renderFile, userTargets, whyText,
 } from './athlete';
 import { weighInReply, plateau } from './weighins';
 import {
@@ -133,7 +133,7 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
     const parsed = q.parse(m.text);
     if (parsed) {
       const wasDone = dayOneDone(user);
-      user = await store.updateUser(user.id, { ...parsed, pendingField: null });
+      user = await store.updateUser(user.id, { ...parsed, pendingField: null, pendingTries: 0 });
       if (!wasDone && dayOneDone(user)) {
         await reply(numbersText(user));
         await store.updateUser(user.id, { lastAskedDay: today });
@@ -144,13 +144,30 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
       await askNext(store, user, reply, m.now);
       return;
     }
-    if (DAY_ONE_FIELDS.includes(q.field)) {
+    if (DAY_ONE_FIELDS.includes(q.field) && user.pendingTries < MAX_RETRIES) {
+      user = await store.updateUser(user.id, { pendingTries: user.pendingTries + 1 });
       await reply(q.retry);
       return;
     }
-    // A later question the message does not answer: drop it for today and
-    // read the message as what it probably is, a meal or a note.
-    user = await store.updateUser(user.id, { pendingField: null });
+    // Twice not an answer: set the question aside for today and read the
+    // message as what it probably is, a meal or a note. The question comes
+    // back tomorrow. (Found by the simulated users, 11/8/26.)
+    user = await store.updateUser(user.id, { pendingField: null, pendingTries: 0, deferredDay: DAY_ONE_FIELDS.includes(q.field) ? today : user.deferredDay });
+  }
+
+  // A late answer to the question asked earlier today, after a meal or two
+  // came between and the question was set aside. "Thursday" the morning
+  // after "Which day is your shot?" still counts. (Found by the simulated
+  // users, 11/8/26.)
+  if (!user.pendingField && user.lastAskedField && user.lastAskedDay === today && isMissing(user, user.lastAskedField) && !commandLike && !DAY_ONE_FIELDS.includes(user.lastAskedField)) {
+    const q = questionFor(user.lastAskedField);
+    const parsed = q.parse(m.text);
+    if (parsed) {
+      user = await store.updateUser(user.id, { ...parsed, lastAskedField: null });
+      const ack = ackFor(q.field, user);
+      if (ack) await reply(ack);
+      return;
+    }
   }
 
   if (cmd === '/help') { await reply(HELP_TEXT); return; }
@@ -219,8 +236,13 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
   }
   const targets = userTargets(user);
   if (!targets) {
-    await reply('I need your weight before I can keep a food log. What do you weigh?');
-    await store.updateUser(user.id, { pendingField: 'weightLb', lastAskedDay: today });
+    if (user.deferredDay === today) {
+      // Already set the questions aside today: say what is needed once, no new question.
+      await reply('I can keep a food log once I have your weight. Send it any time, like "weight 232".');
+      return;
+    }
+    await reply("I'll keep that once I have your weight, which your protein numbers come from. What do you weigh?");
+    await store.updateUser(user.id, { pendingField: 'weightLb', pendingTries: 0, lastAskedDay: today, deferredDay: null });
     return;
   }
   const tiers = targets.protein;
@@ -279,6 +301,7 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
   const alias = !hasPhoto ? matchAlias(m.text, aliases) : undefined;
   if (alias) {
     await logEntry(store, user, today, entries, recompute({ at: nowIso, text: m.text.trim().slice(0, 300), photo: false, items: [{ ...alias.item }], confidence: 'high', protein_g: 0, kcal: 0 }), reply, tiers, tz, m.now);
+    await askNext(store, user, reply, m.now);
     return;
   }
 
@@ -287,6 +310,7 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
   if (pending && YES.test(m.text.trim()) && !hasPhoto) {
     await store.updateUser(user.id, { pendingMeal: null, pendingUntil: null });
     await logEntry(store, user, today, entries, { ...pending, at: nowIso }, reply, tiers, tz, m.now);
+    await askNext(store, user, reply, m.now);
     return;
   }
 
@@ -321,9 +345,14 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
     // Nothing is written on a guess. The reading is parked for 15 minutes;
     // "yes" logs it, anything else is read as the correction.
     const draft: FoodEntry = recompute({ at: atTime(today, act.time, nowIso, tz), text: m.text.trim().slice(0, 300), photo: hasPhoto, items: act.items, confidence: act.confidence, protein_g: 0, kcal: 0 });
-    await store.updateUser(user.id, { pendingMeal: JSON.stringify(draft), pendingUntil: new Date(m.now.getTime() + PENDING_TTL_MS).toISOString() });
+    // Nothing to confirm when the model read no food at all: a "yes" to
+    // an empty draft would log an empty meal.
+    if (draft.items.length) await store.updateUser(user.id, { pendingMeal: JSON.stringify(draft), pendingUntil: new Date(m.now.getTime() + PENDING_TTL_MS).toISOString() });
     const reading = draft.items.length ? ` I read it as ${itemList(draft.items)}, ~${Math.round(draft.protein_g)} g.` : '';
-    await reply(`${act.question || 'What was that, exactly?'}${reading}\nReply "yes" to log it, or tell me what it was.`);
+    const bareNumber = /^\d{2,3}(\.\d)?$/.test(m.text.trim()) ? ' If that is your weight, say "weight ' + m.text.trim() + '".' : '';
+    await reply(draft.items.length
+      ? `${act.question || 'What was that, exactly?'}${reading}\nReply "yes" to log it, or tell me what it was.`
+      : `${act.question || 'What was that, exactly?'}${bareNumber}\nTell me what it was and I will log it.`);
     return;
   }
 
@@ -342,11 +371,16 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
       if (result.added.length) parts.push(`${result.removed.length ? 'added' : 'Added'} ${itemList(result.added)}`);
     }
     await reply(`${parts.join(', ')}.\n${status(result.entries, tiers)}`);
+    await askNext(store, user, reply, m.now);
     return;
   }
 
   const entry: FoodEntry = recompute({ at: atTime(today, act.time, nowIso, tz), text: m.text.trim().slice(0, 300), photo: hasPhoto, items: act.items, confidence: act.confidence, protein_g: 0, kcal: 0 });
   await logEntry(store, user, today, entries, entry, reply, tiers, tz, m.now, Boolean(act.time));
+  // The day's one onboarding question rides on a logged meal, so a person
+  // who only ever logs food still gets asked for height, age and time zone.
+  // (Found by the simulated users, 11/8/26: Dana was never asked.)
+  await askNext(store, user, reply, m.now);
 }
 
 function readPending(user: User, now: Date): FoodEntry | undefined {
@@ -398,7 +432,7 @@ async function askNext(store: Store, user: User, reply: (t: string) => Promise<v
   const today = dayKey(now, user.tz);
   const q = nextQuestion(user, today);
   if (!q) return;
-  await store.updateUser(user.id, { pendingField: q.field, lastAskedDay: today });
+  await store.updateUser(user.id, { pendingField: q.field, lastAskedDay: today, lastAskedField: q.field });
   await reply(q.ask);
 }
 

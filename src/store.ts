@@ -7,7 +7,7 @@ export function emptyProfile(): Profile {
     liftingDays: null, goalLb: null, leanMassLb: null, tz: null,
     pendingField: null, lastAskedDay: null, skipped: [],
     pendingMeal: null, pendingUntil: null, lastRecapDay: null,
-    lastPlanDay: null, pendingCheckinDay: null,
+    lastPlanDay: null, pendingCheckinDay: null, pendingTries: 0, deferredDay: null, lastAskedField: null,
   };
 }
 
@@ -231,7 +231,7 @@ type UserRow = {
   shot_day: number | null; lifting_days: number | null; goal_lb: number | null; lean_mass_lb: number | null;
   pending_field: ProfileField | null; last_asked_day: string | null; skipped: string | null;
   pending_meal: string | null; pending_until: string | null; last_recap_day: string | null;
-  last_plan_day: string | null; pending_checkin_day: string | null;
+  last_plan_day: string | null; pending_checkin_day: string | null; pending_tries: number | null; deferred_day: string | null; last_asked_field: ProfileField | null;
 };
 
 const COLUMN: Record<keyof Profile, string> = {
@@ -239,7 +239,7 @@ const COLUMN: Record<keyof Profile, string> = {
   liftingDays: 'lifting_days', goalLb: 'goal_lb', leanMassLb: 'lean_mass_lb', tz: 'tz',
   pendingField: 'pending_field', lastAskedDay: 'last_asked_day', skipped: 'skipped',
   pendingMeal: 'pending_meal', pendingUntil: 'pending_until', lastRecapDay: 'last_recap_day',
-  lastPlanDay: 'last_plan_day', pendingCheckinDay: 'pending_checkin_day',
+  lastPlanDay: 'last_plan_day', pendingCheckinDay: 'pending_checkin_day', pendingTries: 'pending_tries', deferredDay: 'deferred_day', lastAskedField: 'last_asked_field',
 };
 
 type NoteRow = { id: number; user_id: number; date: string; kind: NoteKind; text: string; value: string | null; source: 'user' | 'coach'; created_at: string };
@@ -256,7 +256,7 @@ export class D1Store implements Store {
       pendingField: r.pending_field, lastAskedDay: r.last_asked_day,
       skipped: r.skipped ? (r.skipped.split(',').filter(Boolean) as ProfileField[]) : [],
       pendingMeal: r.pending_meal, pendingUntil: r.pending_until, lastRecapDay: r.last_recap_day,
-      lastPlanDay: r.last_plan_day, pendingCheckinDay: r.pending_checkin_day,
+      lastPlanDay: r.last_plan_day, pendingCheckinDay: r.pending_checkin_day, pendingTries: r.pending_tries ?? 0, deferredDay: r.deferred_day, lastAskedField: r.last_asked_field,
     };
   }
   private toMeal(r: MealRow): StoredMeal {

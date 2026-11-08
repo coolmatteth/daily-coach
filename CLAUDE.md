@@ -62,6 +62,13 @@ is the advanced one; this is the experimental stage.
     and per-instance limits on every POST. `clock.ts` — the test clock
     staging can move forward so a simulated week runs in minutes.
   - `telegram.ts` — the few Bot API calls we use.
+- `sim/` — the simulated users: six personas, the invariants every coach
+  message must pass, a transcript per persona in `sim/out/` (gitignored).
+  `npx tsx sim/run.ts` runs the cast in process; with `SIM_BASE` and
+  `SIM_SECRET` it runs against staging through `/sim/*`; with
+  `PERSONA_MODEL=1` a model plays each persona and answers the three
+  feedback questions weekly. `sim/README.md` has the cast and what the
+  first runs found.
 - `migrations/` — D1 schema, applied by the deploy workflow.
 - `evals/` — plain-code checks, `npx tsx evals/<name>-check.ts`. CI runs
   all of them on every PR. Add one per PR.
@@ -118,4 +125,7 @@ no loads ("pick 7 of 10"), loads from the progression engine, one step a
 session, replies with numbers recorded as sets, `/plan`, the rest-day
 check-in (`/checkin`, or two bare numbers), the 6 PM evening send, the
 day-after-shot easier session. `/sim/evening` runs the send on staging.
-Next: PR 5 the simulated-user harness; then the site and waitlist.
+PR 5 (simulated users): the cast, the invariants, the transcripts, and
+six fixes the first runs found (see `sim/README.md`).
+Next: run the cast against staging with the real model once the one-time
+Cloudflare setup exists; then the site rewrite and the waitlist.

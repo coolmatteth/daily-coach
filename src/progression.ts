@@ -146,6 +146,7 @@ function topSetReps(sets: LoggedSet[]): number {
 }
 
 export const LAYOFF_DAYS = 21;
+export const JUMP_CAP = 1.5;
 const daysBetween = (a: string, b: string) => Math.round((Date.parse(b) - Date.parse(a)) / 86_400_000);
 
 // One lift's history, oldest first. What the next session should prescribe.
@@ -173,6 +174,13 @@ export function nextPrescription(history: LiftLog[], key: string, asOf?: string,
   }
 
   if (L > work) {
+    // A reported load far above the working weight is more often a typo
+    // ("1800") or a different machine than a real jump. Do not prescribe
+    // it; repeat the working weight and let the next session confirm.
+    // (Found by the simulated users, 11/8/26.)
+    if (prev && L > work * JUMP_CAP) {
+      return { ...base, weight: work, reason: 'hold', why: `${L} is far above your usual ${work}; if that was real, do it again and the plan will follow` };
+    }
     if (ownedAt(last.sets, range.high) || topSetReps(last.sets) >= range.low) {
       return { ...base, weight: L, reason: 'fill', why: `${L} last time was above your working ${work}; repeat it to confirm` };
     }

@@ -166,11 +166,16 @@ export function dayOneDone(p: Profile): boolean {
 export function nextQuestion(p: Profile, today: string): Question | null {
   for (const f of FIELD_ORDER) {
     if (!isMissing(p, f)) continue;
-    if (DAY_ONE_FIELDS.includes(f)) return questionFor(f);
+    // Day-one questions come back to back, unless the person answered
+    // twice with something else today: then they wait until tomorrow.
+    if (DAY_ONE_FIELDS.includes(f)) return p.deferredDay === today ? null : questionFor(f);
     return p.lastAskedDay === today ? null : questionFor(f);
   }
   return null;
 }
+
+// How many non-answers a day-one question takes before it is set aside.
+export const MAX_RETRIES = 2;
 
 export function isSkip(text: string): boolean {
   return /^(skip|pass|no thanks|later|n\/a)\b/i.test(text.trim());
@@ -205,7 +210,9 @@ export function numbersText(p: Profile): string {
   lines.push(days > 0 ? `Lifting: ${days} day${days === 1 ? '' : 's'} a week, full body, machines and dumbbells first.` : 'Lifting: 0 days for now. The plan will be walking and protein until that changes.');
   lines.push('Pace: most people on these medications lose 10 to 15% in the first six months and slower after that. Everyone plateaus eventually.');
   lines.push('');
-  lines.push('Reply "why" to see where any number comes from. The daily plan and the food log arrive with the next builds.');
+  lines.push(days > 0
+    ? 'Reply "why" to see where any number comes from. Text or photograph what you eat any time; your first plan arrives this evening at 6.'
+    : 'Reply "why" to see where any number comes from. Text or photograph what you eat any time; each evening at 6 I check in.');
   return lines.join('\n');
 }
 

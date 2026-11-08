@@ -34,6 +34,7 @@ jobs:
       - run: npx tsx evals/food-check.ts
       - run: npx tsx evals/progression-check.ts
       - run: npx tsx evals/training-check.ts
+      - run: npx tsx evals/sim-check.ts
 
   staging:
     needs: check
