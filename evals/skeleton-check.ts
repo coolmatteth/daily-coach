@@ -6,6 +6,7 @@ import { handleIncoming, START_TEXT, DELETED_TEXT, NOT_STARTED_TEXT, HELP_TEXT, 
 import { quotaDecision, takeModelCall, MODEL_CALLS_PER_DAY } from '../src/quota';
 import { RateLimiter } from '../src/ratelimit';
 import { withOffset, dayKey } from '../src/clock';
+import { normalizeEmail, isAllowedOrigin, corsHeaders } from '../src/waitlist';
 
 let failures = 0;
 function check(name: string, ok: boolean, detail = ''): void {
@@ -86,6 +87,15 @@ async function main() {
     const real = new Date('2026-11-06T00:00:00Z');
     check('clock offset moves time', withOffset(real, 7 * 86_400_000).toISOString().startsWith('2026-11-13'));
     check('dayKey is the calendar day', dayKey(real) === '2026-11-06');
+  }
+
+  // Waitlist
+  {
+    check('email: trims and lowercases', normalizeEmail('  Matt@Example.com ') === 'matt@example.com');
+    check('email: rejects junk', normalizeEmail('nope') === null && normalizeEmail('a@b') === null && normalizeEmail(42) === null);
+    check('cors: the site is allowed, strangers are not', isAllowedOrigin('https://dailycoach.fitness') && !isAllowedOrigin('https://evil.example') && !isAllowedOrigin(null));
+    check('cors: a Vercel preview of the site is allowed', isAllowedOrigin('https://fitness-claude-demo-git-claude-x-matt-da33.vercel.app'));
+    check('cors headers echo the allowed origin only', corsHeaders('https://dailycoach.fitness')['Access-Control-Allow-Origin'] === 'https://dailycoach.fitness' && Object.keys(corsHeaders('https://evil.example')).length === 0);
   }
 
   console.log(failures === 0 ? '\nall checks passed' : `\n${failures} check(s) failed`);

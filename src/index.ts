@@ -8,6 +8,7 @@ import { getWebhookInfo, photoBlock, sendTyping, setMyCommands, setWebhook, type
 import { ClaudeEstimator, type Block, type Estimator } from './estimator';
 import { weeklyPass } from './weekly';
 import { eveningPass } from './training';
+import { addToWaitlist, ALREADY_TEXT, corsHeaders, normalizeEmail, THANKS_TEXT, waitlistCount } from './waitlist';
 
 const limiter = new RateLimiter();
 
@@ -59,6 +60,22 @@ export default {
 
     if (req.method === 'GET' && path === '/version') return json(versionInfo(env));
     if (req.method === 'GET' && path === '/health') return json({ ok: true });
+
+    // The waitlist: the static site posts an email here.
+    if (path === '/waitlist') {
+      const origin = req.headers.get('Origin');
+      const cors = corsHeaders(origin);
+      if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
+      if (req.method === 'GET') return json({ count: await waitlistCount(env) }, 200);
+      if (req.method !== 'POST') return json({ error: 'not found' }, 404);
+      const ip = req.headers.get('cf-connecting-ip') ?? 'unknown';
+      if (limiter.check(ip, Date.now())) return new Response(JSON.stringify({ error: 'slow down' }), { status: 429, headers: { 'Content-Type': 'application/json', ...cors } });
+      const body = (await req.json().catch(() => ({}))) as { email?: unknown };
+      const email = normalizeEmail(body.email);
+      if (!email) return new Response(JSON.stringify({ error: 'That does not look like an email address.' }), { status: 400, headers: { 'Content-Type': 'application/json', ...cors } });
+      const r = await addToWaitlist(env, email, 'site', new Date());
+      return new Response(JSON.stringify({ ok: true, message: r === 'added' ? THANKS_TEXT : ALREADY_TEXT }), { status: 200, headers: { 'Content-Type': 'application/json', ...cors } });
+    }
 
     if (req.method === 'POST') {
       const ip = req.headers.get('cf-connecting-ip') ?? 'unknown';

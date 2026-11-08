@@ -19,9 +19,12 @@ PR 4 comes; never share code, data or infrastructure with it. Matt's system
 is the advanced one; this is the experimental stage.
 
 ## Layout
-- `index.html`, `how-its-built.html`, `why.html`, `assets/`, `api/` — the
-  existing static site (Vercel, dailycoach.fitness). Not rewritten yet; it
-  still describes the private system. `api/generate.js` is dormant.
+- `index.html`, `how-its-built.html`, `why.html`, `assets/site.css` — the
+  static site (Vercel, dailycoach.fitness): the pitch, the waitlist form,
+  how it's built, why. The form posts to the worker's `POST /waitlist`
+  (`src/waitlist.ts`, D1 `waitlist` table, CORS for the site only); set the
+  worker URL in `data-waitlist` on `<html>` in `index.html` once the
+  subdomain is known. The old demo generator and its files are gone.
 - `src/` — the worker.
   - `index.ts` routes. `GET /version` and `GET /health` are public.
     `POST /telegram/webhook` checks Telegram's secret header.
@@ -127,5 +130,7 @@ check-in (`/checkin`, or two bare numbers), the 6 PM evening send, the
 day-after-shot easier session. `/sim/evening` runs the send on staging.
 PR 5 (simulated users): the cast, the invariants, the transcripts, and
 six fixes the first runs found (see `sim/README.md`).
-Next: run the cast against staging with the real model once the one-time
-Cloudflare setup exists; then the site rewrite and the waitlist.
+Site rewritten for the product with the waitlist; `POST /waitlist` on the
+worker. The deploy workflow skips with a warning until the secrets exist.
+Next: the one-time Cloudflare setup, then the cast against staging with the
+real model, then point `data-waitlist` at the live worker and open the list.
