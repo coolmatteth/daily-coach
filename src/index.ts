@@ -7,6 +7,7 @@ import { RateLimiter } from './ratelimit';
 import { getWebhookInfo, photoBlock, sendTyping, setMyCommands, setWebhook, type TelegramUpdate } from './telegram';
 import { ClaudeEstimator, type Block, type Estimator } from './estimator';
 import { weeklyPass } from './weekly';
+import { eveningPass } from './training';
 
 const limiter = new RateLimiter();
 
@@ -15,6 +16,7 @@ const json = (data: unknown, status = 200) =>
 
 const COMMANDS = [
   { command: 'start', description: 'Begin, or read what this is' },
+  { command: 'plan', description: "Today's session" },
   { command: 'today', description: "Today's meals, numbered, and the protein total" },
   { command: 'week', description: 'Protein and calories for the last 7 days' },
   { command: 'recap', description: 'The Sunday verdict now' },
@@ -23,6 +25,7 @@ const COMMANDS = [
   { command: 'weight', description: 'Log a weigh-in' },
   { command: 'delete', description: 'Delete a meal by its number from /today' },
   { command: 'undo', description: 'Remove the last meal logged today' },
+  { command: 'checkin', description: 'Stomach and energy, 1 to 5: /checkin 4 3' },
   { command: 'aliases', description: 'Shortcut words and what they log' },
   { command: 'help', description: 'What I can do' },
   { command: 'version', description: 'Which build is answering' },
@@ -130,10 +133,15 @@ export default {
         return json({ offsetMs: next, now: (await now()).toISOString() });
       }
 
-      // Run the Sunday pass now against the (possibly moved) clock.
+      // Run the Sunday pass or the evening send now against the (possibly moved) clock.
       if (req.method === 'POST' && path === '/sim/weekly') {
         const t = await now();
         const sent = await weeklyPass(store, (channel) => new OutboxTransport(store, channel, () => t), t);
+        return json({ sent, now: t.toISOString() });
+      }
+      if (req.method === 'POST' && path === '/sim/evening') {
+        const t = await now();
+        const sent = await eveningPass(store, (channel) => new OutboxTransport(store, channel, () => t), t);
         return json({ sent, now: t.toISOString() });
       }
 
@@ -153,7 +161,8 @@ export default {
     return json({ error: 'not found' }, 404);
   },
 
-  // Hourly: the Sunday pass for whoever is at 5 PM local on a Sunday.
+  // Hourly: the evening send for whoever is at 6 PM local, and the Sunday
+  // pass for whoever is at 5 PM local on a Sunday.
   async scheduled(_event: ScheduledEvent, env: Env, _ctx: ExecutionContext): Promise<void> {
     const staging = env.STAGING === '1';
     const store = new D1Store(env.DB);
@@ -161,5 +170,6 @@ export default {
     const transportFor = (channel: Channel): Transport =>
       staging || channel === 'sim' ? new OutboxTransport(store, channel, () => t) : new TelegramTransport(env.TELEGRAM_BOT_TOKEN ?? '');
     await weeklyPass(store, transportFor, t);
+    await eveningPass(store, transportFor, t);
   },
 };

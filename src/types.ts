@@ -33,6 +33,8 @@ export interface Profile {
   pendingMeal: string | null;   // JSON of a FoodEntry the bot asked about, not logged
   pendingUntil: string | null;  // ISO; the pending meal expires
   lastRecapDay: string | null;  // YYYY-MM-DD the Sunday pass last ran for this user
+  lastPlanDay: string | null;   // the evening send already ran for this local day
+  pendingCheckinDay: string | null; // a stomach/energy check-in was asked for this day
 }
 
 export interface User extends Profile {
@@ -72,3 +74,6 @@ export interface FoodEntry {
 export interface FoodAlias { word: string; item: FoodItem }
 
 export interface DaySummary { day: string; protein_g: number; kcal: number; meals: number }
+
+export interface SetRow { day: string; key: string; exercise: string; setIndex: number; weight: number; reps: number }
+export interface CheckInRow { day: string; stomach: number; energy: number }

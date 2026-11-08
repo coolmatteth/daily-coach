@@ -1,4 +1,4 @@
-import type { Channel, DaySummary, FoodAlias, FoodEntry, FoodItem, Note, NoteKind, Profile, ProfileField, Sex, User } from './types';
+import type { Channel, CheckInRow, DaySummary, FoodAlias, FoodEntry, FoodItem, Note, NoteKind, Profile, ProfileField, SetRow, Sex, User } from './types';
 import type { WeighIn } from './weighins';
 
 export function emptyProfile(): Profile {
@@ -7,6 +7,7 @@ export function emptyProfile(): Profile {
     liftingDays: null, goalLb: null, leanMassLb: null, tz: null,
     pendingField: null, lastAskedDay: null, skipped: [],
     pendingMeal: null, pendingUntil: null, lastRecapDay: null,
+    lastPlanDay: null, pendingCheckinDay: null,
   };
 }
 
@@ -41,6 +42,16 @@ export interface Store {
   setAlias(userId: number, a: FoodAlias): Promise<void>;
   removeAlias(userId: number, word: string): Promise<boolean>;
 
+  addSets(userId: number, rows: SetRow[], now: Date): Promise<void>;
+  listSets(userId: number, key: string): Promise<SetRow[]>;       // oldest first
+  listSetsForDay(userId: number, day: string): Promise<SetRow[]>;
+  sessionDays(userId: number): Promise<string[]>;                 // distinct days with sets, oldest first
+  savePlan(userId: number, day: string, planJson: string, now: Date): Promise<void>;
+  getPlan(userId: number, day: string): Promise<string | null>;
+  latestPlanDay(userId: number, upTo: string): Promise<string | null>;
+  addCheckIn(userId: number, c: CheckInRow, now: Date): Promise<void>;
+  listCheckIns(userId: number, fromDay: string, toDay: string): Promise<CheckInRow[]>;
+
   // One in-flight message per user. true = acquired.
   acquireLock(userId: number, now: Date, ttlMs: number): Promise<boolean>;
   releaseLock(userId: number): Promise<void>;
@@ -70,6 +81,9 @@ export class MemoryStore implements Store {
   private meals: (StoredMeal & { userId: number })[] = [];
   private aliases: { userId: number; alias: FoodAlias }[] = [];
   private locks = new Map<number, number>();
+  private sets: (SetRow & { userId: number })[] = [];
+  private plans: { userId: number; day: string; plan: string }[] = [];
+  private checkins: (CheckInRow & { userId: number })[] = [];
   private outbox: { channel: Channel; chatId: string; text: string; at: string }[] = [];
   private settings = new Map<string, string>();
 
@@ -96,7 +110,40 @@ export class MemoryStore implements Store {
     this.weighIns = this.weighIns.filter((w) => w.userId !== userId);
     this.meals = this.meals.filter((m) => m.userId !== userId);
     this.aliases = this.aliases.filter((a) => a.userId !== userId);
+    this.sets = this.sets.filter((x) => x.userId !== userId);
+    this.plans = this.plans.filter((x) => x.userId !== userId);
+    this.checkins = this.checkins.filter((x) => x.userId !== userId);
     this.locks.delete(userId);
+  }
+  async addSets(userId: number, rows: SetRow[]): Promise<void> {
+    rows.forEach((r) => this.sets.push({ userId, ...r }));
+  }
+  async listSets(userId: number, key: string): Promise<SetRow[]> {
+    return this.sets.filter((x) => x.userId === userId && x.key === key).sort((a, b) => a.day.localeCompare(b.day) || a.setIndex - b.setIndex).map(({ userId: _u, ...r }) => r);
+  }
+  async listSetsForDay(userId: number, day: string): Promise<SetRow[]> {
+    return this.sets.filter((x) => x.userId === userId && x.day === day).map(({ userId: _u, ...r }) => r);
+  }
+  async sessionDays(userId: number): Promise<string[]> {
+    return [...new Set(this.sets.filter((x) => x.userId === userId).map((x) => x.day))].sort();
+  }
+  async savePlan(userId: number, day: string, plan: string): Promise<void> {
+    this.plans = this.plans.filter((x) => !(x.userId === userId && x.day === day));
+    this.plans.push({ userId, day, plan });
+  }
+  async getPlan(userId: number, day: string): Promise<string | null> {
+    return this.plans.find((x) => x.userId === userId && x.day === day)?.plan ?? null;
+  }
+  async latestPlanDay(userId: number, upTo: string): Promise<string | null> {
+    const days = this.plans.filter((x) => x.userId === userId && x.day <= upTo).map((x) => x.day).sort();
+    return days[days.length - 1] ?? null;
+  }
+  async addCheckIn(userId: number, c: CheckInRow): Promise<void> {
+    this.checkins = this.checkins.filter((x) => !(x.userId === userId && x.day === c.day));
+    this.checkins.push({ userId, ...c });
+  }
+  async listCheckIns(userId: number, fromDay: string, toDay: string): Promise<CheckInRow[]> {
+    return this.checkins.filter((x) => x.userId === userId && x.day >= fromDay && x.day <= toDay).map(({ userId: _u, ...r }) => r).sort((a, b) => a.day.localeCompare(b.day));
   }
   async listUsers(): Promise<User[]> { return this.users.map((u) => this.copy(u)); }
   async countModelCalls(userId: number, day: string): Promise<number> {
@@ -184,6 +231,7 @@ type UserRow = {
   shot_day: number | null; lifting_days: number | null; goal_lb: number | null; lean_mass_lb: number | null;
   pending_field: ProfileField | null; last_asked_day: string | null; skipped: string | null;
   pending_meal: string | null; pending_until: string | null; last_recap_day: string | null;
+  last_plan_day: string | null; pending_checkin_day: string | null;
 };
 
 const COLUMN: Record<keyof Profile, string> = {
@@ -191,6 +239,7 @@ const COLUMN: Record<keyof Profile, string> = {
   liftingDays: 'lifting_days', goalLb: 'goal_lb', leanMassLb: 'lean_mass_lb', tz: 'tz',
   pendingField: 'pending_field', lastAskedDay: 'last_asked_day', skipped: 'skipped',
   pendingMeal: 'pending_meal', pendingUntil: 'pending_until', lastRecapDay: 'last_recap_day',
+  lastPlanDay: 'last_plan_day', pendingCheckinDay: 'pending_checkin_day',
 };
 
 type NoteRow = { id: number; user_id: number; date: string; kind: NoteKind; text: string; value: string | null; source: 'user' | 'coach'; created_at: string };
@@ -207,6 +256,7 @@ export class D1Store implements Store {
       pendingField: r.pending_field, lastAskedDay: r.last_asked_day,
       skipped: r.skipped ? (r.skipped.split(',').filter(Boolean) as ProfileField[]) : [],
       pendingMeal: r.pending_meal, pendingUntil: r.pending_until, lastRecapDay: r.last_recap_day,
+      lastPlanDay: r.last_plan_day, pendingCheckinDay: r.pending_checkin_day,
     };
   }
   private toMeal(r: MealRow): StoredMeal {
@@ -248,6 +298,9 @@ export class D1Store implements Store {
       this.db.prepare('DELETE FROM meals WHERE user_id = ?').bind(userId),
       this.db.prepare('DELETE FROM aliases WHERE user_id = ?').bind(userId),
       this.db.prepare('DELETE FROM locks WHERE user_id = ?').bind(userId),
+      this.db.prepare('DELETE FROM sets WHERE user_id = ?').bind(userId),
+      this.db.prepare('DELETE FROM plans WHERE user_id = ?').bind(userId),
+      this.db.prepare('DELETE FROM checkins WHERE user_id = ?').bind(userId),
       this.db.prepare('DELETE FROM users WHERE id = ?').bind(userId),
     ]);
   }
@@ -320,6 +373,45 @@ export class D1Store implements Store {
   async removeAlias(userId: number, word: string): Promise<boolean> {
     const r = await this.db.prepare('DELETE FROM aliases WHERE user_id = ? AND word = ?').bind(userId, word).run();
     return (r.meta?.changes ?? 0) > 0;
+  }
+  async addSets(userId: number, rows: SetRow[], now: Date): Promise<void> {
+    if (!rows.length) return;
+    await this.db.batch(rows.map((r) =>
+      this.db.prepare('INSERT INTO sets (user_id, day, key, exercise, set_index, weight, reps, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
+        .bind(userId, r.day, r.key, r.exercise, r.setIndex, r.weight, r.reps, now.toISOString())));
+  }
+  private toSet(x: { day: string; key: string; exercise: string; set_index: number; weight: number; reps: number }): SetRow {
+    return { day: x.day, key: x.key, exercise: x.exercise, setIndex: x.set_index, weight: x.weight, reps: x.reps };
+  }
+  async listSets(userId: number, key: string): Promise<SetRow[]> {
+    const r = await this.db.prepare('SELECT day, key, exercise, set_index, weight, reps FROM sets WHERE user_id = ? AND key = ? ORDER BY day, set_index, id').bind(userId, key).all<{ day: string; key: string; exercise: string; set_index: number; weight: number; reps: number }>();
+    return (r.results ?? []).map((x) => this.toSet(x));
+  }
+  async listSetsForDay(userId: number, day: string): Promise<SetRow[]> {
+    const r = await this.db.prepare('SELECT day, key, exercise, set_index, weight, reps FROM sets WHERE user_id = ? AND day = ? ORDER BY id').bind(userId, day).all<{ day: string; key: string; exercise: string; set_index: number; weight: number; reps: number }>();
+    return (r.results ?? []).map((x) => this.toSet(x));
+  }
+  async sessionDays(userId: number): Promise<string[]> {
+    const r = await this.db.prepare('SELECT DISTINCT day FROM sets WHERE user_id = ? ORDER BY day').bind(userId).all<{ day: string }>();
+    return (r.results ?? []).map((x) => x.day);
+  }
+  async savePlan(userId: number, day: string, planJson: string, now: Date): Promise<void> {
+    await this.db.prepare('INSERT INTO plans (user_id, day, plan, created_at) VALUES (?, ?, ?, ?) ON CONFLICT(user_id, day) DO UPDATE SET plan = excluded.plan, created_at = excluded.created_at').bind(userId, day, planJson, now.toISOString()).run();
+  }
+  async getPlan(userId: number, day: string): Promise<string | null> {
+    const r = await this.db.prepare('SELECT plan FROM plans WHERE user_id = ? AND day = ?').bind(userId, day).first<{ plan: string }>();
+    return r?.plan ?? null;
+  }
+  async latestPlanDay(userId: number, upTo: string): Promise<string | null> {
+    const r = await this.db.prepare('SELECT day FROM plans WHERE user_id = ? AND day <= ? ORDER BY day DESC LIMIT 1').bind(userId, upTo).first<{ day: string }>();
+    return r?.day ?? null;
+  }
+  async addCheckIn(userId: number, c: CheckInRow, now: Date): Promise<void> {
+    await this.db.prepare('INSERT INTO checkins (user_id, day, stomach, energy, created_at) VALUES (?, ?, ?, ?, ?) ON CONFLICT(user_id, day) DO UPDATE SET stomach = excluded.stomach, energy = excluded.energy').bind(userId, c.day, c.stomach, c.energy, now.toISOString()).run();
+  }
+  async listCheckIns(userId: number, fromDay: string, toDay: string): Promise<CheckInRow[]> {
+    const r = await this.db.prepare('SELECT day, stomach, energy FROM checkins WHERE user_id = ? AND day >= ? AND day <= ? ORDER BY day').bind(userId, fromDay, toDay).all<CheckInRow>();
+    return r.results ?? [];
   }
   async acquireLock(userId: number, now: Date, ttlMs: number): Promise<boolean> {
     const until = new Date(now.getTime() + ttlMs).toISOString();

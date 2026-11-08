@@ -50,6 +50,14 @@ is the advanced one; this is the experimental stage.
     the prescriber summary; `FORBIDDEN_DOSE_WORDS` and a test guard the
     wording. `weekly.ts` — the Sunday pass the hourly cron runs: send the
     recap at 5 PM local and write one coach line into the file.
+  - `progression.ts` — the weight rule, ported as-is from the private
+    coach: owned twice in a row adds a step, a heavier weight done once is
+    repeated to confirm, one dip is noise, two drop it, a layoff repeats.
+    `plans.ts` — the template library (1 to 4 days, machines and dumbbells
+    first), the block cap, one step per session, the plan text, parsing
+    replies with numbers, the stomach/energy check-in. `training.ts` —
+    history from the sets table, the plan for a day, recording a reply,
+    the 6 PM evening send the hourly cron runs.
   - `quota.ts` — per-user daily model-call cap. `ratelimit.ts` — per-IP
     and per-instance limits on every POST. `clock.ts` — the test clock
     staging can move forward so a simulated week runs in minutes.
@@ -105,5 +113,9 @@ PR 3 (Food Log): text or photo to protein and calories, corrections in
 plain words, shortcuts, `/today`, `/week`, `/delete N`, `/undo`,
 `/recap` with the prescriber summary, the Sunday pass, a per-user lock,
 the model-call cap enforced. `/sim/weekly` runs the pass on staging.
-Next: PR 4 training bot; PR 5 the simulated-user harness; then the site
-and waitlist.
+PR 4 (training bot): templates by lifting days, the first session with
+no loads ("pick 7 of 10"), loads from the progression engine, one step a
+session, replies with numbers recorded as sets, `/plan`, the rest-day
+check-in (`/checkin`, or two bare numbers), the 6 PM evening send, the
+day-after-shot easier session. `/sim/evening` runs the send on staging.
+Next: PR 5 the simulated-user harness; then the site and waitlist.
