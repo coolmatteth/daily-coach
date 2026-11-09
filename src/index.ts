@@ -78,8 +78,16 @@ export default {
     }
 
     if (req.method === 'POST') {
+      // A valid Telegram webhook secret or admin secret means the caller is
+      // Telegram or the sim harness: one IP standing in for many users, so
+      // the per-IP cap does not apply (see ratelimit.ts). Bad or missing
+      // secrets are counted per IP and refused below.
+      const webhookOk = path === '/telegram/webhook' && Boolean(env.TELEGRAM_WEBHOOK_SECRET)
+        && req.headers.get('X-Telegram-Bot-Api-Secret-Token') === env.TELEGRAM_WEBHOOK_SECRET;
+      const adminRoute = path === '/telegram/setup' || (staging && path.startsWith('/sim/'));
+      const authed = webhookOk || (adminRoute && adminOk(req, env));
       const ip = req.headers.get('cf-connecting-ip') ?? 'unknown';
-      if (limiter.check(ip, Date.now())) return json({ error: 'slow down' }, 429);
+      if (authed ? limiter.checkInstance(Date.now()) : limiter.check(ip, Date.now())) return json({ error: 'slow down' }, 429);
     }
 
     const now = async () => withOffset(new Date(), await readOffsetMs(store, staging));
