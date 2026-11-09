@@ -132,5 +132,13 @@ PR 5 (simulated users): the cast, the invariants, the transcripts, and
 six fixes the first runs found (see `sim/README.md`).
 Site rewritten for the product with the waitlist; `POST /waitlist` on the
 worker. The deploy workflow skips with a warning until the secrets exist.
-Next: the one-time Cloudflare setup, then the cast against staging with the
-real model, then point `data-waitlist` at the live worker and open the list.
+Cloudflare setup done (11/9/26): both D1 databases exist and their ids are
+in `wrangler.toml`; staging and production are deployed by hand at
+`glp1-coach-staging.fitnessclaude.workers.dev` and
+`glp1-coach.fitnessclaude.workers.dev` with `ADMIN_SECRET` and
+`TELEGRAM_WEBHOOK_SECRET` set. The cast ran against live staging: zero
+violations, and it found the per-IP rate limit covering the Telegram
+webhook (fixed). `data-waitlist` points at production.
+Next: `TELEGRAM_BOT_TOKEN` and `ANTHROPIC_API_KEY` on the workers (Matt, in
+the dashboard), `POST /telegram/setup` to register the webhook, the cast
+with the real model, then the GitHub Actions secrets so merges deploy.
