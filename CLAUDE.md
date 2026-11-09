@@ -19,12 +19,19 @@ PR 4 comes; never share code, data or infrastructure with it. Matt's system
 is the advanced one; this is the experimental stage.
 
 ## Layout
-- `index.html`, `how-its-built.html`, `why.html`, `assets/site.css` — the
-  static site (Vercel, dailycoach.fitness): the pitch, the waitlist form,
-  how it's built, why. The form posts to the worker's `POST /waitlist`
-  (`src/waitlist.ts`, D1 `waitlist` table, CORS for the site only); set the
-  worker URL in `data-waitlist` on `<html>` in `index.html` once the
-  subdomain is known. The old demo generator and its files are gone.
+- Two sites, two audiences (11/9/26). The repo root (`index.html`,
+  `how-its-built.html`, `why.html`, `assets/*.html`, `api/generate.js`,
+  `plans.json`, `vercel.json`) is Matt's recruiter site at
+  dailycoach.fitness, restored exactly as it was before the product
+  rewrite; the Vercel project `fitness-claude-demo` deploys it and
+  `.vercelignore` keeps the worker and `site/` out. Do not touch it for
+  product work.
+- `site/` — the product site: the pitch, the waitlist form, how it's
+  built, why. Its own Vercel project with root directory `site`, on the
+  product's domain once Matt picks one. The form posts to the worker's
+  `POST /waitlist` (`src/waitlist.ts`, D1 `waitlist` table; CORS allows
+  the origins in `ALLOWED_ORIGINS`, add the product domain there); the
+  worker URL is `data-waitlist` on `<html>` in `site/index.html`.
 - `src/` — the worker.
   - `index.ts` routes. `GET /version` and `GET /health` are public.
     `POST /telegram/webhook` checks Telegram's secret header.

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-waitlist="https://glp1-coach.fitnessclaude.workers.dev/waitlist">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GLP-1 Coach · keep your protein up and your strength while the weight comes off</title>
+<meta name="description" content="A free text-message coach for people on a GLP-1 who lift or want to start. One message a day. Your numbers computed from your answers. No app to learn, no dashboard, no dose advice.">
+<meta property="og:title" content="GLP-1 Coach · one text a day">
+<meta property="og:description" content="Keep your protein up and your strength while the weight comes off. A plan arrives, you reply with numbers, Sunday tells you how the week went.">
+<meta property="og:url" content="https://dailycoach.fitness/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%23d9a441'/></svg>">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .hero-tag { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--apricot); font-weight: 600; margin-bottom: 14px; }
+  .form { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+  .form input { flex: 1 1 240px; max-width: 360px; font-size: 16px; padding: 13px 14px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--cream); }
+  .form input:focus { outline: 2px solid var(--apricot); outline-offset: 1px; }
+  .form button { font-size: 15px; font-weight: 700; padding: 13px 22px; border: 0; border-radius: 6px; background: var(--apricot); color: #17191e; cursor: pointer; }
+  .form button:disabled { opacity: .6; cursor: default; }
+  .fine { font-size: 13px; color: var(--dim); margin-top: 10px; max-width: 560px; }
+  .msg { font-size: 14px; margin-top: 10px; min-height: 1.4em; color: var(--mint); }
+  .msg.err { color: #e0a08a; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 18px; }
+  .shot { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .shot .when { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin-bottom: 8px; }
+  .shot pre { font-family: var(--sans); font-size: 13.5px; line-height: 1.5; color: var(--soft); white-space: pre-wrap; margin: 0; }
+  .shot pre b { color: var(--cream); font-weight: 600; }
+  .shot .u { display: inline-block; background: rgba(217,164,65,.14); border-radius: 10px 10px 2px 10px; padding: 4px 9px; color: var(--cream); margin: 6px 0; }
+  .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 26px; }
+  .two h3 { font-family: var(--serif); font-weight: 500; font-size: 20px; color: var(--cream); margin-bottom: 6px; }
+  .two p { color: var(--soft); font-size: 15px; }
+  ul.plain { padding-left: 18px; color: var(--soft); font-size: 15px; }
+  ul.plain li { margin: 6px 0; }
+  ul.plain b { color: var(--cream); font-weight: 600; }
+  ol.steps { padding-left: 20px; color: var(--soft); font-size: 15px; }
+  ol.steps li { margin: 8px 0; }
+  ol.steps b { color: var(--cream); font-weight: 600; }
+  table.mc { width: 100%; border-collapse: collapse; font-size: 14.5px; margin-top: 10px; }
+  table.mc th { text-align: left; color: var(--dim); font-weight: 600; padding: 6px 0; border-bottom: 1px solid var(--line); }
+  table.mc td { padding: 7px 0; vertical-align: top; color: var(--soft); border-bottom: 1px dotted var(--line); }
+  table.mc td + td, table.mc th + th { padding-left: 16px; }
+  .disclaimer { font-size: 13px; color: var(--dim); margin-top: 26px; max-width: 600px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <div class="brand">GLP-1 Coach</div>
+  <div class="links">
+    <a class="minor" href="#how">How it works</a>
+    <a class="minor" href="how-its-built.html">How it's built</a>
+    <a class="minor" href="why.html">Why</a>
+  </div>
+</nav>
+
+<header>
+  <div class="hero-tag">For people on a GLP-1 who lift, or want to start</div>
+  <h1>Keep your protein up and your <em>strength</em> while the weight comes off.</h1>
+  <p class="lede">One text a day. A plan arrives, you reply with numbers, and Sunday tells you how the week went. No app to learn. No dashboard. No dose advice.</p>
+  <form class="form" id="waitlist" novalidate>
+    <label for="email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email</label>
+    <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+    <button type="submit" id="join">Join the list</button>
+  </form>
+  <div class="msg" id="msg" aria-live="polite"></div>
+  <p class="fine">Not open yet. It runs on Telegram first; text message and WhatsApp are next, and the list hears first. Your email is used for that one message and never shared.</p>
+</header>
+
+<section>
+  <h2>What a day looks like</h2>
+  <p class="sub">Three real messages from the coach, shortened. Numbers are one person's example, not yours.</p>
+  <div class="shots">
+    <div class="shot">
+      <div class="when">6:00 PM, every day</div>
+      <pre><b>Tomorrow, Monday: Full body A, about 40 min.</b>
+
+Leg press: 3 × 8–12 at 180
+Chest press: 3 × 8–12 at 70
+Seated row: 3 × 8–12 at 95
+Leg curl: 3 × 8–12 at 90
+Lat pulldown: 3 × 8–12 at 80
+
+Reply with your numbers when you are done. A held number is a good session.</pre>
+    </div>
+    <div class="shot">
+      <div class="when">Whenever you eat</div>
+      <pre><span class="u">chicken thigh about 6 oz and rice</span>
+Logged ~48 g protein, ~600 kcal.
+Today: 48 g · <b>floor</b> 37 → · goal 87 → · stretch 122 →
+<span class="u">that was 1 bar not 2</span>
+Removed protein bar ×2, added protein bar. Today: 61 g.</pre>
+    </div>
+    <div class="shot">
+      <div class="when">Sunday</div>
+      <pre><b>On track.</b>
+Protein at goal 5 of 7 days. Calories inside your band. Trend over 12 weeks: down 4%. Leg press and row moved up.
+
+<b>For your prescriber:</b> five weeks on this dose, two rough-stomach days, both the day after your shot. Worth bringing to your next check-in.</pre>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <h2>The two questions it answers</h2>
+  <div class="two">
+    <div>
+      <h3>Am I eating enough to keep my muscle?</h3>
+      <p>On a GLP-1 the hard part is not discipline, it is appetite. You get three protein rungs and a calorie band computed from your answers, with the formula named. Smaller sittings, more of them. Eat when hungry. The weekly average is what counts, not any one day.</p>
+    </div>
+    <div>
+      <h3>Am I keeping my strength?</h3>
+      <p>Lifting two to four days a week and keeping protein up are the two things you control, and in the trials they are what moved the share of weight lost as fat. The first plan is two days of full body on machines and dumbbells. A weight steps up only after you have owned it twice.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Doesn't Noom do this for free?</h2>
+  <p class="sub">Some of it, yes, and it is good. Three things are different here.</p>
+  <ul class="plain">
+    <li><b>No app to open.</b> The plan arrives. You answer with numbers.</li>
+    <li><b>Real loads, earned.</b> Not a video library. A weight goes up after you have owned it twice, and never before.</li>
+    <li><b>A verdict, not a dashboard.</b> One Sunday message says how the week went and what to bring to your prescriber.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>What it never does</h2>
+  <ul class="plain">
+    <li>Tell you what to do with your dose. Your prescriber decides that. The coach hands you your own numbers in their vocabulary.</li>
+    <li>Make a medical claim. It helps you keep protein up, train consistently and see your trends.</li>
+    <li>Show ads or sell your data. No trackers, no pixels.</li>
+    <li>Keep anything you do not want kept. Send "delete me" and it is gone.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>How it works</h2>
+  <ol class="steps">
+    <li><b>Three questions, then one a day.</b> How many days you can lift, your weight, your medication. Your numbers come back that minute. After that, at most one question a day, each with the reason it buys you.</li>
+    <li><b>One message every evening.</b> Tomorrow's session with loads, or a rest day with a one-line check-in: stomach and energy, 1 to 5.</li>
+    <li><b>Reply with what happened.</b> Sets and weights after the gym. Meals by text or photo as you eat them. Fix anything in plain words.</li>
+    <li><b>Sunday, the verdict.</b> Protein, calories, trend, lifts, side-effect days, and a short summary you can read to your prescriber.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>How it's built, in one table</h2>
+  <p class="sub">A model reads your meal photo and drafts the words. Plain code does everything that has to be right. The model never does arithmetic you cannot check. <a href="how-its-built.html">The full page.</a></p>
+  <table class="mc">
+    <thead><tr><th>Model decides</th><th>Code decides</th></tr></thead>
+    <tbody>
+      <tr><td>What is in the photo and how much</td><td>Your tiers, your band, the day's total</td></tr>
+      <tr><td>The wording of the plan</td><td>The loads, the set caps, when a weight steps up</td></tr>
+      <tr><td>Nothing about your dose</td><td>Your facts for the prescriber, in neutral words</td></tr>
+    </tbody>
+  </table>
+  <p class="disclaimer">GLP-1 Coach is general wellness education, not medical advice. The coach is software, not a person. Decisions about your medication belong to you and your prescriber.</p>
+</section>
+
+<footer>
+  <span>Built by someone on one. <a href="why.html">Why.</a></span>
+  <span><a href="how-its-built.html">How it's built</a> · <a href="https://github.com/coolmatteth/daily-coach">Source</a></span>
+</footer>
+</div>
+
+<script>
+(function () {
+  var url = document.documentElement.getAttribute('data-waitlist');
+  var form = document.getElementById('waitlist');
+  var input = document.getElementById('email');
+  var btn = document.getElementById('join');
+  var msg = document.getElementById('msg');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = (input.value || '').trim();
+    msg.className = 'msg';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.className = 'msg err'; msg.textContent = 'That does not look like an email address.'; return; }
+    btn.disabled = true;
+    fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email }) })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (x) {
+        if (x.ok) { msg.textContent = x.j.message || 'You are on the list.'; input.value = ''; }
+        else { msg.className = 'msg err'; msg.textContent = x.j.error || 'Could not save that. Try again in a minute.'; btn.disabled = false; }
+      })
+      .catch(function () { msg.className = 'msg err'; msg.textContent = 'The list is not taking names yet. Try again in a day or two.'; btn.disabled = false; });
+  });
+})();
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

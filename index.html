@@ -1,191 +1,373 @@
 <!DOCTYPE html>
-<html lang="en" data-waitlist="https://glp1-coach.fitnessclaude.workers.dev/waitlist">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GLP-1 Coach · keep your protein up and your strength while the weight comes off</title>
-<meta name="description" content="A free text-message coach for people on a GLP-1 who lift or want to start. One message a day. Your numbers computed from your answers. No app to learn, no dashboard, no dose advice.">
-<meta property="og:title" content="GLP-1 Coach · one text a day">
-<meta property="og:description" content="Keep your protein up and your strength while the weight comes off. A plan arrives, you reply with numbers, Sunday tells you how the week went.">
+<title>Daily Coach · a coach that knows your history</title>
+<meta name="description" content="An AI coach that programs your next workout from what you've actually done, works around injuries, and explains every decision.">
+<meta property="og:title" content="Daily Coach · a coach that knows your history">
+<meta property="og:description" content="An AI coach that programs your next workout from your real history, works around injuries, and explains every decision. Try the demo.">
+<meta property="og:image" content="https://dailycoach.fitness/assets/li-architecture.png">
 <meta property="og:url" content="https://dailycoach.fitness/">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%23d9a441'/></svg>">
-<link rel="stylesheet" href="assets/site.css">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
 <style>
-  .hero-tag { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--apricot); font-weight: 600; margin-bottom: 14px; }
-  .form { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
-  .form input { flex: 1 1 240px; max-width: 360px; font-size: 16px; padding: 13px 14px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--cream); }
-  .form input:focus { outline: 2px solid var(--apricot); outline-offset: 1px; }
-  .form button { font-size: 15px; font-weight: 700; padding: 13px 22px; border: 0; border-radius: 6px; background: var(--apricot); color: #17191e; cursor: pointer; }
-  .form button:disabled { opacity: .6; cursor: default; }
-  .fine { font-size: 13px; color: var(--dim); margin-top: 10px; max-width: 560px; }
-  .msg { font-size: 14px; margin-top: 10px; min-height: 1.4em; color: var(--mint); }
-  .msg.err { color: #e0a08a; }
-  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 18px; }
-  .shot { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
-  .shot .when { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); margin-bottom: 8px; }
-  .shot pre { font-family: var(--sans); font-size: 13.5px; line-height: 1.5; color: var(--soft); white-space: pre-wrap; margin: 0; }
-  .shot pre b { color: var(--cream); font-weight: 600; }
-  .shot .u { display: inline-block; background: rgba(217,164,65,.14); border-radius: 10px 10px 2px 10px; padding: 4px 9px; color: var(--cream); margin: 6px 0; }
-  .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 26px; }
-  .two h3 { font-family: var(--serif); font-weight: 500; font-size: 20px; color: var(--cream); margin-bottom: 6px; }
-  .two p { color: var(--soft); font-size: 15px; }
-  ul.plain { padding-left: 18px; color: var(--soft); font-size: 15px; }
-  ul.plain li { margin: 6px 0; }
-  ul.plain b { color: var(--cream); font-weight: 600; }
-  ol.steps { padding-left: 20px; color: var(--soft); font-size: 15px; }
-  ol.steps li { margin: 8px 0; }
-  ol.steps b { color: var(--cream); font-weight: 600; }
-  table.mc { width: 100%; border-collapse: collapse; font-size: 14.5px; margin-top: 10px; }
-  table.mc th { text-align: left; color: var(--dim); font-weight: 600; padding: 6px 0; border-bottom: 1px solid var(--line); }
-  table.mc td { padding: 7px 0; vertical-align: top; color: var(--soft); border-bottom: 1px dotted var(--line); }
-  table.mc td + td, table.mc th + th { padding-left: 16px; }
-  .disclaimer { font-size: 13px; color: var(--dim); margin-top: 26px; max-width: 600px; }
+  :root {
+    --bg: #17191e;
+    --panel: #101216;
+    --cream: #ece7db;
+    --soft: #b9b2a4;
+    --dim: #837d70;
+    --apricot: #d9a441;
+    --mint: #8fbf9a;
+    --line: rgba(236, 231, 219, .13);
+    --mono: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+    --serif: Charter, "Bitstream Charter", Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--cream); font-family: var(--sans); line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 700px; margin: 0 auto; padding: 0 22px 90px; }
+
+  nav { padding: 22px 0 0; display: flex; justify-content: space-between; align-items: baseline; }
+  .brand { font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: var(--cream); font-weight: 700; }
+  nav a.minor { font-size: 13px; color: var(--dim); }
+
+  header { padding: 32px 0 6px; }
+  h1 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(34px, 6.4vw, 50px); line-height: 1.14;
+    letter-spacing: -.01em; margin: 0 0 10px; color: var(--cream);
+  }
+  h1 em { font-style: italic; color: var(--apricot); }
+  .lede { font-size: clamp(16px, 2.6vw, 19px); color: var(--soft); line-height: 1.65; max-width: 620px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 20px;
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 6px 14px; font-size: 13px; color: var(--soft); background: rgba(0,0,0,.18);
+  }
+  .pill .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); }
+  .cta-row { margin-top: 18px; }
+  .cta {
+    display: inline-block; background: var(--apricot); color: #17191e;
+    border-radius: 6px; padding: 13px 26px; font-size: 15px; font-weight: 700;
+  }
+  .cta:hover { text-decoration: none; filter: brightness(1.08); }
+  .cta.ghost { background: transparent; color: var(--cream); border: 1px solid var(--line); font-weight: 600; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  nav .links { display: flex; gap: 18px; }
+
+  /* walkthrough video — the first thing under the hero */
+  .walkthrough { margin-top: 26px; }
+  .player { position: relative; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden;
+            border: 1px solid var(--line); background: #000; cursor: pointer;
+            box-shadow: 0 18px 48px rgba(0,0,0,.35); }
+  .player img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .player .pb { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .player .pb span { width: 78px; height: 78px; border-radius: 50%; background: rgba(23,25,30,.82);
+    border: 1px solid rgba(236,231,219,.35); display: flex; align-items: center; justify-content: center;
+    transition: transform .15s ease; }
+  .player .pb span::after { content: ""; margin-left: 7px; border-left: 24px solid var(--cream);
+    border-top: 14px solid transparent; border-bottom: 14px solid transparent; }
+  .player:hover .pb span { background: rgba(217,164,65,.92); transform: scale(1.06); }
+  .player:hover .pb span::after { border-left-color: #17191e; }
+  .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .vnote { font-size: 12.5px; color: var(--dim); margin-top: 9px; }
+
+  section { margin-top: 70px; }
+  h2 {
+    font-family: var(--serif); font-size: 26px; font-weight: 500; color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .sub { color: var(--dim); font-size: 15px; margin-bottom: 20px; max-width: 620px; }
+
+  .cap {
+    font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--apricot); margin-bottom: 10px; font-weight: 600;
+  }
+  .transcript {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+    padding: 18px 20px; font-family: var(--mono); font-size: 13px;
+    line-height: 1.7; white-space: pre-wrap; overflow-x: auto; color: #e8e2d6;
+  }
+  .transcript .hd { color: var(--mint); font-weight: 600; }
+  .transcript .dim { color: var(--dim); }
+
+  .why { margin-top: 28px; }
+  .why ol { list-style: none; counter-reset: n; }
+  .why li {
+    counter-increment: n; padding: 11px 0 11px 38px; position: relative;
+    border-bottom: 1px dotted var(--line); font-size: 14.5px; color: var(--soft);
+  }
+  .why li::before {
+    content: counter(n); position: absolute; left: 2px; top: 13px;
+    font-size: 11px; font-weight: 700; color: var(--bg);
+    background: var(--apricot); width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .why b { color: var(--cream); }
+
+  .picker { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  @media (max-width: 560px) { .picker { grid-template-columns: 1fr; } }
+  .picker label { font-size: 12px; color: var(--dim); display: flex; flex-direction: column; gap: 6px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+  .picker select {
+    background: var(--panel); color: var(--cream); border: 1px solid var(--line);
+    border-radius: 6px; padding: 10px 10px; font-size: 14px; font-family: var(--sans);
+  }
+  .gen-btn {
+    margin-top: 16px; background: var(--apricot); color: #17191e; border: none;
+    border-radius: 6px; padding: 12px 24px; font-size: 14px; font-weight: 700;
+    font-family: var(--sans); cursor: pointer;
+  }
+  .gen-btn:hover { filter: brightness(1.08); }
+  .gen-btn:disabled { opacity: .5; cursor: wait; }
+  .gen-note { font-size: 12.5px; color: var(--dim); margin-top: 10px; }
+  #gen-error {
+    display: none; margin-top: 14px; padding: 12px 14px;
+    border-left: 2px solid var(--apricot); background: rgba(217,164,65,.07);
+    font-size: 14px; color: var(--soft);
+  }
+  #result { display: none; margin-top: 26px; }
+
+  .results { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .results th {
+    text-align: left; font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--dim); font-weight: 700; padding: 0 10px 8px 0; border-bottom: 1px solid var(--line);
+  }
+  .results td { padding: 11px 10px 11px 0; border-bottom: 1px dotted var(--line); color: var(--soft); vertical-align: top; }
+  .results td:first-child { color: var(--cream); font-weight: 600; }
+  .results .d { color: var(--apricot); font-family: var(--mono); font-weight: 700; white-space: nowrap; }
+  .results .knee td { color: var(--mint); }
+  .results .knee td:first-child { color: var(--cream); }
+  .results .knee .d { color: var(--mint); }
+  .aside { font-family: var(--serif); font-size: 15.5px; color: var(--soft); line-height: 1.7; margin-top: 18px; max-width: 640px; }
+
+  .feat { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+  @media (max-width: 560px) { .feat { grid-template-columns: 1fr; } }
+  .feat div {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px 16px; font-size: 13.5px; color: var(--soft); line-height: 1.5;
+  }
+  .feat b { display: block; color: var(--cream); margin-bottom: 3px; font-size: 14px; }
+
+  footer {
+    margin-top: 84px; padding-top: 20px; border-top: 1px dotted var(--line);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+    font-size: 14px; color: var(--dim);
+  }
+  footer b { color: var(--cream); }
+  a { color: var(--apricot); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
 <div class="wrap">
+
 <nav>
-  <div class="brand">GLP-1 Coach</div>
+  <div class="brand">Daily Coach</div>
   <div class="links">
-    <a class="minor" href="#how">How it works</a>
+    <a class="minor" href="why.html">Why I built this</a>
     <a class="minor" href="how-its-built.html">How it's built</a>
-    <a class="minor" href="why.html">Why</a>
   </div>
 </nav>
 
 <header>
-  <div class="hero-tag">For people on a GLP-1 who lift, or want to start</div>
-  <h1>Keep your protein up and your <em>strength</em> while the weight comes off.</h1>
-  <p class="lede">One text a day. A plan arrives, you reply with numbers, and Sunday tells you how the week went. No app to learn. No dashboard. No dose advice.</p>
-  <form class="form" id="waitlist" novalidate>
-    <label for="email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email</label>
-    <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
-    <button type="submit" id="join">Join the list</button>
-  </form>
-  <div class="msg" id="msg" aria-live="polite"></div>
-  <p class="fine">Not open yet. It runs on Telegram first; text message and WhatsApp are next, and the list hears first. Your email is used for that one message and never shared.</p>
+  <h1>A coach that knows your <em>history</em></h1>
+  <p class="lede">Customized workouts pushed to your phone daily. It learns from every session, works around injuries, and explains its choices.</p>
+  <div class="cta-row"><a class="cta" href="#demo">Try a demo</a><a class="cta ghost" href="why.html">Why I built this</a></div>
 </header>
 
-<section>
-  <h2>What a day looks like</h2>
-  <p class="sub">Three real messages from the coach, shortened. Numbers are one person's example, not yours.</p>
-  <div class="shots">
-    <div class="shot">
-      <div class="when">6:00 PM, every day</div>
-      <pre><b>Tomorrow, Monday: Full body A, about 40 min.</b>
-
-Leg press: 3 × 8–12 at 180
-Chest press: 3 × 8–12 at 70
-Seated row: 3 × 8–12 at 95
-Leg curl: 3 × 8–12 at 90
-Lat pulldown: 3 × 8–12 at 80
-
-Reply with your numbers when you are done. A held number is a good session.</pre>
-    </div>
-    <div class="shot">
-      <div class="when">Whenever you eat</div>
-      <pre><span class="u">chicken thigh about 6 oz and rice</span>
-Logged ~48 g protein, ~600 kcal.
-Today: 48 g · <b>floor</b> 37 → · goal 87 → · stretch 122 →
-<span class="u">that was 1 bar not 2</span>
-Removed protein bar ×2, added protein bar. Today: 61 g.</pre>
-    </div>
-    <div class="shot">
-      <div class="when">Sunday</div>
-      <pre><b>On track.</b>
-Protein at goal 5 of 7 days. Calories inside your band. Trend over 12 weeks: down 4%. Leg press and row moved up.
-
-<b>For your prescriber:</b> five weeks on this dose, two rough-stomach days, both the day after your shot. Worth bringing to your next check-in.</pre>
-    </div>
+<div class="walkthrough">
+  <h2 style="margin-bottom:12px">The walkthrough</h2>
+  <div class="player" id="player" aria-label="Play the Daily Coach walkthrough">
+    <img src="assets/video-poster.png" alt="Daily Coach walkthrough video" fetchpriority="high">
+    <div class="pb"><span></span></div>
   </div>
-</section>
-
-<section id="how">
-  <h2>The two questions it answers</h2>
-  <div class="two">
-    <div>
-      <h3>Am I eating enough to keep my muscle?</h3>
-      <p>On a GLP-1 the hard part is not discipline, it is appetite. You get three protein rungs and a calorie band computed from your answers, with the formula named. Smaller sittings, more of them. Eat when hungry. The weekly average is what counts, not any one day.</p>
-    </div>
-    <div>
-      <h3>Am I keeping my strength?</h3>
-      <p>Lifting two to four days a week and keeping protein up are the two things you control, and in the trials they are what moved the share of weight lost as fat. The first plan is two days of full body on machines and dumbbells. A weight steps up only after you have owned it twice.</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Doesn't Noom do this for free?</h2>
-  <p class="sub">Some of it, yes, and it is good. Three things are different here.</p>
-  <ul class="plain">
-    <li><b>No app to open.</b> The plan arrives. You answer with numbers.</li>
-    <li><b>Real loads, earned.</b> Not a video library. A weight goes up after you have owned it twice, and never before.</li>
-    <li><b>A verdict, not a dashboard.</b> One Sunday message says how the week went and what to bring to your prescriber.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>What it never does</h2>
-  <ul class="plain">
-    <li>Tell you what to do with your dose. Your prescriber decides that. The coach hands you your own numbers in their vocabulary.</li>
-    <li>Make a medical claim. It helps you keep protein up, train consistently and see your trends.</li>
-    <li>Show ads or sell your data. No trackers, no pixels.</li>
-    <li>Keep anything you do not want kept. Send "delete me" and it is gone.</li>
-  </ul>
-</section>
-
-<section>
-  <h2>How it works</h2>
-  <ol class="steps">
-    <li><b>Three questions, then one a day.</b> How many days you can lift, your weight, your medication. Your numbers come back that minute. After that, at most one question a day, each with the reason it buys you.</li>
-    <li><b>One message every evening.</b> Tomorrow's session with loads, or a rest day with a one-line check-in: stomach and energy, 1 to 5.</li>
-    <li><b>Reply with what happened.</b> Sets and weights after the gym. Meals by text or photo as you eat them. Fix anything in plain words.</li>
-    <li><b>Sunday, the verdict.</b> Protein, calories, trend, lifts, side-effect days, and a short summary you can read to your prescriber.</li>
-  </ol>
-</section>
-
-<section>
-  <h2>How it's built, in one table</h2>
-  <p class="sub">A model reads your meal photo and drafts the words. Plain code does everything that has to be right. The model never does arithmetic you cannot check. <a href="how-its-built.html">The full page.</a></p>
-  <table class="mc">
-    <thead><tr><th>Model decides</th><th>Code decides</th></tr></thead>
-    <tbody>
-      <tr><td>What is in the photo and how much</td><td>Your tiers, your band, the day's total</td></tr>
-      <tr><td>The wording of the plan</td><td>The loads, the set caps, when a weight steps up</td></tr>
-      <tr><td>Nothing about your dose</td><td>Your facts for the prescriber, in neutral words</td></tr>
-    </tbody>
-  </table>
-  <p class="disclaimer">GLP-1 Coach is general wellness education, not medical advice. The coach is software, not a person. Decisions about your medication belong to you and your prescriber.</p>
-</section>
-
-<footer>
-  <span>Built by someone on one. <a href="why.html">Why.</a></span>
-  <span><a href="how-its-built.html">How it's built</a> · <a href="https://github.com/coolmatteth/daily-coach">Source</a></span>
-</footer>
 </div>
 
+<section>
+  <h2>What you get</h2>
+  <div class="feat">
+    <div><b>Daily programming</b>Tomorrow's session every evening, adapted to the last 14 days. Not feeling it? One tap swaps it for a fully programmed session of any other type.</div>
+    <div><b>A coach you can talk to</b>Tell it how the session went in plain language. It answers like a trainer, and what you tell it shapes tomorrow.</div>
+    <div><b>Injury-aware progression</b>Flagged joints cap loads and gate jumps until they clear.</div>
+    <div><b>Honest recaps</b>A Sunday review of what moved and by how much, plus program changes you approve with one tap.</div>
+  </div>
+</section>
+
+<section>
+  <h2>Change your mind with one tap</h2>
+  <p class="sub">Every briefing carries Swap buttons. Tap one and a fully coached session for that day arrives in about two seconds, built the night before under the same rules.</p>
+  <a href="assets/swap-demo.png"><img src="assets/swap-demo.png" alt="Two Telegram messages side by side. The evening push briefing with Swap buttons under it, and the coached legs session that replaces it two seconds after tapping Swap to Legs." style="width:100%;border-radius:8px;border:1px solid var(--line)"></a>
+  <p class="gen-note">Real system output, generated in the sandbox that runs the production code.</p>
+</section>
+
+<section>
+  <h2>Real results</h2>
+  <p class="sub">One athlete, April to August. An n of 1, and the athlete is the builder.</p>
+  <table class="results">
+    <tr><th>Lift</th><th>April</th><th>August</th><th class="d">Change</th></tr>
+    <tr><td>Seated DB Press</td><td>45</td><td>60</td><td class="d">+33%</td></tr>
+    <tr><td>Arnold Press</td><td>35</td><td>45</td><td class="d">+29%</td></tr>
+    <tr><td>Overhead Triceps Extension</td><td>80</td><td>100</td><td class="d">+25%</td></tr>
+    <tr><td>Back Extension</td><td>205</td><td>250</td><td class="d">+22%</td></tr>
+    <tr><td>Cable Row</td><td>145</td><td>175</td><td class="d">+21%</td></tr>
+    <tr><td>DB Flat Press</td><td>60</td><td>70</td><td class="d">+17%</td></tr>
+  </table>
+  <p class="aside">A logging app records what you did. This decides what you do next.</p>
+</section>
+
+<section id="demo">
+  <h2>Try a demo</h2>
+  <p class="sub">Pick a goal, your equipment, and anything that's bothering you. The engine builds a session and shows its thinking.</p>
+  <div class="picker">
+    <label>Goal
+      <select id="goal">
+        <option value="build-muscle">Build muscle</option>
+        <option value="get-stronger">Get stronger</option>
+        <option value="conditioning">Fat loss / conditioning</option>
+        <option value="return-from-break">Returning after a long break</option>
+      </select>
+    </label>
+    <label>Equipment
+      <select id="equipment">
+        <option value="full-gym">Full gym</option>
+        <option value="dumbbells-only">Dumbbells only</option>
+        <option value="hotel-gym">Hotel gym</option>
+        <option value="bodyweight">Bodyweight only</option>
+      </select>
+    </label>
+    <label>Limitation
+      <select id="limitation">
+        <option value="none">None</option>
+        <option value="knee">Knee (tendon irritation)</option>
+        <option value="shoulder">Shoulder (no overhead)</option>
+        <option value="lower-back">Lower back</option>
+        <option value="wrist">Wrist / grip</option>
+      </select>
+    </label>
+  </div>
+  <button class="gen-btn" id="generate">Build my session</button>
+  <p class="gen-note">Demo sessions are pregenerated samples from the programming engine. Nothing you pick is stored.</p>
+  <div id="gen-error"></div>
+  <div id="result">
+    <div class="cap"><span id="plan-title"></span></div>
+    <div class="transcript" id="plan-out"></div>
+    <div class="why">
+      <div class="cap">Why this session</div>
+      <ol id="reasoning-out"></ol>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Your evening briefing</h2>
+  <p class="sub">Every evening, tomorrow's session lands on your phone. Built from your real history: what you trained, what's overdue, what's flagged, where you'll be.</p>
+  <div class="cap">A real briefing, sent the evening before (you pick the time)</div>
+  <div class="transcript"><span class="hd">Tue 8/25</span>
+<span class="dim">Day 4 of 28 · PRs allowed through 9/4</span>
+
+Strongest push session of the block on 8/24 — the top press set held across all three sets, so the pressing base is back. One thing to carry forward: the last set slowed when you rushed the rest.
+
+Pull today — 15 days is the longest gap in the rotation, and it fits a hotel gym. PR held — too soon after Sunday's strength dip for a max attempt.
+
+<span class="hd">Back · travel gym</span>
+B1 · Seated Cable Row: 3×8-10, reverse pyramid
+B2 · Lat Pulldown: 3×10-12
+B3 · Single-Arm DB Row: 3×10/side
+B4 · Straight-Arm Pulldown: 2×12-15
+B5 · DB Curl: 3×10-12
+B6 · Back Extension: 2×12</div>
+  <div class="why">
+    <div class="cap">Every briefing comes with the why</div>
+    <ol>
+      <li><b>It knows where you are in your training block.</b> Day 4 of 28 here, so a max attempt is allowed but not owed.</li>
+      <li><b>It counts what you actually did.</b> Trained something else instead of the plan? The real session becomes the record, not a "skipped" mark.</li>
+      <li><b>It plans around your life.</b> Traveling for three days, so the session only uses equipment a hotel gym will have.</li>
+      <li><b>It protects what's flagged.</b> Pull was chosen partly because it doesn't load a flagged knee.</li>
+      <li><b>It says no for you.</b> A PR attempt was held here, with the reason stated, instead of decided silently.</li>
+    </ol>
+  </div>
+</section>
+
+
+<footer>
+  <div><a href="https://www.linkedin.com/in/mattyfsmith/" rel="me">Contact me on LinkedIn</a></div>
+  <div><a href="why.html">Why I built this</a> · <a href="how-its-built.html">How it's built</a></div>
+</footer>
+
+</div>
 <script>
 (function () {
-  var url = document.documentElement.getAttribute('data-waitlist');
-  var form = document.getElementById('waitlist');
-  var input = document.getElementById('email');
-  var btn = document.getElementById('join');
-  var msg = document.getElementById('msg');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var email = (input.value || '').trim();
-    msg.className = 'msg';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.className = 'msg err'; msg.textContent = 'That does not look like an email address.'; return; }
+  var VIDEO_ID = "bu7bHV-WwC0"; // the walkthrough video; swap this to update
+  var player = document.getElementById("player");
+  var mounted = false;
+  player.addEventListener("click", function () {
+    if (mounted) return;
+    mounted = true;
+    var frame = document.createElement("iframe");
+    frame.src = "https://www.youtube-nocookie.com/embed/" + VIDEO_ID + "?autoplay=1&rel=0";
+    frame.allow = "autoplay; encrypted-media; picture-in-picture";
+    frame.allowFullscreen = true;
+    player.innerHTML = "";
+    player.appendChild(frame);
+    player.style.cursor = "default";
+  });
+})();
+(function () {
+  var btn = document.getElementById("generate");
+  var result = document.getElementById("result");
+  var errBox = document.getElementById("gen-error");
+
+  var plansPromise = null;
+  function loadPlans() {
+    if (!plansPromise) plansPromise = fetch("plans.json").then(function (r) { return r.json(); });
+    return plansPromise;
+  }
+
+  btn.addEventListener("click", async function () {
     btn.disabled = true;
-    fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email }) })
-      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
-      .then(function (x) {
-        if (x.ok) { msg.textContent = x.j.message || 'You are on the list.'; input.value = ''; }
-        else { msg.className = 'msg err'; msg.textContent = x.j.error || 'Could not save that. Try again in a minute.'; btn.disabled = false; }
-      })
-      .catch(function () { msg.className = 'msg err'; msg.textContent = 'The list is not taking names yet. Try again in a day or two.'; btn.disabled = false; });
+    errBox.style.display = "none";
+    try {
+      var plans = await loadPlans();
+      var key = [
+        document.getElementById("goal").value,
+        document.getElementById("equipment").value,
+        document.getElementById("limitation").value,
+      ].join("|");
+      var data = plans[key];
+      if (!data) throw new Error("That combination is missing, which would be a bug worth reporting.");
+
+      document.getElementById("plan-title").textContent = data.plan.title;
+      var lines = data.plan.blocks.map(function (b) {
+        return b.slot + " · " + b.exercise + ": " + b.scheme;
+      });
+      if (data.plan.limitation_note) lines.push("", "Worked around: " + data.plan.limitation_note);
+      document.getElementById("plan-out").textContent = lines.join("\n");
+
+      var ol = document.getElementById("reasoning-out");
+      ol.textContent = "";
+      data.reasoning.forEach(function (r) {
+        var li = document.createElement("li");
+        var b = document.createElement("b");
+        b.textContent = r.step + ". ";
+        li.appendChild(b);
+        li.appendChild(document.createTextNode(r.detail));
+        ol.appendChild(li);
+      });
+      result.style.display = "block";
+      result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    } catch (e) {
+      errBox.textContent = e.message;
+      errBox.style.display = "block";
+    } finally {
+      btn.disabled = false;
+    }
   });
 })();
 </script>
