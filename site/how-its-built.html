@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How GLP-1 Coach is built</title>
+<meta name="description" content="A Cloudflare Worker in plain TypeScript, one database, one Telegram bot. The model estimates and drafts; code owns every number, every rule, and every word about a dose.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%23d9a441'/></svg>">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  h3 { font-family: var(--serif); font-weight: 500; font-size: 20px; color: var(--cream); margin: 26px 0 6px; }
+  p, li { color: var(--soft); font-size: 15.5px; }
+  p { margin-bottom: 14px; }
+  ul { padding-left: 18px; } li { margin: 6px 0; }
+  b { color: var(--cream); font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; margin: 10px 0 18px; }
+  th { text-align: left; color: var(--dim); font-weight: 600; padding: 6px 0; border-bottom: 1px solid var(--line); }
+  td { padding: 7px 0; vertical-align: top; color: var(--soft); border-bottom: 1px dotted var(--line); }
+  td + td, th + th { padding-left: 16px; }
+  code { font-family: var(--mono); font-size: 13px; color: var(--cream); background: rgba(236,231,219,.07); padding: 1px 5px; border-radius: 4px; }
+  .rule { border-left: 3px solid var(--apricot); padding: 10px 16px; margin: 14px 0; background: rgba(217,164,65,.06); border-radius: 0 8px 8px 0; }
+  .rule p { margin: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <div class="brand"><a href="/" style="color:var(--dim)">← GLP-1 Coach</a></div>
+  <a class="minor" href="why.html">Why</a>
+</nav>
+<header>
+  <h1>How it's built</h1>
+  <p class="lede">One worker, one database, one chat. The model is asked to estimate a meal or draft the words of a plan. Code owns every number the user sees, every rule, and every word about a dose.</p>
+</header>
+
+<section>
+  <h2>Model decides, code decides</h2>
+  <p>Most "AI coaches" let the model do the arithmetic and the judgment. This one does not. The line below is the whole design.</p>
+  <table>
+    <thead><tr><th>The model</th><th>Plain code</th></tr></thead>
+    <tbody>
+      <tr><td>Reads a meal photo or a sentence and names the items with an estimate</td><td>Keeps the day's total, the three protein rungs, the calorie band, the weekly average</td></tr>
+      <tr><td>Reads "that was 1 bar not 2" and says which item changes</td><td>Applies the change, recomputes, never loses a write (one message at a time per user)</td></tr>
+      <tr><td>Nothing about loads</td><td>Which weight comes next: owned twice in a row adds a step, a heavier weight done once is repeated to confirm, one dip is noise, two drop it</td></tr>
+      <tr><td>Nothing about your dose</td><td>Your own facts for the prescriber, in neutral words, ending "worth bringing to your next check-in"</td></tr>
+      <tr><td>Is asked at most eight times a day per person</td><td>Counts, and refuses the ninth</td></tr>
+    </tbody>
+  </table>
+  <p>When the model is unsure it asks one question and logs nothing. A guess is never written down.</p>
+</section>
+
+<section>
+  <h2>The rules, with their sources</h2>
+  <p>Every number a person sees comes from a named formula with a dated comment saying where it came from.</p>
+  <ul>
+    <li><b>Protein</b>: 0.8 / 1.3 / 1.6 grams per kilogram of bodyweight for floor, goal and stretch, switching to an adjusted bodyweight above BMI 35 and to lean mass when the person has a scan. The stretch is capped under 2 g per kg. Sources: the 2025 four-society nutrition advisory for GLP-1 therapy and the 2025 Delphi consensus.</li>
+    <li><b>Calories</b>: a band, not a target. Estimated burn (Mifflin-St Jeor times an activity factor) minus 600 to aim at, minus 750 for the floor, minus 250 for the ceiling, never below 1,200 for women or 1,800 for men. A day at the floor after a hard session is normal; the weekly average is the verdict.</li>
+    <li><b>Weighing</b>: weekly or daily, judged on a 7-day average with a visible noise band of about 1% of bodyweight. A plateau is under 5% change over 12 weeks, never a flat fortnight.</li>
+    <li><b>Loads</b>: the rule in the table above, ported unchanged from a private coach that ran it in shadow mode against logged sessions before it was trusted. The first session of any lift has no load: "pick what feels like 7 of 10," and the reply becomes the baseline.</li>
+    <li><b>Safety</b>: a week averaging under the floor, or a 7-day-average loss over 1.5 kg two weeks running, sends a plain line saying a check-in with a prescriber or dietitian may be helpful. The number stays in the code, out of the message. Symptoms the medication's label says to report are quoted from the label.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>The one rule about doses</h2>
+  <div class="rule"><p>The coach never says hold, stay or step about a dose. Not in a recap, not in a reply, not anywhere a person can read. A test fails the build if those words appear near "dose" in any message the coach can send.</p></div>
+  <p>What it does instead is the thing a prescriber actually wants: the person's own facts. Weeks on the current dose. Side-effect days this week. Protein at goal on how many days. Calories against the band. The 12-week weight trend. Then one sentence: the label asks your prescriber to weigh how long you have been on a dose and how you are tolerating it, and these numbers are worth bringing to your next check-in.</p>
+</section>
+
+<section>
+  <h2>The Athlete File</h2>
+  <p>Memory is facts, not chat. Every meal, set, weigh-in, check-in and dose change is a row. Anything else a person tells the coach that matters ("left knee, no deep squats," "travelling next week") goes into a short file as a dated line. <code>/me</code> prints it, forty lines at most, newest first; a person corrects it in plain words. Sunday's pass writes one line of its own. Next week's plan is drafted from the file plus the last recap plus the logs, and nothing else. No transcript is ever handed to the model.</p>
+</section>
+
+<section>
+  <h2>Tested by people who do not exist yet</h2>
+  <p>Before anyone real signs up, six simulated people run four weeks against the coach: a beginner, an impatient lifter who adds weight on his own, a non-lifter on the pill who ignores half the questions, someone who corrects every meal, someone who barely eats and trains anyway, and a tester who sends nonsense and asks for dose advice. Every message the coach sends them is checked against the same rules above. The first run found six problems, including a person who typed meals into an unanswered question and got the same retry for a month. All six are fixed and have tests.</p>
+</section>
+
+<section>
+  <h2>The stack</h2>
+  <ul>
+    <li>Cloudflare Worker, plain TypeScript, one D1 database, one Telegram bot. Text message and WhatsApp are a second transport behind the same interface, not a rewrite.</li>
+    <li>Claude for the two model jobs, with JSON-schema output and a per-person daily cap.</li>
+    <li>A deploy that goes to staging first, sends <code>/start</code> through a test route, and only then to production. Staging never texts a phone.</li>
+    <li>No analytics beyond counts, no pixels, no third-party storage. One row per person, deletable with one message.</li>
+    <li>Source: <a href="https://github.com/coolmatteth/daily-coach">github.com/coolmatteth/daily-coach</a>.</li>
+  </ul>
+</section>
+
+<footer>
+  <span><a href="/">GLP-1 Coach</a></span>
+  <span><a href="why.html">Why I built this</a></span>
+</footer>
+</div>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

@@ -19,12 +19,19 @@ PR 4 comes; never share code, data or infrastructure with it. Matt's system
 is the advanced one; this is the experimental stage.
 
 ## Layout
-- `index.html`, `how-its-built.html`, `why.html`, `assets/site.css` — the
-  static site (Vercel, dailycoach.fitness): the pitch, the waitlist form,
-  how it's built, why. The form posts to the worker's `POST /waitlist`
-  (`src/waitlist.ts`, D1 `waitlist` table, CORS for the site only); set the
-  worker URL in `data-waitlist` on `<html>` in `index.html` once the
-  subdomain is known. The old demo generator and its files are gone.
+- Two sites, two audiences (11/9/26). The repo root (`index.html`,
+  `how-its-built.html`, `why.html`, `assets/*.html`, `api/generate.js`,
+  `plans.json`, `vercel.json`) is Matt's recruiter site at
+  dailycoach.fitness, restored exactly as it was before the product
+  rewrite; the Vercel project `fitness-claude-demo` deploys it and
+  `.vercelignore` keeps the worker and `site/` out. Do not touch it for
+  product work.
+- `site/` — the product site: the pitch, the waitlist form, how it's
+  built, why. Its own Vercel project with root directory `site`, on the
+  product's domain once Matt picks one. The form posts to the worker's
+  `POST /waitlist` (`src/waitlist.ts`, D1 `waitlist` table; CORS allows
+  the origins in `ALLOWED_ORIGINS`, add the product domain there); the
+  worker URL is `data-waitlist` on `<html>` in `site/index.html`.
 - `src/` — the worker.
   - `index.ts` routes. `GET /version` and `GET /health` are public.
     `POST /telegram/webhook` checks Telegram's secret header.
@@ -132,5 +139,13 @@ PR 5 (simulated users): the cast, the invariants, the transcripts, and
 six fixes the first runs found (see `sim/README.md`).
 Site rewritten for the product with the waitlist; `POST /waitlist` on the
 worker. The deploy workflow skips with a warning until the secrets exist.
-Next: the one-time Cloudflare setup, then the cast against staging with the
-real model, then point `data-waitlist` at the live worker and open the list.
+Cloudflare setup done (11/9/26): both D1 databases exist and their ids are
+in `wrangler.toml`; staging and production are deployed by hand at
+`glp1-coach-staging.fitnessclaude.workers.dev` and
+`glp1-coach.fitnessclaude.workers.dev` with `ADMIN_SECRET` and
+`TELEGRAM_WEBHOOK_SECRET` set. The cast ran against live staging: zero
+violations, and it found the per-IP rate limit covering the Telegram
+webhook (fixed). `data-waitlist` points at production.
+Next: `TELEGRAM_BOT_TOKEN` and `ANTHROPIC_API_KEY` on the workers (Matt, in
+the dashboard), `POST /telegram/setup` to register the webhook, the cast
+with the real model, then the GitHub Actions secrets so merges deploy.

@@ -60,6 +60,9 @@ export default {
 
     if (req.method === 'GET' && path === '/version') return json(versionInfo(env));
     if (req.method === 'GET' && path === '/health') return json({ ok: true });
+    // The worker is the bot's backend, not a site. A person who opens it in
+    // a browser goes to the product page instead of a JSON 404 (11/9/26).
+    if (req.method === 'GET' && path === '/') return Response.redirect('https://dailycoach.fitness/', 302);
 
     // The waitlist: the static site posts an email here.
     if (path === '/waitlist') {

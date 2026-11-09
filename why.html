@@ -3,49 +3,103 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Why I built GLP-1 Coach</title>
-<meta name="description" content="Every fitness app assumes the problem is discipline. On a GLP-1 the problem is the opposite.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%23d9a441'/></svg>">
-<link rel="stylesheet" href="assets/site.css">
+<title>Why I built this · Daily Coach</title>
+<meta name="description" content="The story behind Daily Coach. A blown-out knee, a rebuild, and the lesson that agents fail often, silently, and expensively until you build them to fail loud and cheap.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
 <style>
+  :root {
+    --bg: #17191e;
+    --panel: #101216;
+    --cream: #ece7db;
+    --soft: #b9b2a4;
+    --dim: #837d70;
+    --apricot: #d9a441;
+    --mint: #8fbf9a;
+    --line: rgba(236, 231, 219, .13);
+    --mono: ui-monospace, SFMono-Regular, "Cascadia Code", Consolas, monospace;
+    --serif: Charter, "Bitstream Charter", Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--cream); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 22px 90px; }
+  nav { padding: 28px 0 0; display: flex; justify-content: space-between; align-items: baseline; }
+  .brand { font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: var(--dim); font-weight: 600; }
+  .brand a { color: var(--dim); }
+  nav a.minor { font-size: 13px; color: var(--dim); }
+  header { padding: 44px 0 8px; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 5.6vw, 40px); line-height: 1.18; }
+  .byline { font-size: 13.5px; color: var(--dim); margin-top: 10px; }
+
   .story { margin-top: 30px; }
   .story p { font-family: var(--serif); font-size: 17.5px; color: var(--soft); line-height: 1.75; margin-bottom: 22px; }
   .story p b { color: var(--cream); font-weight: 600; }
   .story .open { color: var(--cream); font-size: 19px; }
-  .pull { margin: 34px 0; padding: 22px 24px; border-left: 3px solid var(--apricot); background: rgba(217,164,65,.06); border-radius: 0 8px 8px 0; }
+
+  .pull {
+    margin: 34px 0; padding: 22px 24px; border-left: 3px solid var(--apricot);
+    background: rgba(217, 164, 65, .06); border-radius: 0 8px 8px 0;
+  }
   .pull p { font-family: var(--serif); font-size: 21px; line-height: 1.5; color: var(--cream); margin: 0; }
-  .placeholder { border: 1px dashed var(--line); border-radius: 8px; padding: 14px 16px; color: var(--dim); font-size: 14px; }
+
+  .cta-row { margin-top: 38px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .cta { display: inline-block; background: var(--apricot); color: #17191e; border-radius: 6px; padding: 12px 24px; font-size: 15px; font-weight: 700; }
+  .cta:hover { text-decoration: none; filter: brightness(1.08); }
+  .cta.ghost { background: transparent; color: var(--cream); border: 1px solid var(--line); font-weight: 600; }
+
+  a { color: var(--apricot); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  footer { margin-top: 70px; padding-top: 18px; border-top: 1px dotted var(--line); font-size: 14px; color: var(--dim); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
 </style>
 </head>
 <body>
 <div class="wrap">
+
 <nav>
-  <div class="brand"><a href="/" style="color:var(--dim)">← GLP-1 Coach</a></div>
+  <div class="brand"><a href="/">← Daily Coach</a></div>
   <a class="minor" href="how-its-built.html">How it's built</a>
 </nav>
+
 <header>
   <h1>Why I built this</h1>
   <p class="byline">Written by a human.</p>
 </header>
+
 <div class="story">
-  <p class="open">Every fitness app assumes the problem is discipline. On a GLP-1 the problem is the opposite: appetite is the constraint.</p>
-  <p>The questions nobody answers in one place are simple. Am I eating enough to keep my muscle? Am I actually keeping it? What should I bring to my prescriber? And is what I am feeling this week normal?</p>
-  <p>I built a coach for myself first. It sends me one message a day, I reply with what I ate and what I lifted, and on Sunday it tells me how the week went. The part that made it trustworthy was not the model. It was the rules in plain code: a weight steps up only after I have owned it twice, a guess is asked about and never logged, and nothing about my dose comes from anything but my own numbers.</p>
-  <p>This is the public version of that. It is free, it is early, and it is narrow on purpose: for people on a GLP-1 who lift or want to start. If you want cardio programming or a meal plan, there are better places. If you joined a gym because you read about muscle loss and do not know what to do in it, this is for you.</p>
+  <p class="open">What if Claude could be your personal trainer? For me it is, and it changed how I train.</p>
+
+  <p>In April 2026 I threw out my knee. 200 pound squats, 6 sets of 12, on an already tough leg day. Two days later I couldn't walk without pain. Stairs were so painful I had to grab the handrails and hop.</p>
+
+  <p>By the end of summer my knee was healed, I'd hit a PR in nearly every training block, and the workout writing and tracking that used to take me hours now runs itself.</p>
+
+  <p>How? First, no heavy squats for awhile 😅</p>
+
+  <p>More importantly, I spent nights and weekends building a system of <a href="how-its-built.html">six autonomous agents</a> that program my training based on historical records and send me a recommended workout every evening. Built on my actual training history, rules enforced in code, all running on my existing Claude subscription.</p>
+
+  <figure style="margin: 0 0 22px;">
+    <a href="assets/briefing-shot.png"><img src="assets/briefing-shot.png" alt="An evening briefing in Telegram. A push session with weights on every line, a worksheet link, and Swap buttons underneath." style="width:100%;border-radius:10px;border:1px solid var(--line)"></a>
+    <figcaption style="font-size:12.5px;color:var(--dim);margin-top:8px;">What lands on my phone every evening. Real system output, generated in the sandbox that runs the production code.</figcaption>
+  </figure>
+
+  <p>It broke a lot before it got good. One API call got stuck in a retry loop burning all my credits on the same failed request. It'd hallucinate PRs I never hit and machines that don't exist. Each failure turned into a guardrail: API spend caps, a grounding "Athlete File" about who I actually am and how I train, and code that reviews every plan for accuracy before it hits my phone.</p>
+
   <div class="pull">
-    <p>Protein and lifting are the two things you control. The coach's job is to make both easy to do and honest to see.</p>
+    <p>My biggest lesson: agents fail often, silently, and expensively until you build them to fail loud and cheap.</p>
   </div>
-  <div class="placeholder">[Matt: your own GLP-1 story goes here, under your name, when you decide to publish it. Until then this page stays about the product.]</div>
+
+  <p>My journey to a second century and a 225 lift continues.</p>
 </div>
+
 <div class="cta-row">
-  <a class="cta" href="/#waitlist">Join the list</a>
+  <a class="cta" href="/#demo">Try the demo</a>
   <a class="cta ghost" href="how-its-built.html">How it's built</a>
 </div>
+
 <footer>
-  <span><a href="/">GLP-1 Coach</a></span>
-  <span>General wellness education, not medical advice.</span>
+  <div><a href="https://www.linkedin.com/in/mattyfsmith/" rel="me">Contact me on LinkedIn</a></div>
+  <div><a href="/">Home</a></div>
 </footer>
+
 </div>
-<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
