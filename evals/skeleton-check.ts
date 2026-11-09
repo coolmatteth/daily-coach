@@ -80,6 +80,15 @@ async function main() {
     const rl2 = new RateLimiter(1000, 100, 2);
     rl2.check('x', t); rl2.check('y', t);
     check('rate limit: instance cap refuses a third ip', rl2.check('z', t));
+    // Telegram posts every user's messages from a few IPs: authenticated
+    // posts are counted against the instance cap only.
+    const rl3 = new RateLimiter(1000, 2, 10);
+    rl3.check('tg', t); rl3.check('tg', t);
+    check('rate limit: the per-ip cap would refuse telegram', rl3.check('tg', t));
+    check('rate limit: an authenticated post still passes', !rl3.checkInstance(t));
+    const rl4 = new RateLimiter(1000, 2, 3);
+    rl4.checkInstance(t); rl4.checkInstance(t); rl4.checkInstance(t);
+    check('rate limit: authenticated posts still hit the instance cap', rl4.checkInstance(t));
   }
 
   // Clock

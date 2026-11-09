@@ -14,7 +14,7 @@ crons = ["0 * * * *"]
 [[d1_databases]]
 binding = "DB"
 database_name = "glp1-coach"
-database_id = "REPLACE_WITH_D1_ID"
+database_id = "740029af-bf8c-4912-9132-fa956548b889"
 migrations_dir = "migrations"
 
 [vars]
@@ -38,7 +38,7 @@ crons = ["0 * * * *"]
 [[env.staging.d1_databases]]
 binding = "DB"
 database_name = "glp1-coach-staging"
-database_id = "REPLACE_WITH_STAGING_D1_ID"
+database_id = "507f4d59-bf42-46df-8c59-d9fd3f558e1b"
 migrations_dir = "migrations"
 
 [env.staging.vars]
