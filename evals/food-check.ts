@@ -2,7 +2,7 @@
 // and the bot flow with a fake estimator. Run: npx tsx evals/food-check.ts
 import { MemoryStore } from '../src/store';
 import { FakeTransport } from '../src/transport';
-import { handleIncoming, BUSY_TEXT } from '../src/bot';
+import { handleIncoming, BUSY_TEXT, looksLikePortion } from '../src/bot';
 import { dayTotals, tierOf, tierLine, tierBar, statusLine, loggedReply, weekSummary, todayList, pickEntry, applyEdit, atTime, mergeTarget, mergeInto, kcalDayOf, parseAlias, matchAlias, normalizeWord } from '../src/food';
 import { weeklyRecap, prescriberSummary, weeksOnDose, FORBIDDEN_DOSE_WORDS } from '../src/recap';
 import { systemPrompt, todayContext, type Action, type Block, type Estimator } from '../src/estimator';
@@ -139,6 +139,8 @@ async function main() {
     'lunch at 1pm': A({ items: [{ name: 'tuna sandwich', protein_g: 30, kcal: 450 }], time: '13:00' }),
     'remove the rice': A({ action: 'edit', remove_items: ['rice'], items: [] }),
     'how much protein': A({ action: 'answer', reply: 'Your goal is on your file; /me shows it.' }),
+    'cottage cheese, half a cup': A({ items: [{ name: 'cottage cheese, 1/2 cup', protein_g: 12, kcal: 90 }] }),
+    'cottage cheese': A({ action: 'ask', items: [], confidence: 'low', question: 'How much cottage cheese?' }),
     'latte': A({ action: 'ask', items: [], confidence: 'low', question: 'I could not read "latte" as food.' }),
     'burrito': A({ items: [{ name: 'chicken burrito', protein_g: 38, kcal: 650 }] }),
     '232': A({ action: 'ask', items: [], confidence: 'low', question: 'I could not read "232" as food. What was it?' }),
@@ -201,7 +203,7 @@ async function main() {
   // Friction fixes from the transcripts (11/8/26).
   const D2 = (min: number) => new Date(Date.UTC(2026, 10, 8, 12, min));
   r = await send('u1', 'latte', D2(0));
-  check('an unknown one-word meal offers a one-time definition', /I don't know "latte" yet/.test(r[0]) && /make "latte" a shortcut/.test(r[0]), r[0]);
+  check('an unknown one-word meal leads with the question and offers a one-time definition', /I could not read "latte" as food/.test(r[0]) && /make "latte" a shortcut/.test(r[0]), r[0]);
   r = await send('u1', 'oat milk latte, 8 g, 180 kcal', D2(1));
   check('the definition logs it and saves the shortcut', r.some((x) => /Logged ~8 g/.test(x)) && r.some((x) => /"latte" is a shortcut now/.test(x)) && (await store.listAliases(1)).some((a) => a.word === 'latte'), r.join(' | '));
   r = await send('u1', 'latte', D2(2));
@@ -263,6 +265,17 @@ async function main() {
   check('weekly pass sends to every due user once', sent === 2 && out.sent.length === 2);
   check('weekly pass writes a coach line into the file', (await store.listNotes(u1!.id)).some((n) => n.source === 'coach' && /Week ending 2026-11-14/.test(n.text)));
   check('weekly pass is idempotent for the day', (await weeklyPass(store, () => out, new Date('2026-11-15T19:00:00Z'))) === 0);
+
+  // A real food with no amount: the model's question leads, and a portion
+  // in reply is read together with the food (staging cast, 11/12/26).
+  {
+    const DP = (min: number) => new Date(Date.UTC(2026, 10, 20, 12, min));
+    r = await send('u1', 'cottage cheese', DP(0));
+    check('a food with no amount gets "how much", not "I don\'t know"', /How much cottage cheese/.test(r[0]) && !/I don't know/.test(r[0]), r[0]);
+    r = await send('u1', 'half a cup', DP(1));
+    check('the portion reply logs the food it was about', r.some((x) => /cottage cheese/.test(x) && /(Logged|Added)/.test(x)), r.join(' | '));
+    check('looksLikePortion: amounts yes, a new meal no', looksLikePortion('half a cup') && looksLikePortion('2 scoops') && !looksLikePortion('chicken and rice') && !looksLikePortion('i had the chicken thing with two sides of rice today'));
+  }
 
   // Delete cascades through meals and aliases.
   await send('u1', 'delete me', at(400));
