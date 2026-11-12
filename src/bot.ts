@@ -72,6 +72,15 @@ const FOOD_COMMANDS = new Set(['/today', '/week', '/recap', '/undo', '/delete', 
 
 // One message in, zero or more out. No HTTP, no Telegram, no D1 in here:
 // the tests call this with a MemoryStore, a FakeTransport and a fake Estimator.
+// A short reply that reads as an amount: "half a cup", "2 scoops", "a
+// small bowl". Six words at most, so a whole new meal is not mistaken
+// for one.
+export function looksLikePortion(text: string): boolean {
+  const t = text.trim();
+  if (!t || t.startsWith('/') || t.split(/\s+/).length > 6) return false;
+  return /\d|\b(half|quarter|cup|cups|bowl|scoop|scoops|spoon|spoonful|small|medium|large|one|two|three|container|serving|handful|slice|slices)\b/i.test(t);
+}
+
 export async function handleIncoming(m: Incoming): Promise<void> {
   const { store, transport, channel, chatId } = m;
   const text = normalize(m.text);
@@ -342,6 +351,11 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
       await reply(`And "${word}" is a shortcut now: send it on its own next time.`);
       return;
     }
+    // A portion in reply to "how much?" is about the word just asked
+    // about, so the two are read together. (The cast on staging with the
+    // real model, 11/12/26: "cottage cheese" then "half a cup" lost the
+    // food.) Anything longer is a new message and is read on its own.
+    if (!user.pendingAliasItem && looksLikePortion(m.text)) m = { ...m, text: `${word}, ${m.text.trim()}` };
     await store.updateUser(user.id, { pendingAliasWord: null, pendingAliasItem: null });
     user = { ...user, pendingAliasWord: null, pendingAliasItem: null };
   }
@@ -400,7 +414,11 @@ async function handleForUser(m: Incoming, user: User, reply: (t: string) => Prom
       // One word the model cannot read is usually the person's own name for
       // a staple. One definition logs it and makes it a shortcut.
       await store.updateUser(user.id, { pendingAliasWord: word, pendingAliasItem: null });
-      await reply(`I don't know "${word}" yet. Tell me what's in it once, like "whey 2 scoops, 50 g, 240 kcal", and I'll log it and make "${word}" a shortcut.`);
+      // The model's own question leads when it has one: for a real food
+      // with no amount ("cottage cheese") it asks how much, and "I don't
+      // know cottage cheese" was the wrong thing to say (11/12/26).
+      const lead = act.question ? act.question : `I don't know "${word}" yet.`;
+      await reply(`${lead}\nAnswer that, or tell me what's in it once, like "whey 2 scoops, 50 g, 240 kcal", and I'll log it and make "${word}" a shortcut.`);
       return;
     }
     await reply(draft.items.length
